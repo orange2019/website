@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <notempty name="list">
+              <div class="we-scrollable-horizontal we-panel we-padding">
+                <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                  <thead>
+                    <tr>
+                      <th>UID</th>
+                      <th>邮箱</th>
+                      <th>姓名</th>
+                      <th>电话</th>
+                      <th>角色组</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                      <th>功能</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <foreach name="list" item="vo">
+                    <tr>
+                      <td>{$vo.id}</td>
+                      <td>{$vo.email}</td>
+                      <td>{$vo.name}</td>
+                      <td>{$vo.phone}</td>
+                      <td>{$vo.id|get_user_group=### ,'title'}</td>
+                      <td>
+                        <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>
+                        <eq name="vo.status" value="0"><span class="we-text-warning">禁用</span></eq>
+                        <eq name="vo.status" value="-1"><span class="we-text-danger">删除</span></eq>
+                      </td>
+                      <td>
+                        <eq name="vo.pid" value="1">
+                          <a href="{:url('dev/user/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
+
+                          <eq name="vo.status" value="1">
+                            <a href="{:url('status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
+                            <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
+                          </eq>
+                          <eq name="vo.status" value="0">
+                            <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                            <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
+                          </eq>
+                          <eq name="vo.status" value="-1">
+                            <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                          </eq>
+                        </eq>
+                        <eq name="vo.pid" value="0">
+                          <eq name="vo.status" value="1">
+                            <a href="{:url('status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
+                          </eq>
+                          <eq name="vo.status" value="0">
+                            <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                          </eq>
+                        </eq>
+                      </td>
+                      <td>
+                        <eq name="vo.pid" value="0">
+                          <a href="{:url('dev/user/group?id='.$vo['id'])}" class="we-text-danger pjax">分配角色</a>
+
+                        </eq>
+                      </td>
+                      <td>
+                        <eq name="vo.pid" value="0">
+                          <a href="{:url('dev/user/index?pid='.$vo['id'])}" class="we-text-warning pjax" >下级成员</a>
+                          <a href="{:url('dev/group/index?uid='.$vo['id'])}" class="we-text-primary pjax">拥有角色</a>
+                          <a href="{:url('dev/component/apply?status=1&uid='.$vo['id'])}" class="we-text-secondary pjax">组件</a>
+                        </eq>
+                      </td>
+                    </tr>
+                    </foreach>
+                  </tbody>
+                </table>
+              </div>
+              <else/>
+              <p class="we-text-center we-text-danger">未查询到数据</p>
+            </notempty>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

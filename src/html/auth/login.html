@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>saas系统登录</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body class="login">
+
+    <div class="login-box">
+      <div class="left we-fl we-text-center">
+        <h1>登录 / LOG IN</h1>
+
+        <p>老司机 公寓管理系统</p>
+
+        <p><small>集房源管理，合同管理，财务订单，客服运营，等等等等于一身的最牛X的公寓管理系统</small></p>
+
+        <p>还等什么，<a href="{:url('reg')}"> 快上车</a>  </p>
+
+        <p>
+          <span class="fa fa-car fa-4x"></span>
+          <br>
+          <span class="fa fa-road fa-5x"></span>
+        </p>
+
+      </div>
+      <div class="right we-fr">
+        <div class="login-form-block">
+          <form class="we-form form-ajax" action="{:url('')}" method="post">
+            <div class="we-form-group">
+              <input type="email" name="email" value="" placeholder="请输入登录邮箱" required="">
+            </div>
+
+            <div class="we-form-group">
+              <input type="password" name="password" value="" placeholder="请输入登录密码" required="">
+            </div>
+
+            <div class="we-form-group">
+              <input type="text" name="captcha" value="" placeholder="请输入验证码" required="">
+            </div>
+
+            <div class="we-form-group">
+              <img src="{:captcha_src()}" alt="" width="150" height="40" class="captcha-again captcha-img">
+              <a href="javascript:;" class="captcha-again">看不清？换一张</a>
+            </div>
+
+            <div class="we-form-group">
+              <!-- {:token()} -->
+              <input type="submit" class="we-btn  we-btn-block btn-login" value="LOG IN">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+    <script type="text/javascript">
+      var captchaReset = function(){
+
+        $('.captcha-again').bind('click', function() {
+
+          var src = "{:captcha_src()}" + '?t=' + Math.random();
+          $('.captcha-img').attr('src', src);
+        }).trigger('click');
+      }
+
+      captchaReset();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,390 @@
+// Amaze UI Styles
+
+// LESS related
+@import "../../node_modules/amazeui/less/variables.less";
+@import "../../node_modules/amazeui/less/mixins.less";
+
+// Defaults
+@import "../../node_modules/amazeui/less/base.less";
+
+// Layout
+@import "../../node_modules/amazeui/less/grid.less";
+@import "../../node_modules/amazeui/less/block-grid.less";
+
+// Elements
+@import "../../node_modules/amazeui/less/code.less";
+@import "../../node_modules/amazeui/less/button.less";
+@import "../../node_modules/amazeui/less/table.less";
+@import "../../node_modules/amazeui/less/form.less";
+@import "../../node_modules/amazeui/less/image.less";
+
+// Nav
+@import "../../node_modules/amazeui/less/nav.less";
+@import "../../node_modules/amazeui/less/topbar.less";
+@import "../../node_modules/amazeui/less/breadcrumb.less";
+@import "../../node_modules/amazeui/less/pagination.less";
+
+// Common
+@import "../../node_modules/amazeui/less/animation.less";
+@import "../../node_modules/amazeui/less/article.less";
+@import "../../node_modules/amazeui/less/badge.less";
+@import "../../node_modules/amazeui/less/comment.less";
+@import "../../node_modules/amazeui/less/button-group.less";
+@import "../../node_modules/amazeui/less/close.less";
+@import "../../node_modules/amazeui/less/input-group.less";
+@import "../../node_modules/amazeui/less/list.less";
+@import "../../node_modules/amazeui/less/panel.less";
+@import "../../node_modules/amazeui/less/progress.less";
+@import "../../node_modules/amazeui/less/thumbnail.less";
+@import "../../node_modules/amazeui/less/utility.less";
+
+
+@import "../../node_modules/font-awesome/less/font-awesome.less";
+
+
+@ns : ~"we-";
+
+// color
+@brand-blue : #495678;
+@brand-yellow: #f8c301;
+
+@brand-blue-sub : lighten(@brand-blue , 10%);
+
+@dark : #34495E;
+@darker : #1b2032;
+@font-size-default : 1.4rem;
+
+body {
+  font-size: @font-size-default;
+}
+
+html,body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.we-border {
+  border: 1px solid @white;
+}
+
+/*公共*/
+.page-title {
+  color: @brand-blue;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid @brand-yellow;
+
+}
+/* 登录,注册  */
+.login {
+  height: 100%;
+  width: 100%;
+  background: #f0f0f0;
+  padding-top: 10%;
+  display: block;
+
+  .login-box {
+    width: 800px;
+    margin: 0 auto;
+    height: 500px;
+    background: @brand-blue;
+    color: @white;
+    .left {
+
+      width: 40%;
+      height: 100%;
+      padding:50px;
+      a {
+        color: @brand-yellow;
+      }
+    }
+    .right {
+      width: 60%;
+      height: 100%;
+      background:@brand-yellow;
+      padding: 50px ;
+    }
+    .login-form-block {
+      background: @white;
+      padding: 50px;
+    }
+    .btn-login {
+      background: @brand-yellow;
+      padding: 1.5rem;
+    }
+  }
+  .reg-box {
+    width: 600px;
+    margin: 0 auto;
+    background: @white;
+    padding: 50px;
+  }
+}
+
+/* flex 布局*/
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.navbar {
+  width: 320px;
+  display: flex;
+  .top {
+    width: 80px;
+    background: @brand-blue;
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: @brand-yellow;
+      text-align: center;
+      span {
+        line-height: 80px;
+        color: @white;
+      }
+    }
+    .nav-top {
+      margin-top: 80px;
+    }
+    .nav-top > li {
+      height: 60px;
+      width: 80px;
+      margin: 0;
+    }
+    .nav-top > li > a {
+      width: 80px;
+      height: 60px;
+      color: @brand-yellow;
+      text-align: center;
+      font-size: 2.4rem;
+      small {font-size: 0.5rem;}
+    }
+    .nav-top >li.active a {
+      background: @brand-yellow;
+      color: @brand-blue;
+    }
+    .nav-top >li:hover a {
+      // background: @brand-yellow;
+      color: @brand-blue;
+    }
+
+  }
+  .sub {
+    flex-grow: 1;
+    width: 240px;
+    background: @brand-blue-sub;
+    .user-info {
+      padding: 1rem;
+      text-align: center;
+      color: @white;
+      height: 160px;
+      background:  lighten(@brand-blue , 5%);
+      .user-info-avatar {
+        width: 60px;
+        height: 60px;
+        margin: auto;
+      }
+    }
+    .nav-sub {
+      margin: 0;
+      li {
+        height: 60px;
+        margin: 0;
+        a {
+          height: 60px;
+          line-height: 60px;
+          padding: 0 2rem;
+          color: @white;
+        }
+      }
+      li.active a{
+        background: @brand-yellow;
+      }
+      li:hover a{
+        color: @brand-blue;
+      }
+      li.display-0 {
+        display: none;
+      }
+    }
+  }
+}
+.container-content {
+  flex-grow: 1;
+  overflow: hidden;
+  background: @gray-lighter;
+  .container-header {
+    background: @white;
+    height: 80px;
+    line-height: 80px;
+    .header-title {
+      line-height: 80px;
+      font-size: 3rem;
+      padding-left: 1.5rem;
+      color: @brand-blue;
+      font-weight: bolder;
+    }
+    .sign-out{
+      padding: 1rem 2rem;
+      border-left: 1px solid @gray-lighter;
+      a {
+        color: @brand-blue;
+      }
+    }
+  }
+  .container-wrap {
+    padding: 1.5rem;
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+  }
+}
+
+/*表单*/
+legend {
+  font-weight: bold;
+}
+
+/*按钮*/
+.btn-ac {
+  padding: 3px 1rem;
+  border: 0.5px solid #000;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  transition: all 0.5s;
+  text-align: center;
+}
+.btn-ac-big {
+  padding: 1rem 1rem;
+  font-size: 2rem;
+}
+.btn-ac:hover {
+  color: @white;
+  border-color: @gray;
+  background: @gray;
+}
+.btn-ac-info {
+  color: @global-info;
+  border-color: @global-info;
+}
+.btn-ac-success {
+  color: @global-success;
+  border-color: @global-success;
+}
+.btn-ac-warning {
+  color: @global-warning;
+  border-color: @global-warning;
+}
+.btn-ac-danger {
+  color: @global-danger;
+  border-color: @global-danger;
+}
+
+.btn-rule {
+  border: 1px solid @brand-blue;
+  color: @brand-blue;
+}
+.btn-rule:hover {
+  background: @brand-blue;
+  color: @brand-yellow;
+}
+
+/*权限*/
+.rule-box {
+  display: none;
+}
+.rule-box.show {
+  display: block;
+}
+.group-rule-box {
+  display: none;
+}
+.group-rule-box.show{
+  display: block;
+}
+
+.group-rule-item.level-1 {
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: @brand-blue;
+  line-height: 3.6rem;
+}
+
+.group-rule-item.level-2 {
+  font-size: 1.6rem;
+  padding-left: 1.5rem;
+  clear: both;
+  cursor: pointer;
+  font-weight: bold;
+  color: @brand-blue;
+  line-height: 3rem;
+  span {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 2px solid @brand-blue;
+  }
+}
+.group-rule-item.level-3 {
+  font-size: 10px;
+  color: @brand-blue;
+  float: left;
+  border: 0.5px solid @brand-blue;
+  margin: 0.5rem 0rem 0.5rem 1.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.group-rule-item.level-3:hover {
+  background: @brand-blue;
+  color: @white;
+
+}
+
+.group-rule-item.checked {
+  color: @brand-yellow;
+}
+.group-rule-item.level-2.checked {
+  span {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 2px solid @brand-yellow;
+  }
+}
+.group-rule-item.level-3.checked {
+  border: 0.5px solid @brand-yellow;
+}
+
+.user-group-item {
+  padding: 1.5rem;
+  border-bottom: 0.5px solid @brand-blue;
+}
+
+.user-project-item {
+    margin: 0.5rem 0rem 0.5rem 1.5rem;
+    padding: 0.5rem;
+    border: 0.5px solid @brand-blue;
+    color:  @brand-blue;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.user-project-item:hover {
+  background: @brand-blue;
+  color: @white;
+}
+.user-project-item.checked {
+  border: 0.5px solid @brand-yellow;
+  color: @brand-yellow;
+}
+.user-project-item.checked:hover {
+  background: @brand-yellow;
+  color: @white;
+}
+.group-rule-2 {
+  width: 48%;
+  float: left;
+  margin-right: 2%;
+}

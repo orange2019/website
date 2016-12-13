@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>权限添加/编辑</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">上级权限</label>
+                  <div class="">
+                    <select class="" name="pid">
+                      <option value="0">顶级权限</option>
+                      <foreach name="rules" item="vo">
+                        <elt name="vo.level" value="2">
+                          <eq name="vo.id" value="$data['pid']">
+                          <option value="{$vo.id}" selected="">{$vo.html}{$vo.title}</option>
+                          <else/>
+                          <option value="{$vo.id}">{$vo.html}{$vo.title}</option>
+                          </eq>
+                        </elt>
+                      </foreach>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">权限名称</label>
+                  <div class="">
+                    <input type="text" name="title" value="{$data.title}" placeholder="请输入权限名称" required="">
+                  </div>
+                </div>
+
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">权限标识</label>
+                  <div class="">
+                    <input type="text" name="name" value="{$data.name}" placeholder="输入权限标识">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">权限类别</label>
+                  <div class="">
+                    <select class="" name="type">
+                      <foreach name="auth_rule_type" item="vo" key="k">
+                        <eq name="type" value="$k">
+                          <option value="{$k}" selected="">{$vo}</option>
+                        <else/>
+                          <option value="{$k}">{$vo}</option>
+                        </eq>
+
+                      </foreach>
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">组件所属</label>
+                  <div class="">
+                    <select class="" name="component_id">
+                      <option value="0">基础（默认）</option>
+                      <foreach name="components" item="vo" key="k">
+                        <eq name="component" value="$vo['id']">
+                          <option value="{$vo.id}" selected="">{$vo.title}</option>
+                        <else/>
+                          <option value="{$vo.id}">{$vo.title}</option>
+                        </eq>
+
+                      </foreach>
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">是否显示</label>
+                  <div class="">
+                    <select class="" name="display">
+
+                        <eq name="data.display" value="1">
+                          <option value="1" selected="">是</option>
+                        <else/>
+                          <option value="1">是</option>
+                        </eq>
+                        <eq name="data.display" value="0">
+                          <option value="0" selected="">否</option>
+                        <else/>
+                          <option value="0">否</option>
+                        </eq>
+
+                      </foreach>
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">排序</label>
+                  <div class="">
+                    <input type="number" name="sort" value="{$data.sort}" placeholder="越小越优先">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <input type="hidden" name="id" value="{$data.id}">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="submit" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

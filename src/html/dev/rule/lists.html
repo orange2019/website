@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <div class="we-panel">
+              <div class="page-title">
+                <notempty name="component">
+                  <strong class="we-text-danger">{$component.title}</strong>
+                </notempty>
+                【{$typeData}】权限
+                <a href="{:url('dev/rule/update',['type'=>$type,'component'=>$component['id']])}" class="btn-ac btn-ac-success pjax"><span class="fa fa-plus"></span> 添加</a>
+              </div>
+              <notempty name="list">
+                <div class="we-scrollable-horizontal we-panel we-padding">
+                  <table class="we-table we-table-striped we-text-nowrap we-table-compact we-table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>权限名称</th>
+                        <th>权限标识</th>
+                        <th>状态</th>
+                        <th>显示</th>
+                        <th>操作</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <foreach name="list" item="vo">
+                      <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.html}
+                          <eq name="vo.level" value="1"><span class="we-badge we-badge-primary">{$vo.title}</span></eq>
+                          <eq name="vo.level" value="2"><span class="we-badge we-badge-secondary">{$vo.title}</span></eq>
+                          <eq name="vo.level" value="3"><span class="we-badge we-badge-warning">{$vo.title}</span></eq>
+                        </td>
+                        <td>{$vo.name}</td>
+
+                        <td>
+                          <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>
+                          <eq name="vo.status" value="0"><span class="we-text-warning">禁用</span></eq>
+                          <eq name="vo.status" value="-1"><span class="we-text-danger">删除</span></eq>
+                        </td>
+                        <td>
+                          <eq name="vo.display" value="1"><span class="we-text-success">是</span></eq>
+                          <eq name="vo.display" value="0"><span class="we-text-warning">否</span></eq>
+                        </td>
+                        <td>
+                          <eq name="vo.uid" value="1">
+                            <a href="{:url('dev/rule/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
+
+                            <eq name="vo.status" value="1">
+                              <a href="{:url('status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
+                              <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
+                            </eq>
+                            <eq name="vo.status" value="0">
+                              <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                              <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
+                            </eq>
+                            <eq name="vo.status" value="-1">
+                              <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                            </eq>
+                          </eq>
+                        </td>
+
+                      </tr>
+                      </foreach>
+                    </tbody>
+                  </table>
+                </div>
+                <else/>
+                <p class="we-text-center we-text-danger">未查询到数据</p>
+              </notempty>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

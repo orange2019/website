@@ -1,0 +1,38 @@
+{
+    "name": "niklaslu/we-project",
+    "description": "project build",
+    "type": "project",
+    "version" : "1.0.0",
+    "keywords": [
+        "build",
+        "php"
+    ],
+    "homepage": "http://www.cc512.com",
+    "license": "Apache-2.0",
+    "authors": [{
+        "name": "niklaslu",
+        "email": "332553882@qq.com"
+    }],
+    "require": {
+        "php": ">=5.4.0",
+        "topthink/framework": "^5.0",
+        "niklaslu/php-aliyun-oss": "dev-master",
+        "niklaslu/wechat-sdk": "dev-master",
+        "niklaslu/php-sent-email": "dev-master",
+        "niklaslu/un-limit-tree": "dev-master",
+        "niklaslu/think-authentication": "^1.0",
+        "topthink/think-captcha": "^1.0"
+    },
+    "extra": {
+        "think-path": "thinkphp"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

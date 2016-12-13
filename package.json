@@ -1,0 +1,74 @@
+{
+  "name": "we-project",
+  "version": "1.0.0",
+  "description": "一套简单的自用项目构建",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklauslu/we-project.git"
+  },
+  "keywords": [
+    "font-end",
+    "html",
+    "css"
+  ],
+  "author": "niklaslu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niklauslu/we-project"
+  },
+  "homepage": "https://github.com/niklauslu/we-project#readme",
+  "devDependencies": {
+    "amazeui": "^2.7.2",
+    "autoprefixer": "^6.5.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.17.5",
+    "browserify": "^13.1.1",
+    "cssnano": "^3.8.0",
+    "del": "^2.2.2",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-changed": "^1.3.2",
+    "gulp-concat": "*",
+    "gulp-content-includer": "0.0.7",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.1.0",
+    "gulp-jshint": "*",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-size": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "jquery": "^2.2.4",
+    "jquery-pjax": "^1.9.6",
+    "normalize.css": "^5.0.0",
+    "run-sequence": "^1.2.2",
+    "sweetalert": "^1.1.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "browserify-shim": "^3.8.12",
+    "marked": "^0.3.6",
+    "pace": "0.0.4",
+    "pace-progress": "^1.0.2",
+    "sweetalert": "^1.1.3"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:jQuery"
+  }
+}

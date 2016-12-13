@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>管理员信息修改</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>管理员信息修改</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">开发者邮箱</label>
+                  <div class="">
+                    <input type="email" name="email" value="{$data.email}" placeholder="输入开发者邮箱" required="" disabled="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">登录密码<small class="we-text-danger">(不修改不需填写)</small></label>
+                  <div class="">
+                    <input type="password" name="password" value="" placeholder="输入登录密码">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">再次输入密码<small class="we-text-danger">(不修改不需填写)</small></label>
+                  <div class="">
+                    <input type="password" name="password_again" value="" placeholder="再次输入登录密码">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">名称</label>
+                  <div class="">
+                    <input type="text" name="name" value="{$data.name}" placeholder="输入管理员名称">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <input type="hidden" name="id" value="{$data.id}">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="submit" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

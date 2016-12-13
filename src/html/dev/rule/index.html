@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <div class="we-panel">
+              <div class="rule-box {$base_show}">
+              <h3 class="page-title">基础</h3>
+
+              <ul class="we-avg-sm-4">
+                <foreach name="auth_rule_type" item="vo" key="k">
+                  <li class="we-padding">
+                    <a href="{:url('dev/rule/lists?type='.$k)}" class="we-btn we-btn-block btn-rule we-padding">{$vo}</a>
+                  </li>
+                </foreach>
+              </ul>
+              <hr>
+            </div>
+              <foreach name="components" item="v">
+                <div class="rule-box {$v.show}">
+                <a name="{$v.name}"></a>
+                <h3 class="page-title">{$v.title} <small class="we-text-danger">Level.{$v.level}</small></h3>
+
+                <ul class="we-avg-sm-4">
+                  <foreach name="auth_rule_type" item="vo" key="k">
+                    <li class="we-padding">
+                      <a href="{:url('dev/rule/lists',['type'=>$k,'component'=>$v['id']])}" class="we-btn we-btn-block btn-rule we-padding">{$vo}</a>
+                    </li>
+                  </foreach>
+                </ul>
+                <hr>
+              </div>
+              </foreach>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

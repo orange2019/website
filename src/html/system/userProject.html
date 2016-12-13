@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+                    <div class="we-panel">
+                        <h3 class="page-title">{$user.email} 项目分配</h3>
+                        <form class="we-form form-ajax" action="{:url('')}" method="post">
+
+                            <foreach name="projects" item="project">
+                              <if condition="in_array($project['id'] , $userProjects)">
+                                <label for="" class="user-project-item checked">
+                                    <input type="checkbox" name="projects[]" value="{$project.id}" checked="">
+                                    <span>{$project.title} </span>
+                                    <small>{$project.name}</small>
+                                </label>
+                                <else/>
+                                <label for="" class="user-project-item ">
+                                    <input type="checkbox" name="projects[]" value="{$project.id}">
+                                    <span>{$project.title} </span>
+                                    <small>{$project.name}</small>
+                                </label>
+                              </if>
+                            </foreach>
+                            <div class="we-cf we-padding">
+                                <input type="hidden" name="user_id" value="{$user.id}">
+                                <input type="submit" value="提交" class="we-btn we-btn-success">
+                                <input type="reset" value="重置" class="we-btn we-btn-danger">
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>

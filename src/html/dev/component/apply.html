@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <div class="we-cf">
+
+            </div>
+            <notempty name="list">
+              <div class="we-scrollable-horizontal we-panel we-padding">
+                <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>组件名称</th>
+                      <th>申请用户</th>
+                      <th>申请时间</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <foreach name="list" item="vo">
+                    <tr>
+                      <td>{$vo.id}</td>
+                      <td><span class="we-badge we-badge-secondary">{$vo.title}</span></td>
+                      <td>{$vo.user_email}</td>
+                      <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                      <td>
+                        <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>
+                        <eq name="vo.status" value="0"><span class="we-text-warning">未审核</span></eq>
+                        <eq name="vo.status" value="-1"><span class="we-text-warning">未通过</span></eq>
+                      </td>
+                      <td>
+                        <eq name="vo.status" value="0" >
+                          <a href="{:url('applyCheck?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">通过</a>
+                          <a href="{:url('applyCheck?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">不通过</a>
+                        </eq>
+                      </td>
+
+                    </tr>
+                    </foreach>
+                  </tbody>
+                </table>
+              </div>
+              <else/>
+              <p class="we-text-center we-text-danger">未查询到数据</p>
+            </notempty>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>
