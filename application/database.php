@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => '112.74.83.84',
+    'hostname'       => '112.74.104.113',
     // 数据库名
-    'database'       => 'warm_base',
+    'database'       => 'cc_orange',
     // 用户名
-    'username'       => 'serverLc',
+    'username'       => 'root',
     // 密码
-    'password'       => 'woshiliuchang',
+    'password'       => 'lc19890512',
     // 端口
     'hostport'       => '',
     // 连接dsn

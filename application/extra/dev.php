@@ -1,5 +1,8 @@
 <?php
 return [
+  
+  'code_name' => '老司机',
+    
   'root_uid' => 1, 
     
    'auth_rule_type' => [

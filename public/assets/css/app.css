@@ -8524,12 +8524,12 @@ body {
 }
 /*公共*/
 .page-title {
-  color: #495678;
+  color: #222222;
   font-size: 2rem;
   font-weight: bold;
   margin: 1rem 0;
   padding-left: 1rem;
-  border-left: 4px solid #f8c301;
+  border-left: 4px solid #F39C12;
 }
 /* 登录,注册  */
 .login {
@@ -8543,7 +8543,7 @@ body {
   width: 800px;
   margin: 0 auto;
   height: 500px;
-  background: #495678;
+  background: #222222;
   color: #fff;
 }
 .login .login-box .left {
@@ -8552,12 +8552,12 @@ body {
   padding: 50px;
 }
 .login .login-box .left a {
-  color: #f8c301;
+  color: #F39C12;
 }
 .login .login-box .right {
   width: 60%;
   height: 100%;
-  background: #f8c301;
+  background: #F39C12;
   padding: 50px ;
 }
 .login .login-box .login-form-block {
@@ -8565,7 +8565,7 @@ body {
   padding: 50px;
 }
 .login .login-box .btn-login {
-  background: #f8c301;
+  background: #F39C12;
   padding: 1.5rem;
 }
 .login .reg-box {
@@ -8590,12 +8590,12 @@ body {
 }
 .navbar .top {
   width: 80px;
-  background: #495678;
+  background: #222222;
 }
 .navbar .top .logo {
   width: 80px;
   height: 80px;
-  background: #f8c301;
+  background: #F39C12;
   text-align: center;
 }
 .navbar .top .logo span {
@@ -8613,7 +8613,7 @@ body {
 .navbar .top .nav-top > li > a {
   width: 80px;
   height: 60px;
-  color: #f8c301;
+  color: #F39C12;
   text-align: center;
   font-size: 2.4rem;
 }
@@ -8621,25 +8621,25 @@ body {
   font-size: 0.5rem;
 }
 .navbar .top .nav-top > li.active a {
-  background: #f8c301;
-  color: #495678;
+  background: #F39C12;
+  color: #222222;
 }
 .navbar .top .nav-top > li:hover a {
-  color: #495678;
+  color: #222222;
 }
 .navbar .sub {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   width: 240px;
-  background: #5c6d98;
+  background: #3c3c3c;
 }
 .navbar .sub .user-info {
   padding: 1rem;
   text-align: center;
   color: #fff;
   height: 160px;
-  background: #536188;
+  background: #2f2f2f;
 }
 .navbar .sub .user-info .user-info-avatar {
   width: 60px;
@@ -8660,10 +8660,10 @@ body {
   color: #fff;
 }
 .navbar .sub .nav-sub li.active a {
-  background: #f8c301;
+  background: #F39C12;
 }
 .navbar .sub .nav-sub li:hover a {
-  color: #495678;
+  color: #222222;
 }
 .navbar .sub .nav-sub li.display-0 {
   display: none;
@@ -8684,7 +8684,7 @@ body {
   line-height: 80px;
   font-size: 3rem;
   padding-left: 1.5rem;
-  color: #495678;
+  color: #222222;
   font-weight: bolder;
 }
 .container-content .container-header .sign-out {
@@ -8692,7 +8692,7 @@ body {
   border-left: 1px solid #eeeeee;
 }
 .container-content .container-header .sign-out a {
-  color: #495678;
+  color: #222222;
 }
 .container-content .container-wrap {
   padding: 1.5rem;
@@ -8739,12 +8739,12 @@ legend {
   border-color: #dd514c;
 }
 .btn-rule {
-  border: 1px solid #495678;
-  color: #495678;
+  border: 1px solid #222222;
+  color: #222222;
 }
 .btn-rule:hover {
-  background: #495678;
-  color: #f8c301;
+  background: #222222;
+  color: #F39C12;
 }
 /*权限*/
 .rule-box {
@@ -8763,7 +8763,7 @@ legend {
   font-size: 2rem;
   cursor: pointer;
   font-weight: bold;
-  color: #495678;
+  color: #222222;
   line-height: 3.6rem;
 }
 .group-rule-item.level-2 {
@@ -8772,18 +8772,18 @@ legend {
   clear: both;
   cursor: pointer;
   font-weight: bold;
-  color: #495678;
+  color: #222222;
   line-height: 3rem;
 }
 .group-rule-item.level-2 span {
   padding: 0.5rem 1rem 0.5rem 0;
-  border-bottom: 2px solid #495678;
+  border-bottom: 2px solid #222222;
 }
 .group-rule-item.level-3 {
   font-size: 10px;
-  color: #495678;
+  color: #222222;
   float: left;
-  border: 0.5px solid #495678;
+  border: 0.5px solid #222222;
   margin: 0.5rem 0rem 0.5rem 1.5rem;
   padding: 0.5rem;
   border-radius: 4px;
@@ -8791,42 +8791,42 @@ legend {
   transition: all 0.5s;
 }
 .group-rule-item.level-3:hover {
-  background: #495678;
+  background: #222222;
   color: #fff;
 }
 .group-rule-item.checked {
-  color: #f8c301;
+  color: #F39C12;
 }
 .group-rule-item.level-2.checked span {
   padding: 0.5rem 1rem 0.5rem 0;
-  border-bottom: 2px solid #f8c301;
+  border-bottom: 2px solid #F39C12;
 }
 .group-rule-item.level-3.checked {
-  border: 0.5px solid #f8c301;
+  border: 0.5px solid #F39C12;
 }
 .user-group-item {
   padding: 1.5rem;
-  border-bottom: 0.5px solid #495678;
+  border-bottom: 0.5px solid #222222;
 }
 .user-project-item {
   margin: 0.5rem 0rem 0.5rem 1.5rem;
   padding: 0.5rem;
-  border: 0.5px solid #495678;
-  color: #495678;
+  border: 0.5px solid #222222;
+  color: #222222;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.5s;
 }
 .user-project-item:hover {
-  background: #495678;
+  background: #222222;
   color: #fff;
 }
 .user-project-item.checked {
-  border: 0.5px solid #f8c301;
-  color: #f8c301;
+  border: 0.5px solid #F39C12;
+  color: #F39C12;
 }
 .user-project-item.checked:hover {
-  background: #f8c301;
+  background: #F39C12;
   color: #fff;
 }
 .group-rule-2 {

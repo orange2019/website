@@ -218,7 +218,7 @@ gulp.task('start', ['default'], () => {
     //     server: 'public'
     // });
     browserSync({
-      proxy : "http://saas.warm.io/",
+      proxy : "http://orange.cc512.com/",
       notify: false,
       logPrefix: 'ASK',
     });
