@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>项目添加</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">项目名称</label>
+                  <div class="">
+                    <input type="text" name="title" value="" placeholder="输入项目名称" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">项目代号</label>
+                  <div class="">
+                    <input type="text" name="name" value="" placeholder="输入项目代号(英文)" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="submit" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+              <form class="we-form form-ajax" action="{:url('')}" method="post">
+                <foreach name="types" item="vo" key="k">
+                  <div class="group-rule-box {$vo.show} we-cf we-padding">
+                    <h3 class="page-title">{$vo.name}</h3>
+                    <foreach name="vo.rules" key="c" item="rules">
+                      <div class="we-panel we-cf we-padding group-rule-2">
+                        <div class="border-bottom">
+                          <strong>{$components[$c] ? $components[$c] : '基础权限'}</strong>
+                          <hr>
+                        </div>
+
+                        <foreach name="rules" item="rule">
+                          <eq name="rule.level" value="1"><div class="we-cf"></div></eq>
+                          <if condition="in_array($rule['id'] , $groupRules)">
+                            <div class="group-rule-item level-{$rule.level} checked">
+                              <span><input type="checkbox" name="rules[]" value="{$rule.id}" checked=""> {$rule.title}</span>
+                            </div>
+                          <else/>
+                          <div class="group-rule-item level-{$rule.level}">
+                            <span><input type="checkbox" name="rules[]" value="{$rule.id}" > {$rule.title}</span>
+                          </div>
+                        </if>
+                        </foreach>
+                      </div>
+                    </foreach>
+
+
+                  </div>
+                </foreach>
+
+                <div class="we-cf we-padding">
+                  <hr>
+                  <input type="hidden" name="group_id" value="{$group.id}">
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="reset" value="重置" class="we-btn we-btn-danger">
+                </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

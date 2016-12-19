@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>saas系统注册</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body class="login">
+
+    <div class="reg-box">
+        <h1 class="we-text-center">注册</h1>
+        <hr>
+        <form class="we-form we-form-horizontal" action="{:url('')}" method="post">
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3">登录邮箱</label>
+            <div class="we-u-sm-9">
+              <input type="email" name="email" value="" placeholder="请输入登录邮箱" required="">
+            </div>
+
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3">登录密码</label>
+            <div class="we-u-sm-9">
+              <input type="password" name="password" value="" placeholder="请输入登录密码" required="">
+            </div>
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3">确认密码</label>
+            <div class="we-u-sm-9">
+              <input type="password" name="password_again" value="" placeholder="请再次输入密码确认" required="">
+            </div>
+
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3">电话号码</label>
+            <div class="we-u-sm-9">
+              <input type="text" name="phone" value="" placeholder="请留下您的电话号码已便我们联系" required="">
+            </div>
+
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3">验证码</label>
+            <div class="we-u-sm-9">
+                <input type="text" name="captcha" value="" placeholder="请输入验证码" required="">
+            </div>
+
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3"></label>
+            <div class="we-u-sm-9">
+              <img src="{:captcha_src()}" alt="" width="150" height="40" class="captcha-again captcha-img">
+              <a href="javascript:;" class="captcha-again">看不清？换一张</a>
+            </div>
+
+          </div>
+
+          <div class="we-form-group">
+            <label for="" class="we-u-sm-3"></label>
+            <div class="we-u-sm-9">
+              <!-- {:token()} -->
+              <input type="submit" class="we-btn we-btn-success " value="提交注册">
+              <input type="reset" class="we-btn we-btn-warning " value="重新输入">
+            </div>
+          </div>
+
+        </form>
+
+    </div>
+
+    <!--include "../include/script.html"-->
+    <script type="text/javascript">
+      var captchaReset = function(){
+
+        $('.captcha-again').bind('click', function() {
+
+          var src = "{:captcha_src()}" + '?t=' + Math.random();
+          $('.captcha-img').attr('src', src);
+        }).trigger('click');
+      }
+
+      captchaReset();
+    </script>
+  </body>
+</html>

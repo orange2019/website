@@ -166,6 +166,9 @@ function menu_format($menu , $current ,$p_id = 0){
     
     $pid = 0;
     foreach ($menu as $k=>$v){
+        
+        $pre = config('dev.admin_prefix');
+        $v['name'] = $pre.'/'.$v['name'];
         if ($current){
             if (strtolower($v['name']) == $current){
                 $v['active'] = 'active';

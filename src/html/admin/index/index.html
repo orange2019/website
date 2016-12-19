@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <div class="we-panel we-padding">
+              <p>账号 : {:session('admin_username')}</p>
+              <p>邮箱 : {:session('admin_useremail')}</p>
+              <p>角色 : <span class="we-badge">{:get_user_group(session('admin_uid') , 'title')}</span> </p>
+            </div>
+            <div class="we-panel we-padding we-scrollable-horizontal">
+              <table class="we-table we-table-striped we-text-nowrap we-table-compact we-table-hover ">
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

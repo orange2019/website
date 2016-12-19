@@ -1,14 +1,14 @@
 <?php
-namespace app\controller;
+namespace app\controller\admin;
 use niklaslu\Auth;
 use think\Request;
-use niklaslu\UnLimitTree;
-class Saas extends Base {
+use app\controller\Base;
+class Admin extends Base {
     
     public function _initialize(){
         
         if (!session('admin_uid')){
-            return $this->redirect('auth/login');
+            return $this->redirect('admin/auth/login');
         }
         
         // 
@@ -20,15 +20,16 @@ class Saas extends Base {
         }else{
             // 检测权限
             $request = Request::instance();
-            $name = $request->controller() . '/' . $request->action();
-            $name = strtolower(str_replace('.', '/', $name));
-            
+            $requestName = $request->controller() . '/' . $request->action();
+            $requestName = strtolower(str_replace('.', '/', $requestName));
+            $name = str_replace(config('dev.admin_prefix').'/' , '' , $requestName);
+             
             if ($pid == 0){
                 // 顶级管理
                 $Auth = new Auth();
                 $check = $Auth->check($name, $uid);
                 if (!$check){
-                    // 检测组件权限 TODO
+                    // 检测组件权限
                     $components = db('UserComponent')->where('status' , 1)->column('component_id');
                     $rule = db('AuthRule')->where('name' ,$name)->where('status' , 1)->find();
                     if ($rule){
@@ -54,7 +55,9 @@ class Saas extends Base {
                 return $this->formError('无权限' , null ,[] , -201 );
             }else{
                 // 获取用户的菜单
-                $menu = $this->getMenus($uid , $name);
+                
+                $current = $requestName;
+                $menu = $this->getMenus($uid , $current);
                 $this->assign('tops' , $menu['tops']);
                 $this->assign('subs' , $menu['subs']);
                 $this->assign('title' , $menu['title']);

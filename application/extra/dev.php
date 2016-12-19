@@ -5,6 +5,8 @@ return [
     
   'root_uid' => 1, 
     
+   'admin_prefix' => 'admin',
+   
    'auth_rule_type' => [
        'pc' => 'pc端',
        'app' => 'app端',

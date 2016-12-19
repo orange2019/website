@@ -1,5 +1,5 @@
 <?php
-namespace app\controller;
+namespace app\controller\admin;
 use think\Request;
 use app\model\AuthGroup;
 use app\model\User;
@@ -8,7 +8,7 @@ use niklaslu\UnLimitTree;
 use app\model\AuthUserGroup;
 use app\model\Project;
 use app\model\UserProject;
-class System extends Saas {
+class System extends Admin {
     
     public function index(){
 
@@ -505,4 +505,5 @@ class System extends Saas {
             return $this->fetch();
         }
     }
+
 }
