@@ -56,7 +56,7 @@ class Auth extends Base {
         
         session('admin_uid' , null);
         
-        return $this->redirect('auth/login');
+        return $this->redirect('admin/auth/login');
         
     }
     

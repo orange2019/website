@@ -2228,6 +2228,7 @@ var pageInit = function pageInit() {
 
     formSubmit();
     confirmSubmit();
+    createEditor();
 };
 
 // 表单提交
@@ -2240,6 +2241,7 @@ var formSubmit = function formSubmit() {
 
         var action = $(this).attr('action');
         var data = $(this).serialize();
+        console.log(data);
         if (action) {
             $.ajax({
                 url: action,
@@ -2355,6 +2357,39 @@ var confirmSubmit = function confirmSubmit() {
             }
         });
         return false;
+    });
+};
+
+var createEditor = function createEditor() {
+
+    $.getScript('/static/kindeditor/kindeditor-min.js', function () {
+        KindEditor.basePath = '/static/kindeditor/';
+        KindEditor.create('textarea.we-editor', {
+            height: '450px',
+            filterMode: false,
+            allowFileManager: true
+        });
+
+        $('.we-btn-img').click(function (event) {
+
+            var editor = KindEditor.editor({
+                basePath: '/static/kindeditor/',
+                pluginsPath: '/static/kindeditor/plugins/',
+                allowFileManager: true
+            });
+            // console.log(editor);
+            var id = $(this).attr('data-id');
+            editor.loadPlugin('image', function () {
+                editor.plugin.imageDialog({
+                    imageUrl: $('#' + id).val(),
+                    clickFn: function clickFn(url, title, width, height, border, align) {
+                        $('#' + id).val(url);
+                        $('#pre-img-' + id).html("<img src='" + url + "' height='50'>");
+                        editor.hideDialog();
+                    }
+                });
+            });
+        });
     });
 };
 

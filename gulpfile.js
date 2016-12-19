@@ -223,7 +223,7 @@ gulp.task('start', ['default'], () => {
       logPrefix: 'ASK',
     });
 
-    gulp.watch(['public/**/*','application/**/*'], reload);
+    gulp.watch(['public/assets/**/*','application/**/*'], reload);
 });
 
 // 默认任务

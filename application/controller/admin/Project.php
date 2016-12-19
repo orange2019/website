@@ -42,15 +42,36 @@ class project extends Admin {
     }
     
     public function update(){
-
-
-        $id = input('id');
-        $data = db('Project')->find($id);
         
-        $config = $data['config'];dump($config);
-        $config = parse_config($config);
-        
-        dump($config);
+        $request = Request::instance();
+        if ($request->isPost()){
+            
+            $data = $request->post();
+            $data['info'] = $data['info'] ? json_encode($data['info']) : '';
+            
+            $res = \app\model\Project::update($data);
+            if ($res){
+                return $this->formSuccess('操作成功',url('admin/project/index'));
+            }else{
+                return $this->formError('操作失败');
+            }
+            
+        }else{
+            
+            $id = input('id');
+            $data = db('Project')->find($id);
+            $this->assign('data' , $data);
+            
+            $config = $data['config'];
+            $configs = parse_config($config);
+            $this->assign('configs' , $configs);
+            
+            $info = $data['info'] ? json_decode($data['info'] , true) : null;
+            $this->assign('info' , $info);
+            
+            return $this->fetch();
+        }
+
     }
     
     public function status(){
