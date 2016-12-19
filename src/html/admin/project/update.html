@@ -1,107 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!--include "../include/head.html"-->
     <title>{$title}</title>
     <!--include "../include/css.html"-->
 
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container" id="pjax-container">
-      <div class="container" id="pjax-content">
-        <!--include "../include/navbar.html"-->
-        <div class="container-content">
-          <!--include "../include/top.html"-->
-          <div class="container-wrap">
-            <form class="we-form we-panel" action="{:url('')}" method="post">
-              <fieldset style="">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+                    <form class="we-form we-panel" action="{:url('')}" method="post">
+                        <fieldset style="">
 
-                <legend>项目信息编辑</legend>
+                            <legend>项目信息编辑</legend>
 
-                <div class="we-form-group we-g">
-                  <label for="" class="we-label we-u-sm-3">项目名称</label>
-                  <div class="we-u-sm-9">
-                    <input type="text" name="title" value="{$data.title}" placeholder="输入项目名称" required="">
-                  </div>
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">项目名称</label>
+                                <div class="we-u-sm-9">
+                                    <input type="text" name="title" value="{$data.title}" placeholder="输入项目名称" required="">
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">项目代号</label>
+                                <div class="we-u-sm-9">
+                                    <input type="text" value="" placeholder="{$data.name}" disabled="">
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">配置域名</label>
+                                <div class="we-u-sm-9">
+                                    <input type="text" name="domain" placeholder="" value="{$data.domain}">
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">Logo地址</label>
+                                <div class="we-u-sm-9">
+                                    <input type="hidden" name="logo" id="logo" placeholder="" value="{$data.logo}">
+                                    <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="logo">上传</button>
+                                    <div id="pre-img-logo" class="we-padding-top">
+                                        <notempty name="data['logo']">
+                                            <img src="{$data['logo']}" alt="" height="50" />
+                                        </notempty>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <foreach name="configs" item="c">
+                                <div class="we-form-group we-g">
+                                    <label for="" class="we-label we-u-sm-3">{$c[1]} <small class="we-text-danger">{$c[3] ? $c[3] : ''}</small></label>
+                                    <div class="we-u-sm-9">
+                                        <eq name="c[2]" value="num">
+                                            <input type="number" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="char">
+                                            <input type="text" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="url">
+                                            <input type="url" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="text">
+                                            <textarea name="info[{$c[0]}]" rows="5" cols="40">{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
+                                        </eq>
+                                        <eq name="c[2]" value="img">
+
+                                            <input type="hidden" name="info[{$c[0]}]" id="{$c[0]}" placeholder="" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                            <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="{$c[0]}">上传</button>
+                                            <div id="pre-img-{$c[0]}" class="we-padding-top">
+                                                <notempty name="info[$c[0]]">
+                                                    <img src="{$info[$c[0]]}" alt="" height="50" />
+                                                </notempty>
+                                            </div>
+
+                                        </eq>
+                                        <eq name="c[2]" value="editor">
+                                            <textarea name="info[{$c[0]}]" rows="8" cols="40" class="we-editor">{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
+                                        </eq>
+                                    </div>
+
+                                </div>
+                            </foreach>
+
+                            <div class="we-form-group">
+                                <input type="hidden" name="id" value="{$data.id}">
+                                <hr>
+                                <input type="submit" value="提交" class="we-btn we-btn-success">
+                                <input type="submit" value="重置" class="we-btn we-btn-warning">
+                            </div>
+
+                        </fieldset>
+                    </form>
                 </div>
-
-                <div class="we-form-group we-g">
-                  <label for="" class="we-label we-u-sm-3">项目代号</label>
-                  <div class="we-u-sm-9">
-                    <input type="text" value="" placeholder="{$data.name}" disabled="">
-                  </div>
-                </div>
-
-                <div class="we-form-group we-g">
-                  <label for="" class="we-label we-u-sm-3">配置域名</label>
-                  <div class="we-u-sm-9">
-                    <input type="text" name="domain"  placeholder="" value="{$data.domain}">
-                  </div>
-                </div>
-
-                <div class="we-form-group we-g">
-                  <label for="" class="we-label we-u-sm-3">Logo地址</label>
-                  <div class="we-u-sm-9">
-                    <input type="hidden" name="logo" id="logo" placeholder="" value="{$data.logo}">
-                    <button type="button" class="we-btn-img" data-id="logo">上传</button>
-                    <div id="pre-img-logo">
-                      <notempty name="data['logo']">
-                        <img src="{$data['logo']}" alt="" height="50"/>
-                      </notempty>
-                    </div>
-                  </div>
-                </div>
-
-                <hr>
-                <foreach name="configs" item="c">
-                  <div class="we-form-group we-g">
-                    <label for="" class="we-label we-u-sm-3">{$c[1]} <small class="we-text-danger">{$c[3] ? $c[3] : ''}</small></label>
-                    <div class="we-u-sm-9">
-                      <eq name="c[2]" value="num">
-                        <input type="number" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}" >
-                      </eq>
-                      <eq name="c[2]" value="char">
-                        <input type="text" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}" >
-                      </eq>
-                      <eq name="c[2]" value="url">
-                        <input type="url" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}" >
-                      </eq>
-                      <eq name="c[2]" value="text">
-                        <textarea name="info[{$c[0]}]" rows="5" cols="40" >{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
-                      </eq>
-                      <eq name="c[2]" value="img">
-
-                          <input type="hidden" name="info[{$c[0]}]" id="{$c[0]}" placeholder="" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
-                          <button type="button" class="we-btn-img" data-id="{$c[0]}">上传</button>
-                          <div id="pre-img-{$c[0]}">
-                            <notempty name="info[$c[0]]">
-                              <img src="{$info[$c[0]]}" alt="" height="50"/>
-                            </notempty>
-                          </div>
-                    
-                      </eq>
-                      <eq name="c[2]" value="editor">
-                        <textarea name="info[{$c[0]}]" rows="8" cols="40" class="we-editor">{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
-                      </eq>
-                    </div>
-
-                  </div>
-                </foreach>
-
-                <div class="we-form-group">
-                  <input type="hidden" name="id" value="{$data.id}">
-                  <hr>
-                  <input type="submit" value="提交" class="we-btn we-btn-success">
-                  <input type="submit" value="重置" class="we-btn we-btn-warning">
-                </div>
-
-              </fieldset>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!--include "../include/script.html"-->
-  </body>
+</body>
+
 </html>
