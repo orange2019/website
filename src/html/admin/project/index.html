@@ -51,11 +51,11 @@
 
                             <eq name="vo.status" value="1">
                               <a href="{:url('admin/project/status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning confirm-ajax" title="确认禁用？">禁用</a>
-                              <a href="{:url('admin/project/status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
+                              <a href="{:url('admin/project/delete?id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
                             </eq>
                             <eq name="vo.status" value="0">
                               <a href="{:url('admin/project/status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success confirm-ajax" title="确认启用？">启用</a>
-                              <a href="{:url('admin/project/status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
+                              <a href="{:url('admin/project/delete?id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
                             </eq>
                             <eq name="vo.status" value="-1">
                               <a href="{:url('admin/project/status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success confirm-ajax" title="确认启用？">启用</a>

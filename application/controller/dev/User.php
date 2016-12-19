@@ -156,4 +156,41 @@ class User extends Dev {
     public function component(){
         
     }
+    
+    public function project(){
+        $uid = input('uid');
+        
+        $map['uid'] = $uid;
+        $list = db('project')->where($map)->select();
+        
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+    
+    public function projectConfig(){
+        
+        $request = Request::instance();
+        if ($request->isPost()){
+            $data = $request->post();
+            
+            $res = db('Project')->where('id='.$data['id'])->setField('config' , $data['config']);
+            if ($res){
+                return $this->formSuccess('操作成功');
+            }else{
+                return $this->formError('操作失败');
+            }
+        }else{
+            $id = input('id');
+            if (!$id){
+                return $this->formError('请选择项目');
+            }else{
+        
+                $data = db('Project')->find($id);
+                $this->assign('data' , $data);
+        
+                return $this->fetch();
+            }
+        }
+    }
+
 }

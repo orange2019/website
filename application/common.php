@@ -199,3 +199,14 @@ function menu_format($menu , $current ,$p_id = 0){
     
     return $result;
 }
+
+function parse_config($value){
+    
+    $array = preg_split('/[,;\r\n]+/', trim($value, ",;\r\n"));dump($array);
+    $value = [];
+    foreach ($array as $v){
+        $value[] = explode('|', $v);
+    }
+    
+    return $value;
+}

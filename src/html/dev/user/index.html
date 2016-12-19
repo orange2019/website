@@ -27,6 +27,7 @@
                       <th>操作</th>
                       <th>功能</th>
                       <th></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -70,7 +71,6 @@
                       <td>
                         <eq name="vo.pid" value="0">
                           <a href="{:url('dev/user/group?id='.$vo['id'])}" class="we-text-danger pjax">分配角色</a>
-
                         </eq>
                       </td>
                       <td>
@@ -78,7 +78,11 @@
                           <a href="{:url('dev/user/index?pid='.$vo['id'])}" class="we-text-warning pjax" >下级成员</a>
                           <a href="{:url('dev/group/index?uid='.$vo['id'])}" class="we-text-primary pjax">拥有角色</a>
                           <a href="{:url('dev/component/apply?status=1&uid='.$vo['id'])}" class="we-text-secondary pjax">组件</a>
+
                         </eq>
+                      </td>
+                      <td>
+                        <a href="{:url('dev/user/project?uid='.$vo['id'])}" class="pjax">拥有项目</a>
                       </td>
                     </tr>
                     </foreach>

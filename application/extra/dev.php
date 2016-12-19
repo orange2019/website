@@ -47,6 +47,10 @@ return [
                'user-group' => [
                    'name' => '设置成员角色',
                    'url'  => ''
+               ],
+               'user-project'=>[
+                   'name' => '用户项目',
+                   'url'  => 'dev/user/project'
                ]
            ]
        ],

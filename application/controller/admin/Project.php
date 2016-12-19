@@ -36,14 +36,21 @@ class project extends Admin {
             }
         
         }else{
-        
+            
             return $this->fetch();
         }
     }
     
     public function update(){
 
+
+        $id = input('id');
+        $data = db('Project')->find($id);
         
+        $config = $data['config'];dump($config);
+        $config = parse_config($config);
+        
+        dump($config);
     }
     
     public function status(){
