@@ -88,6 +88,21 @@ return [
                ]
            ]
        ],
+       'theme' => [
+          'name' => '主题',
+           'url' => 'dev/theme/index',
+           'code' => 'photo',
+           'child' => [
+               'theme-update'=>[
+                   'name' => '主题更新',
+                   'url'  => 'dev/theme/update'
+               ],
+               'theme-template'=>[
+                   'name' => '主题模板',
+                   'url'  => 'dev/theme/template'
+               ]
+           ]
+       ],
        'component' => [
            'name' => '组件',
            'url'  => 'dev/component/index',
