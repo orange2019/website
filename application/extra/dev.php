@@ -18,6 +18,12 @@ return [
         '2' => '高阶'
     ],
     
+    'template_type' => [
+       'index' => '主页',
+        'category' => '栏目页',
+        'posts' => '文章页',
+    ],
+    
    'action' => [
        'index' => [
            'name' => '首页',
@@ -93,6 +99,10 @@ return [
            'url' => 'dev/theme/index',
            'code' => 'photo',
            'child' => [
+               'theme-index'=>[
+                   'name' => '主题列表',
+                   'url'  => 'dev/theme/index'
+               ],
                'theme-update'=>[
                    'name' => '主题更新',
                    'url'  => 'dev/theme/update'

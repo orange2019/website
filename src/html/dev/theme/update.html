@@ -16,35 +16,21 @@
             <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
               <fieldset style="width:400px;">
 
-                <legend>项目配置</legend>
+                <legend>主题添加/编辑</legend>
 
                 <div class="we-form-group">
-                  <label for="" class="we-label">项目名称</label>
+                  <label for="" class="we-label">名称</label>
                   <div class="">
-                    <input type="text"  placeholder="{$data.title}" disabled="">
+                    <input type="text" name="title" value="{$data.title}" placeholder="输入名称" required="">
                   </div>
                 </div>
 
                 <div class="we-form-group">
-                  <label for="" class="we-label">配置</label>
+                  <label for="" class="we-label">标识代号</label>
                   <div class="">
-                    <textarea name="config" rows="8" cols="80" placeholder="(name)|(title)|(type)|(msg)">{$data.config}</textarea>
-                  </div>
-                  <div class="">
-                    <p>添加格式</p>
-                    <p>名称(name)|标题(title)|类型(type)|提示语(msg)</p>
-                    <p>类型：<br>
-                      num:数字 <br>
-                      char:字符串  <br>
-                      text:文本  <br>
-                      editor:富文本  <br>
-                      img:图片  <br>
-                      url:链接地址  <br>
-
-                    </p>
+                    <input type="text" name="name" value="{$data.name}" placeholder="输入标识代号" required="">
                   </div>
                 </div>
-
 
                 <div class="we-form-group">
                   <input type="hidden" name="id" value="{$data.id}">

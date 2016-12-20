@@ -16,20 +16,23 @@
             <div class="container-content">
                 <!--include "../include/top.html"-->
                 <div class="container-wrap">
+
                     <notempty name="list">
                         <div class="we-scrollable-horizontal we-panel we-padding">
+                          <h3>
+                            {$theme.title}/<small>{$theme.name}</small>
+                            <a href="{:url('dev/theme/templateUpdate?theme_id='.$theme['id'])}" class="pjax btn-ac btn-ac-info">添加</a>
+                          </h3>
                             <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>名称</th>
                                         <th>标识</th>
-                                        <th>封面</th>
+                                        <th>类型</th>
                                         <th>状态</th>
                                         <th>操作</th>
-                                        <th>模板</th>
-                                        <th>
-                                        </th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +41,7 @@
                                             <td>{$vo.id}</td>
                                             <td>{$vo.title}</td>
                                             <td>{$vo.name}</td>
-                                            <td>{$vo.cover}</td>
+                                            <td>{$types[$vo['type']]}/<small>{$vo.type}</small></td>
                                             <td>
                                                 <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>
                                                 <eq name="vo.status" value="0"><span class="we-text-warning">禁用</span></eq>
@@ -46,29 +49,19 @@
                                             </td>
                                             <td>
 
-                                                <a href="{:url('dev/theme/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
+                                                <a href="{:url('dev/theme/templateUpdate?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
 
                                                 <eq name="vo.status" value="1">
-                                                    <a href="{:url('status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
-                                                    <a href="{:url('delete?id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
+                                                    <a href="{:url('templateStatus?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
+                                                    <a href="{:url('templateDelete?id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
                                                 </eq>
                                                 <eq name="vo.status" value="0">
-                                                    <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
-                                                    <a href="{:url('delete?id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
-                                                </eq>
-                                                <eq name="vo.status" value="-1">
-                                                    <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                                                    <a href="{:url('templateStatus?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
+                                                    <a href="{:url('templateDelete?id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
                                                 </eq>
 
+                                            </td>
 
-                                            </td>
-                                            <td>
-                                                <a href="{:url('dev/theme/template?theme_id='.$vo['id'])}" class="we-text-danger pjax">查看列表</a>
-
-                                            </td>
-                                            <td>
-                                              <a href="{:url('dev/theme/templateUpdate?theme_id='.$vo['id'])}">添加模板</a>
-                                            </td>
 
                                         </tr>
                                     </foreach>

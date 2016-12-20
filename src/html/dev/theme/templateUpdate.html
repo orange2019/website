@@ -16,12 +16,36 @@
             <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
               <fieldset style="width:400px;">
 
-                <legend>项目配置</legend>
+                <legend>主题模板添加/编辑</legend>
 
                 <div class="we-form-group">
-                  <label for="" class="we-label">项目名称</label>
+                  <label for="" class="we-label">名称</label>
                   <div class="">
-                    <input type="text"  placeholder="{$data.title}" disabled="">
+                    <input type="text" name="title" value="{$data.title}" placeholder="输入名称" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">标识代号</label>
+                  <div class="">
+                    <input type="text" name="name" value="{$data.name}" placeholder="输入标识代号" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">类型</label>
+                  <div class="">
+                    <select class="" name="type" required="">
+                      <option value="">请选择</option>
+                      <foreach name="types" item="vo" key="k">
+                        <eq name="data.type" value="$k">
+                          <option value="{$k}" selected="">{$vo}</option>
+                        <else/>
+                          <option value="{$k}">{$vo}</option>
+                        </eq>
+
+                      </foreach>
+                    </select>
                   </div>
                 </div>
 
@@ -45,9 +69,9 @@
                   </div>
                 </div>
 
-
                 <div class="we-form-group">
                   <input type="hidden" name="id" value="{$data.id}">
+                  <input type="hidden" name="theme_id" value="{$theme_id}">
                   <hr>
                   <input type="submit" value="提交" class="we-btn we-btn-success">
                   <input type="submit" value="重置" class="we-btn we-btn-warning">

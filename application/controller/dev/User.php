@@ -192,5 +192,34 @@ class User extends Dev {
             }
         }
     }
+    
+    public function projectTheme(){
+        
+        $request = Request::instance();
+        if ($request->isPost()){
+            $data = $request->post();
+        
+            $res = db('Project')->where('id='.$data['id'])->setField('theme_id' , $data['theme_id']);
+            if ($res){
+                return $this->formSuccess('操作成功');
+            }else{
+                return $this->formError('操作失败');
+            }
+        }else{
+            $id = input('id');
+            if (!$id){
+                return $this->formError('请选择项目');
+            }else{
+        
+                $data = db('Project')->find($id);
+                $this->assign('data' , $data);
+                
+                $themes = db('Theme')->where('status' , 1)->select();
+                $this->assign('themes' , $themes);
+                return $this->fetch();
+            }
+        }
+        
+    }
 
 }
