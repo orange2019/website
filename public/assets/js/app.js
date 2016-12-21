@@ -2229,6 +2229,7 @@ var pageInit = function pageInit() {
     formSubmit();
     confirmSubmit();
     createEditor();
+    categoryTypeChange();
 };
 
 // 表单提交
@@ -2390,6 +2391,15 @@ var createEditor = function createEditor() {
                 });
             });
         });
+    });
+};
+
+var categoryTypeChange = function categoryTypeChange() {
+    var select = $('#category-type');
+    var url = select.attr('data-url');
+    select.bind('change', function () {
+        var type = select.val();
+        location.href = url + '?type=' + type;
     });
 };
 

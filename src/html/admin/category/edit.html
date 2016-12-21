@@ -55,7 +55,7 @@
                   <div class="we-form-group">
                     <label for="" class="we-label">类型</label>
                     <div class="">
-                      <select class="" name="type" required="">
+                      <select class="" name="type" required="" id="category-type" data-url="{:url('admin/category/edit?id='.$data['id'])}">
                         <foreach name="types" item="vo" key="k">
                           <eq name="data.type" value="$k">
                             <option value="{$k}" selected="">{$vo}</option>
@@ -88,10 +88,20 @@
                       <input type="number" name="sort" value="{$data.sort}" placeholder="排序越小越优先">
                     </div>
                   </div>
+
+                  <eq name="data.type" value="url">
+                  <div class="we-form-group">
+                    <label for="" class="we-label">URL</label>
+                    <div class="">
+                      <input type="url" name="url" value="{$data.url}" placeholder="">
+                    </div>
+                  </div>
+                </eq>
+
                 </div>
 
                 <div class="we-u-sm-6">
-
+                 <neq name="data.type" value="url">
                   <div class="">
                     <p><strong>SEO设置</strong></p>
                     <hr>
@@ -157,6 +167,7 @@
                     </div>
                   </eq>
 
+                </neq>
                 </div>
 
                 <div class="we-u-sm-12">

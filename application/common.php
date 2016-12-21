@@ -200,13 +200,18 @@ function menu_format($menu , $current ,$p_id = 0){
     return $result;
 }
 
-function parse_config($value){
+function parse_config($val){
     
-    $array = preg_split('/[,;\r\n]+/', trim($value, ",;\r\n"));
-    $value = [];
-    foreach ($array as $v){
-        $value[] = explode('|', $v);
+    if ($val){
+        $array = preg_split('/[,;\r\n]+/', trim($val, ",;\r\n"));
+        $value = [];
+        foreach ($array as $v){
+            $value[] = explode('|', $v);
+        }
+        
+        return $value;
+    }else {
+        return null;
     }
     
-    return $value;
 }

@@ -48,6 +48,7 @@ var pageInit = function() {
     formSubmit();
     confirmSubmit();
     createEditor();
+    categoryTypeChange();
 
 }
 
@@ -231,4 +232,13 @@ var confirmSubmit = function() {
 
   });
 
+}
+
+var categoryTypeChange = function(){
+  var select = $('#category-type');
+  var url = select.attr('data-url');
+  select.bind('change', function() {
+    var type = select.val();
+    location.href = url + '?type=' + type;
+  });
 }

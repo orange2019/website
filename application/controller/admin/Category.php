@@ -156,6 +156,12 @@ class Category extends Admin {
             
             $id = input('id');
             $data = db('Category')->find($id);
+            
+            $type = input('type', '');
+            if ($type){
+                $data['type'] = $type;
+            }
+            
             $this->assign('data' , $data);
             
             $types = config('dev.category_type');
@@ -207,6 +213,44 @@ class Category extends Admin {
         }
     }
     
+    public function content(){
+        
+        $request = Request::instance();
+        if ($request->isPost()){
+            
+            $data = $request->post();
+            if (isset($data['info'])){
+                $data['info'] = json_encode($data['info']);
+            }
+            
+            $res = \app\model\Category::update($data);
+            if ($res){
+                return $this->formSuccess('操作成功',url('admin/category/index'));
+            }else{
+                return $this->formError('操作失败');
+            }
+        }else{
+            
+            $id = input('id');
+            $data = db('category')->find($id);
+            $info = $data['info'] ? json_decode($data['info'] , true) : null;
+            $this->assign('data' , $data);
+            $this->assign('info' , $info);
+            
+            $templateId = $data['template'];
+            if(!$templateId){
+                return $this->formError('没有配置页面模板');
+            }
+            
+            $template = db('Template')->find($templateId);
+            $config = $template['config'];
+            $configs = parse_config($config);
+            $this->assign('configs' , $configs);
+            
+            return $this->fetch();
+        }
+    }
+    
     public function status(){
         
         $id = input('id');
@@ -224,6 +268,26 @@ class Category extends Admin {
     
     public function delete(){
         
+        $id = input('id');
+        
+        // 存在下级栏目不可删除
+        $count = db('category')->where('pid' , $id)->count();
+        if ($count > 0){
+            return $this->formError('存在下级栏目，不可删除');
+        }
+        
+        // 存在文档不可删除
+        $count = db('posts')->where('category_id' , $id)->count();
+        if ($count > 0){
+            return $this->formError('该栏目下添加过文档，不可删除');
+        }
+        
+        $res = db('category')->where('id' , $id)->delete();
+        if ($res){
+            return $this->formSuccess('操作成功');
+        }else{
+            return $this->formError('操作失败');
+        }
     }
     
 }
