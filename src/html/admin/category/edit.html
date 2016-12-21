@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="we-g">
+
+                <legend>页面信息编辑</legend>
+
+                <div class="we-u-sm-6">
+                  <div class="we-form-group">
+                    <label for="" class="we-label">上级</label>
+                    <div class="">
+                      <select class="" name="pid" >
+                        <option value="0">顶级</option>
+                        <foreach name="cates" item="vo" key="k">
+                          <elt name="vo.level" value="2">
+                            <eq name="data.pid" value="$vo['id']">
+                              <option value="{$vo.id}" selected="">{$vo.html}{$vo.title}</option>
+                            <else/>
+                              <option value="{$vo.id}">{$vo.html}{$vo.title}</option>
+                            </eq>
+
+                          </elt>
+                        </foreach>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">名称</label>
+                    <div class="">
+                      <input type="text" name="title" value="{$data.title}" placeholder="输入项目名称" required="">
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">代号</label>
+                    <div class="">
+                      <input type="text" name="name" value="{$data.name}" placeholder="输入项目代号(英文)" required="">
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">类型</label>
+                    <div class="">
+                      <select class="" name="type" required="">
+                        <foreach name="types" item="vo" key="k">
+                          <eq name="data.type" value="$k">
+                            <option value="{$k}" selected="">{$vo}</option>
+                          <else/>
+                            <option value="{$k}">{$vo}</option>
+                          </eq>
+
+                        </foreach>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">是否显示</label>
+                    <div class="">
+                      <eq name="data.display" value="1">
+                      <label for="" class="we-padding-right"><input type="radio" name="display" value="1" checked=""> 是</label>
+                      <label for=""><input type="radio" name="display" value="0"> 否</label>
+                      </eq>
+                      <eq name="data.display" value="0">
+                      <label for="" class="we-padding-right"><input type="radio" name="display" value="1" > 是</label>
+                      <label for=""><input type="radio" name="display" value="0" checked=""> 否</label>
+                      </eq>
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">排序</label>
+                    <div class="">
+                      <input type="number" name="sort" value="{$data.sort}" placeholder="排序越小越优先">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="we-u-sm-6">
+
+                  <div class="">
+                    <p><strong>SEO设置</strong></p>
+                    <hr>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">SEO标题</label>
+                    <div class="">
+                      <input type="text" name="seo[title]" value="{$seo.title}" placeholder="SEO标题" >
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">SEO关键字（','分隔）</label>
+                    <div class="">
+                    <textarea name="seo[keywords]" rows="3" cols="80">{$seo.keywords}</textarea>
+                    </div>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">SEO描述</label>
+                    <div class="">
+                    <textarea name="seo[description]" rows="5" cols="80">{$seo.description}</textarea>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <p><strong>模板设置</strong></p>
+                    <hr>
+                  </div>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">页面模板</label>
+                    <div class="">
+                    <select class="" name="template">
+                      <option value="0">请选择</option>
+                      <foreach name="templates" item="vo">
+                        <eq name="data.template" value="$vo['id']">
+                          <option value="{$vo.id}" selected="">{$vo.title}</option>
+                        <else/>
+                        <option value="{$vo.id}">{$vo.title}</option>
+                        </eq>
+                      </foreach>
+                    </select>
+                    </div>
+                  </div>
+
+                  <eq name="data.type" value="list">
+                    <div class="we-form-group">
+                      <label for="" class="we-label">文档模板</label>
+                      <div class="">
+                      <select class="" name="template_sub">
+                        <option value="0">请选择</option>
+                        <foreach name="templateSubs" item="vo">
+                          <eq name="data.template_sub" value="$vo['id']">
+                            <option value="{$vo.id}" selected="">{$vo.title}</option>
+                          <else/>
+                          <option value="{$vo.id}">{$vo.title}</option>
+                          </eq>
+                        </foreach>
+                      </select>
+                      </div>
+                    </div>
+                  </eq>
+
+                </div>
+
+                <div class="we-u-sm-12">
+                  <div class="we-form-group">
+                    <input type="hidden" name="id" value="{$data.id}">
+                    <input type="hidden" name="project_id" value="{$data.project_id}">
+                    <hr>
+                    <input type="submit" value="提交" class="we-btn we-btn-success">
+                    <input type="submit" value="重置" class="we-btn we-btn-warning">
+                  </div>
+                </div>
+
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

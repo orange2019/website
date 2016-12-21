@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>页面添加</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">上级</label>
+                  <div class="">
+                    <select class="" name="pid" >
+                      <option value="0">顶级</option>
+                      <foreach name="cates" item="vo" key="k">
+                        <elt name="vo.level" value="2">
+                        <option value="{$vo.id}">{$vo.html}{$vo.title}</option>
+                        </elt>
+                      </foreach>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">名称</label>
+                  <div class="">
+                    <input type="text" name="title" value="" placeholder="输入项目名称" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">代号</label>
+                  <div class="">
+                    <input type="text" name="name" value="" placeholder="输入项目代号(英文)" required="">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">类型</label>
+                  <div class="">
+                    <select class="" name="type" required="">
+                      <foreach name="types" item="vo" key="k">
+                        <option value="{$k}">{$vo}</option>
+                      </foreach>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">状态</label>
+                  <div class="">
+                    <select class="" name="status" required="">
+                      <option value="1">正常</option>
+                      <option value="0">待审核</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">是否显示</label>
+                  <div class="">
+                    <label for="" class="we-padding-right"><input type="radio" name="display" value="1" checked=""> 是</label>
+                    <label for=""><input type="radio" name="display" value="0"> 否</label>
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">排序</label>
+                  <div class="">
+                    <input type="number" name="sort" value="" placeholder="排序越小越优先">
+                  </div>
+                </div>
+
+                <div class="we-form-group">
+                  <input type="hidden" name="project_id" value="{$project_id}">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="submit" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>
