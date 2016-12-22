@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+                    <form class="we-form we-panel" action="{:url('')}" method="post">
+                        <fieldset style="width:960px;">
+
+                            <legend>画册信息</legend>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">上传图片</label>
+                                <div class="we-u-sm-9">
+                                    <input type="text" name="url" id="url" placeholder="" value="{$data.logo}">
+                                    <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="url">选择图片</button>
+                                    <div id="pre-img-url" class="we-padding-top">
+                                        <notempty name="data['url']">
+                                            <img src="{$data['url']}" alt="" height="50" />
+                                        </notempty>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">标题 （选填）</label>
+                                <div class="we-u-sm-9">
+                                    <input type="text" name="title" value="{$data.title}" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">简述（选填）</label>
+                                <div class="we-u-sm-9">
+                                    <textarea name="description" rows="2" >{$data.description}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">内容（选填）</label>
+                                <div class="we-u-sm-9">
+                                    <textarea name="content" rows="8" cols="40" class="we-editor">{$data.content}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">排序</label>
+                                <div class="we-u-sm-9">
+                                    <input type="number" name="sort" value="{$data.sort}" placeholder="越小越优先">
+                                </div>
+                            </div>
+
+
+                            <div class="we-form-group">
+                                <input type="hidden" name="id" value="{$data.id}">
+                                <input type="hidden" name="relation_type" value="{$relation_type}">
+                                <input type="hidden" name="relation_id" value="{$relation_id}">
+                                <hr>
+                                <input type="submit" value="提交" class="we-btn we-btn-success">
+                                <input type="submit" value="重置" class="we-btn we-btn-warning">
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>

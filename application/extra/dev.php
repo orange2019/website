@@ -31,6 +31,16 @@ return [
         'jump' => '跳转下级',
         'index' => '主页'
     ],
+    'album_type' => [
+        'banner' => 'Banner横幅',
+        'gallery' => '画册',
+        'other'  => '其它'
+    ],
+    
+    'album_relation_type' => [
+        'category' => '栏目',
+        'posts' => '文档'
+    ],
     
    'action' => [
        'index' => [
