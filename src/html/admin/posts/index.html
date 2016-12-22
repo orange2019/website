@@ -41,6 +41,7 @@
                         <th>状态</th>
                         <th>操作</th>
                         <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,12 @@
                         </td>
                         <td>
                           <a href="{:url('admin/posts/update?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">编辑</a>
+                        </td>
+                        <td>
+
+                            <a href="{:url('admin/album/lists?relation=posts&rid='.$vo['id'])}" class="pjax"><span class="fa fa-photo"></span> 图片</a>
+                            <a href="{:url('admin/album/update?relation=posts&rid='.$vo['id'])}" class="pjax"><span class="fa fa-plus"></span></a>
+
                         </td>
 
                       </tr>

@@ -25,6 +25,7 @@ class Posts extends Admin {
     public function index(){
         
         $categoryId = input('category_id','');
+        $pagesize = 10;
         $query = [];
         $keyword = input('keyword' , '');
         if ($keyword){
@@ -36,6 +37,10 @@ class Posts extends Admin {
         if ($categoryId){
             $map['category_id'] = $categoryId;
             $query['category_id'] = $categoryId;
+            
+            // 获取pagesize
+            $category = db('Category')->find($categoryId);
+            $pagesize = ($category['list_count'] > 0) ? $category['list_count'] : $pagesize;
         }else{
             $projectId = session('admin_project_id');
             $categoryIds = db('Category')->where('project_id',$projectId)->column('id');
@@ -44,7 +49,7 @@ class Posts extends Admin {
         
         $map['status'] = ['>=' , 0];
         
-        $list = db('posts')->where($map)->order('sort' , 'asc')->paginate(1 , false , $query);
+        $list = db('posts')->where($map)->order('sort' , 'asc')->paginate($pagesize , false , $query);
         $page = $list->render();
         
         $this->assign('list' , $list);

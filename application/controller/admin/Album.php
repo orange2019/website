@@ -11,7 +11,7 @@ class Album extends Admin {
         
         $relation = input('relation');
         $rid = input('rid');
-        
+      
         $map['relation_type'] = $relation;
         $map['relation_id'] = $rid;
         
@@ -33,7 +33,7 @@ class Album extends Admin {
                 $res = \app\model\Album::create($data);
             }
             if ($res){
-                $this->formSuccess('操作成功' , url('admin/album/lists?realtion='.$data['relation_type'].'&rid='.$data['relation_id']));
+                $this->formSuccess('操作成功' , url('admin/album/lists?relation='.$data['relation_type'].'&rid='.$data['relation_id']));
             }else {
                 $this->formError('操作失败');
             }
@@ -41,7 +41,7 @@ class Album extends Admin {
             
             $id = input('id');
             if ($id){
-                $data = db('Album')->find($data);
+                $data = db('Album')->find($id);
                 $relationType = $data['relation_type'];
                 $relationId = $data['relation_id'];
             }else{

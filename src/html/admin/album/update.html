@@ -23,13 +23,31 @@
                             <div class="we-form-group we-g">
                                 <label for="" class="we-label we-u-sm-3">上传图片</label>
                                 <div class="we-u-sm-9">
-                                    <input type="text" name="url" id="url" placeholder="" value="{$data.logo}">
+                                    <input type="text" name="url" id="url" placeholder="" value="{$data.url}">
                                     <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="url">选择图片</button>
                                     <div id="pre-img-url" class="we-padding-top">
                                         <notempty name="data['url']">
                                             <img src="{$data['url']}" alt="" height="50" />
                                         </notempty>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-3">类型</label>
+                                <div class="we-u-sm-9">
+                                    <select class="" name="type">
+                                      <option value="">无</option>
+                                      <foreach name="types" item="vo" key="k">
+                                        <eq name="data.type" value="$k">
+                                          <option value="{$k}" selected="">{$vo}</option>
+                                        <else/>
+                                          <option value="{$k}">{$vo}</option>
+                                        </eq>
+
+                                      </foreach>
+
+                                    </select>
                                 </div>
                             </div>
 

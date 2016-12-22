@@ -244,11 +244,9 @@ class User extends Dev {
         $request = Request::instance();
         if ($request->isPost()){
             $data = $request->post();
-            
+            $res = \app\model\Category::update($data);
             $category = db('category')->find($data['id']);
-            
-            $res = db('category')->where('id='.$data['id'])->setField('config' , $data['config']);
-            if ($res){
+             if ($res){
                 return $this->formSuccess('操作成功' , url('dev/user/category?id='.$category['project_id']));
             }else{
                 return $this->formError('操作失败');
