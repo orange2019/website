@@ -16,3 +16,13 @@
 + 使用：
   + `controller--system/userProject`
   + `controller--apartment/project/update`
+
+#### 栏目列表
++ name : 'category_info_list'
++ key : 'id' 栏目id
++ filed : 'field' 返回数据中的字段
++ 使用：
+  + `controller--admin/category/edit`
+  + `controller--admin/category/content`
+  + `controller--admin/category/status`
+  + `controller--admin/category/delete`

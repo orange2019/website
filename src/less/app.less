@@ -77,6 +77,43 @@ html,body {
   border-left: 4px solid @brand-yellow;
 
 }
+
+.we-form-search {
+  input {
+    min-width: 240px;
+    padding: 0.5rem;
+  }
+}
+
+/* 分页 */
+.page {
+  ul.pagination{
+    padding: 0.5rem 0;margin: 0;
+    text-align: right;
+    li {
+      list-style: none;
+      display: block;
+      float: left;
+      line-height: 3rem;
+      margin-right: 2px;
+      a {
+        text-decoration: underline;
+      }
+      a,span {
+        padding: 0.5rem 1rem;
+        line-height: 2rem;
+        font-size: 1.5rem;
+        color:  @gray-darker;
+      }
+      a:hover ,span:hover {
+        background: @gray-lighter;
+      }
+    }
+    li.active a ,li.active span {
+      background: @gray-lighter;
+    }
+  }
+}
 /* 登录,注册  */
 .login {
   height: 100%;

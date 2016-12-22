@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>栏目配置</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">栏目名称</label>
+                  <div class="">
+                    <input type="text"  placeholder="{$data.title}" disabled="">
+                  </div>
+                </div>
+
+                <eq name="data.type" value="list">
+                  <div class="we-form-group">
+                    <label for="" class="we-label">文档配置</label>
+                    <div class="">
+                      <textarea name="config" rows="8" cols="80" placeholder="(name)|(title)|(type)|(msg)">{$data.config}</textarea>
+                    </div>
+
+                  </div>
+                </eq>
+
+                <div class="we-form-group">
+
+                  <div class="">
+                    <p>添加格式</p>
+                    <p>名称(name)|标题(title)|类型(type)|提示语(msg)</p>
+                    <p>类型：<br>
+                      num:数字 <br>
+                      char:字符串  <br>
+                      text:文本  <br>
+                      editor:富文本  <br>
+                      img:图片  <br>
+                      url:链接地址  <br>
+
+                    </p>
+                  </div>
+                </div>
+
+
+                <div class="we-form-group">
+                  <input type="hidden" name="id" value="{$data.id}">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="submit" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

@@ -156,6 +156,24 @@ function get_user_project($uid , $status = null){
         return $res;
     }
 }
+
+/**
+ * 获取栏目信息
+ * @param unknown $id
+ * @param unknown $field
+ */
+function get_category_info($id , $field = null){
+    
+    $data = cache('category_info_list');
+    if (isset($data[$id]) && $data[$id]){
+        $result = $data;
+    }else{
+        $result = db('category')->find($id);
+        cache('category_info_list' , $result);
+    }
+    
+    return $field ? $data[$field] : $data;
+}
 /**
  * 菜单格式化
  * @param unknown $menu

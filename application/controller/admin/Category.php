@@ -148,6 +148,7 @@ class Category extends Admin {
             
             $res = \app\model\Category::update($data);
             if ($res){
+                cache_clear('category_info_list' , $data['id']);
                 return $this->formSuccess('编辑成功' ,url('admin/category/index'));
             }else{
                 return $this->formError('编辑失败');
@@ -225,6 +226,7 @@ class Category extends Admin {
             
             $res = \app\model\Category::update($data);
             if ($res){
+                cache_clear('category_info_list' , $data['id']);
                 return $this->formSuccess('操作成功',url('admin/category/index'));
             }else{
                 return $this->formError('操作失败');
@@ -260,6 +262,7 @@ class Category extends Admin {
         $category->status = $status;
         $res = $category->save();
         if ($res){
+            cache_clear('category_info_list' , $id);
             return $this->formSuccess('操作成功');
         }else{
             return $this->formError('操作失败');
@@ -284,6 +287,7 @@ class Category extends Admin {
         
         $res = db('category')->where('id' , $id)->delete();
         if ($res){
+            cache_clear('category_info_list' , $id);
             return $this->formSuccess('操作成功');
         }else{
             return $this->formError('操作失败');

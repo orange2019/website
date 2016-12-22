@@ -3,6 +3,7 @@ namespace app\controller\dev;
 use think\Request;
 use app\model\AuthUserGroup;
 use app\model\AuthGroup;
+use niklaslu\UnLimitTree;
 class User extends Dev {
     
     public function index(){
@@ -220,6 +221,47 @@ class User extends Dev {
             }
         }
         
+    }
+    
+    public function category(){
+        
+        $projectId = input('id');
+        $map['project_id'] = $projectId;
+        
+        $category = db('Category')->where($map)->order('sort' , 'asc')->select();
+        $list = UnLimitTree::unlimitedForLevel($category);
+        
+        $this->assign('list' , $list);
+        
+        $types = config('dev.category_type');
+        $this->assign('types' , $types);
+        
+        return $this->fetch();
+    }
+    
+    public function categoryConfig(){
+        
+        $request = Request::instance();
+        if ($request->isPost()){
+            $data = $request->post();
+            
+            $category = db('category')->find($data['id']);
+            
+            $res = db('category')->where('id='.$data['id'])->setField('config' , $data['config']);
+            if ($res){
+                return $this->formSuccess('操作成功' , url('dev/user/category?id='.$category['project_id']));
+            }else{
+                return $this->formError('操作失败');
+            }
+            
+        }else {
+            
+            $id = input('id');
+            $category = db('Category')->find($id);
+            $this->assign('data' , $category);
+            
+            return $this->fetch();
+        }
     }
 
 }

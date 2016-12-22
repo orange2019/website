@@ -8531,6 +8531,41 @@ body {
   padding-left: 1rem;
   border-left: 4px solid #F39C12;
 }
+.we-form-search input {
+  min-width: 240px;
+  padding: 0.5rem;
+}
+/* 分页 */
+.page ul.pagination {
+  padding: 0.5rem 0;
+  margin: 0;
+  text-align: right;
+}
+.page ul.pagination li {
+  list-style: none;
+  display: block;
+  float: left;
+  line-height: 3rem;
+  margin-right: 2px;
+}
+.page ul.pagination li a {
+  text-decoration: underline;
+}
+.page ul.pagination li a,
+.page ul.pagination li span {
+  padding: 0.5rem 1rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #222222;
+}
+.page ul.pagination li a:hover,
+.page ul.pagination li span:hover {
+  background: #eeeeee;
+}
+.page ul.pagination li.active a,
+.page ul.pagination li.active span {
+  background: #eeeeee;
+}
 /* 登录,注册  */
 .login {
   height: 100%;
