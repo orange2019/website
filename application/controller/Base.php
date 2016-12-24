@@ -34,4 +34,5 @@ class Base extends Controller {
             return $this->error($msg , $url , $data);
         }
     }
+
 }

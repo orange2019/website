@@ -63,6 +63,14 @@ class Admin extends Base {
                 $this->assign('title' , $menu['title']);
 
             }
+            
+            // 记录
+            if (Request::instance()->isPost()){
+                $uid = session('admin_uid');
+                $action = Request::instance()->url();
+                $data = Request::instance()->post();
+                log_action($uid, $action, $data);
+            }
         }
     }
     
