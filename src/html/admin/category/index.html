@@ -17,8 +17,9 @@
             <!-- 在这里写页面代码 -->
 
             <div class="we-panel we-padding">
-              <div class="we-cf">
+              <div class="we-cf we-padding-bottom">
                 <a href="{:url('admin/category/add')}" class="pjax btn-ac btn-ac-success">添加</a>
+                <span class="we-text-danger">添加栏目后，请点击[<ins class="we-text-primary">编辑</ins>]按钮进行相关设置及信息配置</span>
               </div>
               <notempty name="list">
                 <div class="we-scrollable-horizontal we-panel">
@@ -29,7 +30,7 @@
                         <th>名称</th>
                         <th>代号</th>
                         <th>类型</th>
-                        <th>显示</th>
+                        <th>显示/跳转</th>
                         <th>状态</th>
                         <th>操作</th>
                         <th>内容</th>
@@ -54,6 +55,8 @@
                         <td>
                           <eq name="vo.display" value="1"><span class="we-text-success">是</span></eq>
                           <eq name="vo.display" value="0"><span class="we-text-warning">否</span></eq>
+                          <span>/</span>
+                          <eq name="vo.jump" value="1"><span class="we-text-success">是</span></eq>
                         </td>
                         <td>
                           <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>

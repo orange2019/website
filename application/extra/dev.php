@@ -28,7 +28,6 @@ return [
         'page' => '单页',
         'list' => '列表页',
         'url'  => '外部链接',
-        'jump' => '跳转下级',
         'index' => '主页'
     ],
     'album_type' => [
