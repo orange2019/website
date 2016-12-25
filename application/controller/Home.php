@@ -43,14 +43,18 @@ class Home extends Base{
             $posts = $this->getPosts($url , $categorys);
             
             if ($posts){
+                $this->postsAction($posts);
+                // 查找文档所属栏目
                 $category = db('category')->find($posts['category_id']);
+                $this->categoryAction($category , true);
+                
                 $templateId = $category['template_sub'];
             }else{
                 $this->_404('no content');
             }
         }else{
-            // 处理栏目页面TODO
-            
+            // 处理栏目页面
+            $this->categoryAction($category);
             // 栏目模板
             $templateId = $category['template'];
         }
@@ -118,12 +122,14 @@ class Home extends Base{
     
     protected function getPosts($url , $categorys){
         
+        $url = urldecode($url);
         foreach ($categorys as $v){
             $ids[] = $v['id'];
         }
         
         $map['category_id'] = ['in' , $ids];
         $map['status'] = 1;
+        $map['url'] = $url;
         
         $posts = db('posts')->where($map)->find();
         
@@ -131,8 +137,74 @@ class Home extends Base{
        
     }
     
-    protected function categoryAction($category){
-        // TODO
+    protected function categoryAction($category , $detail = false){
+        if ($detail == false){
+            // 跳转下级处理
+            $type = $category['type'];
+            if ($type == 'jump'){
+                // 下级栏目
+                $mapChild['pid'] = $category['id'];
+                $mapChild['status'] = 1;
+                $childCategory = db('Category')->where($mapChild)->order('sort','asc')->find();
+                if ($childCategory){
+                    $url = $childCategory['url'];
+                    $this->redirect($url , [] , 301);
+                }else{
+                    $mapChildP['category_id'] = $category['id'];
+                    $mapChildP['status'] = 1;
+                    $childPosts = db('posts')->where($mapChildP)->order('sort','asc')->find();
+                    if ($childPosts){
+                        $url = $childPosts['url'];
+                        $this->redirect($url , [] , 301);
+                    }else{
+                        $this->_404('no child jump');
+                    }
+                }
+            }
+        }
+        // 栏目数据
+        $info = $category['info'] ? json_decode($category['info'] , true) : null;
+        $category['info'] = $info;
+        $this->assign('category' , $category);
+        
+        // 找到当前频道
+        $channel = get_channel_by_category($category);
+        $this->assign('channel' ,$channel);
+        
+        if ($detail == false){
+            // 栏目seo
+            $seo = $category['seo'] ? json_decode($category['seo'] , true) : null;
+            $seo['title'] = (isset($seo['title']) && $seo['title']) ? $seo['title'] : $category['title'];
+            $seo['keywords'] = (isset($seo['keywords']) && $seo['keywords']) ? $seo['keywords'] : '';
+            $seo['description'] = (isset($seo['description']) && $seo['description'] ) ? $seo['description'] : '';
+            $this->assign('seo' , $seo);
+            
+            // 栏目list
+            $map['category_id'] = $category['id'];
+            $map['status'] = 1;
+            $listCount = $category['list_count'];
+            $list = db('posts')->where($map)->order('sort' , 'asc')->paginate($listCount,false);
+            $page = $list->render();
+            $this->assign('list' , $list);
+            $this->assign('page' , $page);
+        }
+        
+        
+    }
+    
+    protected function postsAction($posts){
+       
+        $info = $posts['info'] ? json_decode($posts['info'] , true) : null;
+        $posts['info'] = $info;
+        $this->assign('detail' , $posts);
+        
+        // seo
+        $seo = $posts['seo'] ? json_decode($posts['seo'] , true) : null;
+        $seo['title'] = (isset($seo['title']) && $seo['title']) ? $seo['title'] : $posts['title'];
+        $seo['keywords'] = (isset($seo['keywords']) && $seo['keywords']) ? $seo['keywords'] : '';
+        $seo['description'] = (isset($seo['description']) && $seo['description'] ) ? $seo['description'] : '';
+        $this->assign('seo' , $seo);
+        
     }
     
     protected function _404($msg = ''){

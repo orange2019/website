@@ -174,6 +174,22 @@ function get_category_info($id , $field = null){
     
     return $field ? $data[$field] : $data;
 }
+
+/**
+ * 获取频道信息
+ * @param unknown $category
+ */
+function get_channel_by_category($category){
+    
+    if ($category['pid'] == 0){
+        $result = $category;
+    }else{
+        $cate = db('category')->find($category['pid']);
+        $result = get_channel_by_category($cate);
+    }
+    
+    return $result;
+}
 /**
  * 菜单格式化
  * @param unknown $menu

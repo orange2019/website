@@ -64,7 +64,8 @@ class Posts extends Admin {
         $request = Request::instance();
         if ($request->isPost()){
             $data = $request->post();
-            $data['name'] = $data['name'] ? $data['name'] : PY\Pinyin::encode($data['title'],'all');
+            $data['name'] = $data['name'] ? $data['name'] : $data['title'];
+//             $data['name'] = $data['name'] ? $data['name'] : PY\Pinyin::encode($data['title'],'all');
             
             // 检测是否存在相同标题
             $projectId = session('admin_project_id');
@@ -113,8 +114,8 @@ class Posts extends Admin {
                 $data = db('Posts')->find($id);
                 $info = $data['info'] ? json_decode($data['info'] , true) : null;
                 $seo = $data['seo'] ? json_decode($data['seo'] , true) : null;
-                if ($categoryId){
-                    $data['category_id'] = $categoryId;
+                if (!$categoryId){
+                    $categoryId = $data['category_id'];
                 }
                
                 $this->assign('data' , $data);
@@ -127,10 +128,12 @@ class Posts extends Admin {
                 $this->assign('info' , null);
             }
             
+            
             $cate = db('category')->find($categoryId);
             $config = $cate['config'];
             $configs = parse_config($config);
             $this->assign('configs' , $configs);
+            $this->assign('category_id' , $categoryId);
             
             return $this->fetch();
         }

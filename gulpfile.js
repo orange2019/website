@@ -83,7 +83,10 @@ gulp.task('copy', () => {
 
 // 处理less
 gulp.task('less', () => {
-    return gulp.src(['src/less/app.less'])
+    return gulp.src([
+      'src/less/app.less',
+      'src/less/default.less'
+    ])
         // .pipe($.concat('app.less'))
         .pipe($.changed('less', {
             extension: '.less'
@@ -130,7 +133,8 @@ gulp.task('html', () => {
 // 打包 Common JS 模块
 var bundleInit = () => {
   var entryFiles = [
-    'src/js/app.js'
+    'src/js/app.js',
+    'src/js/default/app.js'
   ];
 
   entryFiles.map(function(index) {
