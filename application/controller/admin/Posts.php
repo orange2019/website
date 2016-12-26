@@ -64,8 +64,8 @@ class Posts extends Admin {
         $request = Request::instance();
         if ($request->isPost()){
             $data = $request->post();
-            $data['name'] = $data['name'] ? $data['name'] : $data['title'];
-//             $data['name'] = $data['name'] ? $data['name'] : PY\Pinyin::encode($data['title'],'all');
+//             $data['name'] = $data['name'] ? $data['name'] : $data['title'];
+            $data['name'] = $data['name'] ? $data['name'] : PY\Pinyin::encode($data['title'],'all');
             
             // 检测是否存在相同标题
             $projectId = session('admin_project_id');
