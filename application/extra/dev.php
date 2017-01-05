@@ -130,24 +130,43 @@ return [
                ]
            ]
        ],
-       'component' => [
-           'name' => '组件',
-           'url'  => 'dev/component/index',
-           'code' => 'anchor',
+//        'component' => [
+//            'name' => '组件',
+//            'url'  => 'dev/component/index',
+//            'code' => 'anchor',
+//            'child' => [
+//                'component-index' => [
+//                    'name' => '组件列表',
+//                    'url'  => 'dev/component/index'
+//                ],
+//                'component-update' => [
+//                    'name' => '组件更新',
+//                    'url'  => 'dev/component/update'
+//                ],
+//                'component-apply' => [
+//                    'name' => '组件申请审核',
+//                    'url'  => 'dev/component/apply'
+//                ]
+//            ]
+//        ],
+       'data' => [
+           'name' => '数据',
+           'url'  => 'dev/data/index',
+           'code' => 'database',
            'child' => [
-               'component-index' => [
-                   'name' => '组件列表',
-                   'url'  => 'dev/component/index'
+               'data-index' => [
+                   'name' => '数据模型',
+                   'url'  => 'dev/data/index'
                ],
-               'component-update' => [
-                   'name' => '组件更新',
-                   'url'  => 'dev/component/update'
+               'data-update' => [
+                   'name' => '模型更新',
+                   'url'  => 'dev/data/update'
                ],
-               'component-apply' => [
-                   'name' => '组件申请审核',
-                   'url'  => 'dev/component/apply'
+               'data-lists' => [
+                   'name' => '模型数据',
+                   'url'  => 'dev/data/lists'
                ]
            ]
-       ]
+       ],
    ],
 ];

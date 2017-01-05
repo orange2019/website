@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <div class="we-panel we-padding">
+              <foreach name="list" item="vo">
+                <div class="">
+                  <p>
+                    <strong class="we-text-xl">{$vo.title}</strong>
+                    <small>{$vo.name}</small>
+                  </p>
+                  <p>
+                    <a href="{:url('admin/data/lists?model='.$vo['id'])}" class="pjax btn-ac btn-ac-info">数据列表</a>
+                    <a href="{:url('admin/data/update?model='.$vo['id'])}" class="pjax btn-ac btn-ac-danger">添加数据</a>
+                  </p>
+                </div>
+
+                <hr>
+              </foreach>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

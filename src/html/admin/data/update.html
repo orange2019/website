@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+                    <form class="we-form we-panel" action="{:url('')}" method="post">
+                        <fieldset style="">
+
+                            <legend>模型数据</legend>
+
+                            <div class="we-form-group we-g">
+                                <label for="" class="we-label we-u-sm-2">模型名称</label>
+                                <div class="we-u-sm-6">
+                                    <input type="text"  value="{$model.title}" placeholder="" readonly="">
+                                </div>
+                                <div class="we-u-sm-4">
+                                  
+                                </div>
+                            </div>
+
+                            <hr>
+                            <foreach name="fields" item="c">
+                                <div class="we-form-group we-g">
+                                    <label for="" class="we-label we-u-sm-2">{$c[1]} </label>
+                                    <div class="we-u-sm-6">
+                                        <eq name="c[2]" value="num">
+                                            <input type="number" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="char">
+                                            <input type="text" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="url">
+                                            <input type="url" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                        </eq>
+                                        <eq name="c[2]" value="text">
+                                            <textarea name="info[{$c[0]}]" rows="5" cols="40">{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
+                                        </eq>
+                                        <eq name="c[2]" value="img">
+
+                                            <input type="hidden" name="info[{$c[0]}]" id="{$c[0]}" placeholder="" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
+                                            <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="{$c[0]}">上传</button>
+                                            <div id="pre-img-{$c[0]}" class="we-padding-top">
+                                                <notempty name="info[$c[0]]">
+                                                    <img src="{$info[$c[0]]}" alt="" height="50" />
+                                                </notempty>
+                                            </div>
+
+                                        </eq>
+                                        <eq name="c[2]" value="editor">
+                                            <textarea name="info[{$c[0]}]" rows="8" cols="40" class="we-editor">{$info[$c[0]] ? $info[$c[0]] : ''}</textarea>
+                                        </eq>
+                                    </div>
+                                    <div class="we-u-sm-4">
+                                      <small class="we-text-danger">{$c[3] ? $c[3] : ''}</small>
+                                    </div>
+
+                                </div>
+                            </foreach>
+
+                            <div class="we-form-group">
+                                <input type="hidden" name="info[id]" value="{$info.id}">
+                                <input type="hidden" name="model" value="{$model.id}">
+                                <hr>
+                                <input type="submit" value="提交" class="we-btn we-btn-success">
+                                <input type="submit" value="重置" class="we-btn we-btn-warning">
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>
