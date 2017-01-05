@@ -24,6 +24,8 @@
                       <th>类型</th>
                       <th>状态</th>
                       <th>操作</th>
+                      <th>模板</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -40,10 +42,18 @@
                       </td>
                       <td>
                         <eq name="vo.type" value="list">
-                        <a href="{:url('dev/user/categoryConfig?id='.$vo['id'])}">文档配置</a>
-                      </eq>
-                      </td>
+                          <a href="{:url('dev/user/categoryConfig?id='.$vo['id'])}">文档配置</a>
+                        </eq>
 
+                      </td>
+                      <td>
+                        {$vo.template}
+                      </td>
+                      <td>
+                        <neq name="vo.type" value="url">
+                          <a href="{:url('dev/user/categoryTemplate?id='.$vo['id'])}">模板配置</a>
+                        </neq>
+                      </td>
 
                     </tr>
                     </foreach>

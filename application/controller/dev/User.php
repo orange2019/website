@@ -261,5 +261,49 @@ class User extends Dev {
             return $this->fetch();
         }
     }
+    
+
+    public function categoryTemplate(){
+    
+        $request = Request::instance();
+        if ($request->isPost()){
+    
+            $data = $request->post();
+            $res = \app\model\Category::update($data);
+            $category = db('category')->find($data['id']);
+            if ($res){
+                return $this->formSuccess('操作成功' , url('dev/user/category?id='.$category['project_id']));
+            }else{
+                return $this->formError('操作失败');
+            }
+    
+        }else {
+    
+            $id = input('id');
+            $category = db('Category')->find($id);
+            $this->assign('data' , $category);
+    
+            $projectId = $category['project_id'];
+            $project = db('Project')->find($projectId);
+            $themeId = $project['theme_id'];
+            if(!$themeId){
+                return $this->formError('请先选择主题');
+            }else{
+                $templates = db('Template')->where('theme_id' , $themeId)->select();
+                foreach ($templates as $v){
+                    $temps[$v['type']][] = $v;
+                }
+            }
+           
+            $this->assign('temps' , $temps);
+    
+            $this->assign('project' , $project);
+            return $this->fetch();
+    
+            return $this->fetch();
+        }
+    
+    
+    }
 
 }

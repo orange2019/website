@@ -280,7 +280,7 @@ class Category extends Admin {
         }
         
         // 存在文档不可删除
-        $count = db('posts')->where('category_id' , $id)->count();
+        $count = db('posts')->where('category_id' , $id)->where('status' , '>=' , 0)->count();
         if ($count > 0){
             return $this->formError('该栏目下添加过文档，不可删除');
         }
