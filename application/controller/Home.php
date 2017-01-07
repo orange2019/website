@@ -2,6 +2,7 @@
 namespace app\controller;
 use think\Request;
 use think\Log;
+use niklaslu\UnLimitTree;
 class Home extends Base{
     
     public function _empty(){
@@ -20,6 +21,8 @@ class Home extends Base{
         }else{
             // 获取全部category
             $categorys = $this->getAllCategorys($project['id']);
+            $navs = UnLimitTree::unlimitedForLayer($categorys);
+            $this->assign('navs' , $navs);
             
             // 获取栏目主题
             $themeId = $project['theme_id'];
@@ -99,7 +102,7 @@ class Home extends Base{
         
         $map['project_id'] = $project_id;
         $map['status'] = 1;
-        $categorys = db('category')->where($map)->select();
+        $categorys = db('category')->where($map)->order('sort' , 'asc')->select();
         
         return $categorys;
     }
@@ -140,8 +143,8 @@ class Home extends Base{
     protected function categoryAction($category , $detail = false){
         if ($detail == false){
             // 跳转下级处理
-            $type = $category['type'];
-            if ($type == 'jump'){
+            $jump = $category['jump'];
+            if ($jump == 1){
                 // 下级栏目
                 $mapChild['pid'] = $category['id'];
                 $mapChild['status'] = 1;

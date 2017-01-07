@@ -129,7 +129,7 @@ class Category extends Admin {
             $type = $data['type'];
             if ($old['name'] != $data['name']){
                 $pid = $data['pid'];
-                if ($type == 'page' || $type == 'list' || $type == 'jump'){
+                if ($type == 'page' || $type == 'list'){
                     if ($pid == 0){
                         $data['url'] = '/' . $data['name'] . '/';
                     }else{
