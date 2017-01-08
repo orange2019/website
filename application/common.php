@@ -171,8 +171,8 @@ function get_category_info($id , $field = null){
         $result = db('category')->find($id);
         cache('category_info_list' , $result);
     }
-    
-    return $field ? $data[$field] : $data;
+   
+    return $field ? $result[$field] : $result;
 }
 
 /**
