@@ -58,6 +58,7 @@ class Admin extends Base {
                 
                 $current = $requestName;
                 $menu = $this->getMenus($uid , $current);
+                $this->assign('menus' , $menu['menus']);
                 $this->assign('tops' , $menu['tops']);
                 $this->assign('subs' , $menu['subs']);
                 $this->assign('title' , $menu['title']);
@@ -99,7 +100,7 @@ class Admin extends Base {
         
         // 寻找顶级
         foreach ($menus as $top){
-            if ($top['pid'] == 0){
+            if ($top['pid'] == 0 && $top['display'] == 1){
                 $tops[] = $top;
                 if ($top['active'] == 'active'){
                     $topId = $top['id'];
@@ -111,7 +112,7 @@ class Admin extends Base {
         // 寻找二级
         if ($topId){
             foreach ($menus as $sub){
-                if ($sub['pid'] == $topId){
+                if ($sub['pid'] == $topId && $sub['display'] == 1){
                     $subs[] = $sub;
                     if ($sub['active'] == 'active'){
                         $title[] = $sub['title'];

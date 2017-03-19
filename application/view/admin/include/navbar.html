@@ -1,1 +1,24 @@
-<div class="navbar"><div class="top"><div class="logo"><span class="fa fa-car fa-4x"></span></div><ul class="we-nav nav-top"><foreach name="tops" item="top"><eq name="top.display" value="1"><li class="{$top.active}"><a href="{:url($top['name'])}" class=""><span class="we-text-sm">{$top.title}</span></a></li></eq></foreach></ul></div><div class="sub"><div class="user-info"><div class="we-circle we-border user-info-avatar"><span class="fa fa-user fa-4x"></span></div><p><span class="fa fa-user"></span> {:session('admin_username')}<br><small><i class="fa fa-envelope-square"></i> {:session('admin_useremail')}</small></p></div><ul class="we-nav nav-sub"><foreach name="subs" item="vo"><li class="{$vo.active} display-{$vo.display}"><a href="{:url($vo['name'])}" class="pjax">{$vo.title}</a></li></foreach></ul></div></div>
+<div class="navbar"><div class="top"><div class="logo"><span>橙子CMS v0.1</span></div><ul class="we-nav nav-top"><foreach name="tops" item="top"><eq name="top.display" value="1"><li class="{$top.active}"><a href="{:url($top['name'])}" class=""><span class="we-text-sm">{$top.title}</span></a></li></eq></foreach></ul></div><!-- <div class="sub">
+        <div class="user-info">
+            <div class="we-circle we-border user-info-avatar">
+                <span class="fa fa-user fa-4x "></span>
+            </div>
+
+            <p>
+                <span class="fa fa-user"></span> {:session('admin_username')}
+                <br>
+                <small><i class="fa fa-envelope-square"></i> {:session('admin_useremail')}</small>
+            </p>
+        </div>
+        <ul class="we-nav nav-sub">
+            <foreach name="subs" item="vo">
+
+                <li class="{$vo.active} display-{$vo.display}">
+                    <a href="{:url($vo['name'])}" class="pjax">{$vo.title}</a>
+                </li>
+
+            </foreach>
+
+        </ul>
+
+    </div> --></div>

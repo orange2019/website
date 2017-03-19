@@ -40,6 +40,7 @@
 
 
 @import "../../node_modules/font-awesome/less/font-awesome.less";
+@import "./sweetalert/theme.less";
 
 
 @ns : ~"we-";
@@ -52,7 +53,7 @@
 
 @dark : #34495E;
 @darker : #1b2032;
-@font-size-default : 1.4rem;
+@font-size-default : 1.3rem;
 
 body {
   font-size: @font-size-default;
@@ -86,7 +87,10 @@ html,body {
 }
 
 // 重构
-
+* {
+  padding : 0;
+  margin: 0;
+}
 .we-table > thead > tr > th,
 .we-table > tbody > tr > th,
 .we-table > tfoot > tr > th,
@@ -130,7 +134,7 @@ html,body {
   height: 100%;
   width: 100%;
   background: #f0f0f0;
-  padding-top: 10%;
+  padding-top: 5%;
   display: block;
 
   .login-box {
@@ -178,87 +182,100 @@ html,body {
   width: 100%;
 }
 .navbar {
-  width: 320px;
+  width: 200px;
   display: flex;
   .top {
-    width: 80px;
+    width: 200px;
     background: @brand-blue;
     .logo {
-      width: 80px;
+      width: 200px;
       height: 80px;
-      background: @brand-yellow;
-      text-align: center;
+      // background: @darker;
+      text-align: left;
+      padding-left: 1rem;
+      border-bottom: 1px solid #111;
       span {
         line-height: 80px;
         color: @white;
       }
     }
     .nav-top {
-      margin-top: 80px;
+      margin-top: 1px;
     }
     .nav-top > li {
-      height: 60px;
-      width: 80px;
+      height: 5rem;
+      width: 200px;
       margin: 0;
+      padding: 0;
+      margin-bottom: 1px;
     }
     .nav-top > li > a {
-      width: 80px;
-      height: 60px;
+      width: 200px;
+      height: 5rem;
       color: @brand-yellow;
-      text-align: center;
-      font-size: 2.4rem;
+      text-align: left;
+      font-size: 1.4rem;
+      line-height: 5rem;
+      padding: 0 1rem;
       small {font-size: 0.5rem;}
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        display: inline-block;
+      }
     }
     .nav-top >li.active a {
       background: @brand-yellow;
       color: @brand-blue;
     }
+
     .nav-top >li:hover a {
-      // background: @brand-yellow;
+      background: @brand-yellow;
+      opacity: 0.5;
       color: @brand-blue;
     }
 
   }
-  .sub {
-    flex-grow: 1;
-    width: 240px;
-    background: @brand-blue-sub;
-    .user-info {
-      padding: 1rem;
-      text-align: center;
-      color: @white;
-      height: 160px;
-      background:  lighten(@brand-blue , 5%);
-      .user-info-avatar {
-        width: 60px;
-        height: 60px;
-        margin: auto;
+
+}
+
+.nav-sub {
+  height: 5rem;
+  line-height: 5rem;
+  background: @white;
+
+  ul {
+    margin: 0;
+    height: 5rem;
+    padding-left: 1rem;
+    list-style: none;
+    li {
+      height: 5rem;
+      // margin: 0;
+      // display: block;
+      // float: left;
+      a {
+        height: 5rem;
+        line-height: 5rem;
+        padding: 0 2rem;
+        color: @darker;
+        display: block;
       }
     }
-    .nav-sub {
-      margin: 0;
-      li {
-        height: 60px;
-        margin: 0;
-        a {
-          height: 60px;
-          line-height: 60px;
-          padding: 0 2rem;
-          color: @white;
-        }
-      }
-      li.active a{
-        background: @brand-yellow;
-      }
-      li:hover a{
-        color: @brand-blue;
-      }
-      li.display-0 {
-        display: none;
-      }
+    li.active a{
+      // background: @brand-yellow;
+      color: @brand-yellow;
+    }
+    li:hover a{
+      color: @brand-blue;
+    }
+    li.display-0 {
+      display: none;
     }
   }
+
 }
+
 .container-content {
   flex-grow: 1;
   overflow: hidden;
@@ -267,18 +284,22 @@ html,body {
     background: @white;
     height: 80px;
     line-height: 80px;
+    border-bottom: 1px solid #eee;
     .header-title {
-      line-height: 80px;
-      font-size: 3rem;
-      padding-left: 1.5rem;
-      color: @brand-blue;
+
       font-weight: bolder;
+      font-size: 1.4rem;
+      padding-left: 1.5rem;
     }
     .sign-out{
-      padding: 1rem 2rem;
+      padding: 0 2rem;
       border-left: 1px solid @gray-lighter;
       a {
         color: @brand-blue;
+        height: 80px;
+        line-height: 80px;
+        display: block;
+        span {line-height: 80px;}
       }
     }
   }
