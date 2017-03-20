@@ -138,14 +138,14 @@ html,body {
   height: 100%;
   width: 100%;
   background: #f0f0f0;
-  padding-top: 5%;
+  padding-top: 150px;
   display: block;
 
   .login-box {
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
-    height: 500px;
-    background: @brand-blue;
+    // height: 500px;
+    background: @white;
     color: @white;
     .left {
 
@@ -163,19 +163,36 @@ html,body {
       padding: 50px ;
     }
     .login-form-block {
+      .logo {
+        line-height: 4rem;
+        font-size: 3rem;
+        text-align: center;
+        color: @brand-blue;
+
+      }
       background: @white;
       padding: 50px;
+      width: 500px;
+      margin: auto;
     }
     .btn-login {
       background: @brand-yellow;
-      padding: 1.5rem;
+      padding: 1rem;
     }
   }
+  .copyright {
+    color: @brand-blue;
+    line-height: 3rem;
+  }
   .reg-box {
-    width: 600px;
+    width: 100%;
     margin: 0 auto;
     background: @white;
     padding: 50px;
+    .reg-form-block {
+      width: 600px;
+      margin: auto;
+    }
   }
 }
 

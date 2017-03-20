@@ -8722,14 +8722,13 @@ body {
   height: 100%;
   width: 100%;
   background: #f0f0f0;
-  padding-top: 5%;
+  padding-top: 150px;
   display: block;
 }
 .login .login-box {
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
-  height: 500px;
-  background: #222222;
+  background: #fff;
   color: #fff;
 }
 .login .login-box .left {
@@ -8749,16 +8748,32 @@ body {
 .login .login-box .login-form-block {
   background: #fff;
   padding: 50px;
+  width: 500px;
+  margin: auto;
+}
+.login .login-box .login-form-block .logo {
+  line-height: 4rem;
+  font-size: 3rem;
+  text-align: center;
+  color: #222222;
 }
 .login .login-box .btn-login {
   background: #F39C12;
-  padding: 1.5rem;
+  padding: 1rem;
+}
+.login .copyright {
+  color: #222222;
+  line-height: 3rem;
 }
 .login .reg-box {
-  width: 600px;
+  width: 100%;
   margin: 0 auto;
   background: #fff;
   padding: 50px;
+}
+.login .reg-box .reg-form-block {
+  width: 600px;
+  margin: auto;
 }
 /* flex 布局*/
 .container {
