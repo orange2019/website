@@ -6,6 +6,11 @@ class Index extends Admin {
     public function Index(){
         
         $this->checkProject();
+
+        $uid = session('admin_uid');
+        $categorys = $this->getMenus($uid , 'admin/index/index')['menus'];
+        $categorys = \niklaslu\UnLimitTree::unlimitedForLayer($categorys);
+        $this->assign('categorys' , $categorys);
         
         return $this->fetch();
     }

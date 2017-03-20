@@ -2186,6 +2186,9 @@ module.exports = exports['default'];
 
 var pjax = require('jquery-pjax');
 var swal = require('sweetalert');
+var Base = require('./mods/base.js');
+var Editor = require('./mods/editor.js');
+var Admin = require('./mods/admin/admin.js');
 
 $(function () {
     addPjax();
@@ -2226,97 +2229,76 @@ function addPjax() {
 
 var pageInit = function pageInit() {
 
-    formSubmit();
-    confirmSubmit();
-    createEditor();
-    categoryTypeChange();
+    Base.init();
+    Editor.init();
+    Admin.init();
 };
 
-// 表单提交
-var formSubmit = function formSubmit() {
+},{"./mods/admin/admin.js":12,"./mods/base.js":14,"./mods/editor.js":15,"jquery-pjax":1,"sweetalert":10}],12:[function(require,module,exports){
+'use strict';
 
-    $('.form-ajax').bind('submit', function () {
+var Category = require('./category.js');
 
-        var btnSubmit = $(this).find('[type="submit"]');
-        btnSubmit.prop('disabled', true);
+var Admin = {
+	init: function init() {
+		Category.init();
+	}
+};
+module.exports = Admin;
 
-        var action = $(this).attr('action');
-        var data = $(this).serialize();
-        console.log(data);
-        if (action) {
-            $.ajax({
-                url: action,
-                type: 'POST',
-                dataType: 'json',
-                data: data
-            }).done(function (response) {
-                console.log(response);
-                var code = response.code;
-                var msg = response.msg ? response.msg : '';
-                var data = response.data;
-                var url = data.url;
-                if (code == 1) {
+},{"./category.js":13}],13:[function(require,module,exports){
+'use strict';
 
-                    swal({
-                        title: 'SUCCESS',
-                        text: msg,
-                        type: 'success'
-                    }, function () {
-                        if (url) {
-                            location.href = url;
-                        } else {
-                            location.reload();
-                        }
-                    });
-                } else {
+var Category = {
+	init: function init() {
+		this.categoryTypeChange();
+	},
+	categoryTypeChange: function categoryTypeChange() {
 
-                    // alert(msg);
-                    swal({
-                        title: 'ERROR',
-                        text: msg,
-                        type: 'error'
-                    }, function () {
-                        if (url) {
-                            location.href = url;
-                        }
-                    });
-                }
-                // console.log("success");
-            }).fail(function () {
-                alert('网络错误，请稍后重试！');
-                // console.log("error");
-            }).always(function () {
-                btnSubmit.prop('disabled', false);
-                // console.log("complete");
-            });
-        }
+		var select = $('#category-type');
+		var url = select.attr('data-url');
+		select.bind('change', function () {
+			var type = select.val();
+			location.href = url + '?type=' + type;
+		});
 
-        return false;
-    });
+		var select1 = $('#posts-update');
+		var url = select1.attr('data-url');
+		select1.bind('change', function () {
+			var category_id = select1.val();
+			// console.log(url + '?category_id=' + category_id);
+			location.href = url + '?category_id=' + category_id;
+		});
+	}
 };
 
-// 确认操作
-var confirmSubmit = function confirmSubmit() {
-    $('.confirm-ajax').bind('click', function () {
-        var title = $(this).attr('title') ? $(this).attr('title') : 'CONFIRM';
-        var href = $(this).attr('href');
-        swal({
-            title: title,
-            text: '确认进行此项操作？',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "是！",
-            cancelButtonText: "否.",
-            closeOnConfirm: false
-        }, function () {
-            // location.href = href;
-            if (href) {
+module.exports = Category;
+
+},{}],14:[function(require,module,exports){
+'use strict';
+
+var Base = {
+    init: function init() {
+        this.formSubmit();
+        this.confirmSubmit();
+    },
+    // 表单提交
+    formSubmit: function formSubmit() {
+
+        $('.form-ajax').bind('submit', function () {
+
+            var btnSubmit = $(this).find('[type="submit"]');
+            btnSubmit.prop('disabled', true);
+
+            var action = $(this).attr('action');
+            var data = $(this).serialize();
+            // console.log(data);
+            if (action) {
                 $.ajax({
-                    url: href,
-                    type: 'GET',
+                    url: action,
+                    type: 'POST',
                     dataType: 'json',
-                    data: ''
+                    data: data
                 }).done(function (response) {
                     console.log(response);
                     var code = response.code;
@@ -2352,64 +2334,146 @@ var confirmSubmit = function confirmSubmit() {
                     // console.log("success");
                 }).fail(function () {
                     alert('网络错误，请稍后重试！');
+                    // console.log("error");
                 }).always(function () {
+                    btnSubmit.prop('disabled', false);
                     // console.log("complete");
                 });
             }
+
+            return false;
         });
-        return false;
-    });
-};
+    },
+    // 确认操作
+    confirmSubmit: function confirmSubmit() {
+        $('.confirm-ajax').bind('click', function () {
+            var title = $(this).attr('title') ? $(this).attr('title') : 'CONFIRM';
+            var href = $(this).attr('href');
+            swal({
+                title: title,
+                text: '确认进行此项操作？',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "是！",
+                cancelButtonText: "否.",
+                closeOnConfirm: false
+            }, function () {
+                // location.href = href;
+                if (href) {
+                    $.ajax({
+                        url: href,
+                        type: 'GET',
+                        dataType: 'json',
+                        data: ''
+                    }).done(function (response) {
+                        console.log(response);
+                        var code = response.code;
+                        var msg = response.msg ? response.msg : '';
+                        var data = response.data;
+                        var url = data.url;
+                        if (code == 1) {
 
-var createEditor = function createEditor() {
+                            swal({
+                                title: 'SUCCESS',
+                                text: msg,
+                                type: 'success'
+                            }, function () {
+                                if (url) {
+                                    location.href = url;
+                                } else {
+                                    location.reload();
+                                }
+                            });
+                        } else {
 
-    $.getScript('/static/kindeditor/kindeditor-min.js', function () {
-        KindEditor.basePath = '/static/kindeditor/';
-        KindEditor.create('textarea.we-editor', {
-            height: '450px',
-            filterMode: false,
-            allowFileManager: true
-        });
-
-        $('.we-btn-img').click(function (event) {
-
-            var editor = KindEditor.editor({
-                basePath: '/static/kindeditor/',
-                pluginsPath: '/static/kindeditor/plugins/',
-                allowFileManager: true
+                            // alert(msg);
+                            swal({
+                                title: 'ERROR',
+                                text: msg,
+                                type: 'error'
+                            }, function () {
+                                if (url) {
+                                    location.href = url;
+                                }
+                            });
+                        }
+                        // console.log("success");
+                    }).fail(function () {
+                        alert('网络错误，请稍后重试！');
+                    }).always(function () {
+                        // console.log("complete");
+                    });
+                }
             });
-            // console.log(editor);
-            var id = $(this).attr('data-id');
-            editor.loadPlugin('image', function () {
-                editor.plugin.imageDialog({
-                    imageUrl: $('#' + id).val(),
-                    clickFn: function clickFn(url, title, width, height, border, align) {
-                        $('#' + id).val(url);
-                        $('#pre-img-' + id).html("<img src='" + url + "' height='50'>");
-                        editor.hideDialog();
-                    }
-                });
-            });
+            return false;
         });
-    });
+    }
+
 };
 
-var categoryTypeChange = function categoryTypeChange() {
+module.exports = Base;
 
-    var select = $('#category-type');
-    var url = select.attr('data-url');
-    select.bind('change', function () {
-        var type = select.val();
-        location.href = url + '?type=' + type;
-    });
+},{}],15:[function(require,module,exports){
+'use strict';
 
-    var select1 = $('#posts-update');
-    var url = select1.attr('data-url');
-    select1.bind('change', function () {
-        var category_id = select1.val();
-        console.log(url + '?category_id=' + category_id);
-        location.href = url + '?category_id=' + category_id;
-    });
+var Editor = {
+		init: function init() {
+				this.createEditor();
+		},
+		createEditor: function createEditor() {
+
+				var editorLen = $('textarea.we-editor').length;
+				var upImgLen = $('.we-btn-img').length;
+				if (editorLen == 0 && upImgLen == 0) {
+						return;
+				}
+
+				$.getScript('/static/kindeditor/kindeditor-all.js', function () {
+
+						KindEditor.basePath = '/static/kindeditor/';
+						KindEditor.create('textarea.we-editor', {
+								height: '450px',
+								filterMode: false,
+								allowFileManager: false,
+								uploadJson: '/file/upload',
+								fileManagerJson: '/file/data',
+								formatUploadUrl: false,
+								allowImageRemote: false,
+								afterBlur: function afterBlur() {
+										this.sync();
+								}
+						});
+
+						$('.we-btn-img').click(function (event) {
+
+								var editor = KindEditor.editor({
+										basePath: '/static/kindeditor/',
+										pluginsPath: '/static/kindeditor/plugins/',
+										allowFileManager: false,
+										uploadJson: '/file/upload',
+										fileManagerJson: '/file/data',
+										formatUploadUrl: false,
+										allowImageRemote: false
+
+								});
+								// console.log(editor);
+								var id = $(this).attr('data-id');
+								editor.loadPlugin('image', function () {
+										editor.plugin.imageDialog({
+												imageUrl: $('#' + id).val(),
+												clickFn: function clickFn(url, title, width, height, border, align) {
+														$('#' + id).val(url);
+														$('#pre-img-' + id).html("<img src='" + url + "' height='50'>");
+														editor.hideDialog();
+												}
+										});
+								});
+						});
+				});
+		}
 };
 
-},{"jquery-pjax":1,"sweetalert":10}]},{},[11]);
+module.exports = Editor;
+
+},{}]},{},[11]);

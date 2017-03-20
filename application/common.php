@@ -12,6 +12,16 @@ use think\Log;
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+/**
+ * 是否微信浏览器
+ */
+function is_weixin()
+{
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+    return !!strpos($user_agent, 'MicroMessenger');
+}
+
 function log_action($uid , $action , $data){
     $data['uid'] = $uid;
     $data['action'] = $action;

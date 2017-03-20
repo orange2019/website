@@ -85,7 +85,8 @@ gulp.task('copy', () => {
 gulp.task('less', () => {
     return gulp.src([
       'src/less/app.less',
-      'src/less/default.less'
+      'src/less/default.less',
+      'src/less/mobile.less'
     ])
         // .pipe($.concat('app.less'))
         .pipe($.changed('less', {

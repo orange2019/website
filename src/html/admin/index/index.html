@@ -14,15 +14,29 @@
         <div class="container-content">
           <!--include "../include/top.html"-->
           <div class="container-wrap">
-            <div class="we-panel we-padding">
-              <p>账号 : {:session('admin_username')}</p>
-              <p>邮箱 : {:session('admin_useremail')}</p>
-              <p>角色 : <span class="we-badge">{:get_user_group(session('admin_uid') , 'title')}</span> </p>
-            </div>
+
             <div class="we-panel we-padding we-scrollable-horizontal">
-              <table class="we-table we-table-striped we-text-nowrap we-table-compact we-table-hover ">
-                
-              </table>
+
+              <h3 class="we-text-xl">快捷入口</h3>
+              <hr>
+              <foreach name="categorys" item="vo">
+                <eq name="vo.display" value="1">
+                  <h4><a href="{:url($vo['name'])}">{$vo.title}</a></h4>
+
+                  <ul class="we-avg-md-6">
+                    <foreach name="vo.child" item="v">
+                      <eq name="v.display" value="1">
+                      <li >
+                        <a href="{:url($v['name'])}">{$v.title}</a>
+                      </li>
+                    </eq>
+                    </foreach>
+
+                  </ul>
+                  <hr>
+                </eq>
+
+              </foreach>
             </div>
           </div>
         </div>
