@@ -21,7 +21,8 @@
         "niklaslu/php-sent-email": "dev-master",
         "niklaslu/un-limit-tree": "dev-master",
         "niklaslu/think-authentication": "^1.0",
-        "topthink/think-captcha": "^1.0"
+        "topthink/think-captcha": "^1.0",
+        "niklaslu/php-form-builder": "^0.1.0"
     },
     "extra": {
         "think-path": "thinkphp"
