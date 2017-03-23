@@ -13,6 +13,7 @@ class FormBuilder
 {
     static public function init($config = []){
 
+        $config['ns'] = isset($config['ns']) ? $config['ns'] : 'o';
         $FormBuilder = new \niklaslu\FormBuilder($config);
 
         return $FormBuilder;

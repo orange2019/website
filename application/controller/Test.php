@@ -17,8 +17,6 @@ class Test extends Base
 
 
         $form = FormBuilder::init()
-                ->setFormName('form-a')
-                ->setFormNs('we')
                 ->addText('name' , '名称' , '' ,'请输入名称')
                 ->build();
 
