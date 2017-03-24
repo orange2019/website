@@ -125,7 +125,7 @@ class Admin extends Base {
         $result['menus'] = $menus;
         $result['tops'] = $tops;
         $result['subs'] = $subs;
-        $result['title'] = implode('-', $title);
+        $result['title'] = implode(' / ', $title);
         
         return $result;
         

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+
+            <div class="we-panel we-padding we-scrollable-horizontal">
+
+							<ul class="we-avg-md-4">
+								<li class="we-text-center">
+									<a href="{:url('admin/wechat/index')}" class="pjax">
+										<span class="fa fa-wechat fa-4x"></span>
+										<br>
+										<span>微信</span>
+									</a>
+								</li>
+								<li class="we-text-center">
+									<a href="{:url('admin/sms/index')}" class="pjax">
+										<span class="fa fa-comments-o fa-4x"></span>
+										<br>
+										<span>短信</span>
+									</a>
+								</li>
+								<li class="we-text-center">
+									<a href="{:url('admin/email/index')}" class="pjax">
+										<span class="fa fa-envelope-o fa-4x"></span>
+										<br>
+										<span>邮件</span>
+									</a>
+								</li>
+							</ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

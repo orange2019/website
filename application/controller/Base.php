@@ -1,5 +1,6 @@
 <?php
 namespace app\controller;
+use think\Config;
 use think\Controller;
 use think\Request;
 

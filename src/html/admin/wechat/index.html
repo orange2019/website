@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+
+            <div class="we-panel we-padding we-scrollable-horizontal">
+
+							<notempty name="config">
+								<div class="we-g">
+									<div class="we-u-md-6">
+										<table class="we-table">
+											<tr>
+												<th>公众号名称</th>
+												<td>{$config.name}</td>
+											</tr>
+											<tr>
+												<th>AppId</th>
+												<td>{$config.app_id}</td>
+											</tr>
+											<tr>
+												<th>公众号AppSecret</th>
+												<td>{$config.app_secret}</td>
+											</tr>
+											<tr>
+												<th>商户号id</th>
+												<td>{$config.mch_id}</td>
+											</tr>
+											<tr>
+												<th>支付回调url</th>
+												<td>{$config.pay_notify_url}</td>
+											</tr>
+											<tr>
+												<th>支付api_secret</th>
+												<td>{$config.pay_api_secret}</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<a href="{:url('admin/wechat/config')}" class="pjax">修改配置</a>
+												</td>
+											</tr>
+
+										</table>
+									</div>
+								</div>
+							<else/>
+							<p>还未配置公众号,去<a href="{:url('admin/wechat/config')}" class="pjax">配置</a></p>
+							</notempty>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

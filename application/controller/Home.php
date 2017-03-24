@@ -4,18 +4,36 @@ use think\Request;
 use think\Log;
 use niklaslu\UnLimitTree;
 class Home extends Base{
-    
+
+    public function _initialize()
+    {
+        parent::_initialize();
+
+        $request = Request::instance();
+
+        $controller = $request->controller();
+        $this->controllerLimit($controller);
+
+        $domain = $request->server('HTTP_HOST');
+//        $url = $request->baseUrl();
+
+        $project = $this->getProject($domain);
+        session('www_project' , $project);
+
+    }
+
     public function _empty(){
         
         $request = Request::instance();
-        
-        $controller = $request->controller();
-        $this->controllerLimit($controller);
-        
-        $domain = $request->server('HTTP_HOST');
+//
+//        $controller = $request->controller();
+//        $this->controllerLimit($controller);
+//
+//        $domain = $request->server('HTTP_HOST');
         $url = $request->baseUrl();
-        
-        $project = $this->getProject($domain);
+//
+//        $project = $this->getProject($domain);
+        $project = session('www_project');
         if (!$project){
             $this->_404('no project');
         }else{
@@ -71,7 +89,9 @@ class Home extends Base{
             if (!$template){
                 $this->_404('no template');
             }else{
+
                 $display = $themeName . '/' . $template['name'];
+
                 return $this->fetch($display);
             }
            

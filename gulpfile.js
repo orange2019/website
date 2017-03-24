@@ -135,7 +135,7 @@ gulp.task('html', () => {
 var bundleInit = () => {
   var entryFiles = [
     'src/js/app.js',
-    'src/js/default/app.js'
+    'src/js/index.js'
   ];
 
   entryFiles.map(function(index) {

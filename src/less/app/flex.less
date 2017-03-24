@@ -1,0 +1,135 @@
+/* flex 布局*/
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.navbar {
+  width: 200px;
+  display: flex;
+  .top {
+    width: 200px;
+    background: @brand-blue;
+    .logo {
+      width: 200px;
+      height: 80px;
+      // background: @darker;
+      text-align: left;
+      padding-left: 1rem;
+      border-bottom: 1px solid #111;
+      span {
+        line-height: 80px;
+        color: @white;
+      }
+    }
+    .nav-top {
+      margin-top: 0;
+    }
+    .nav-top > li {
+      height: 5rem;
+      width: 200px;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 1px;
+    }
+    .nav-top > li > a {
+      width: 200px;
+      height: 5rem;
+      color: @brand-yellow;
+      text-align: left;
+      font-size: 1.2rem;
+      line-height: 5rem;
+      padding: 0 1rem;
+      small {font-size: 0.5rem;}
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        display: inline-block;
+      }
+    }
+    .nav-top >li.active a {
+      background: @brand-yellow;
+      color: @brand-blue;
+    }
+
+    .nav-top >li:hover a {
+      background: @brand-yellow;
+      opacity: 0.5;
+      color: @brand-blue;
+    }
+
+  }
+
+}
+
+.nav-sub {
+  height: 5rem;
+  line-height: 5rem;
+  background: @white;
+  border-bottom: 1px solid #eee;
+  ul {
+    margin: 0;
+    height: 5rem;
+    padding-left: 1rem;
+    list-style: none;
+    li {
+      height: 5rem;
+      a {
+        height: 5rem;
+        line-height: 5rem;
+        padding: 0 2rem;
+        color: @darker;
+				font-size: 1.2rem;
+        display: block;
+      }
+    }
+    li.active a{
+      // background: @brand-yellow;
+      color: @brand-yellow;
+    }
+    li:hover a{
+      color: @brand-blue;
+    }
+    li.display-0 {
+      display: none;
+    }
+  }
+
+}
+
+.container-content {
+  flex-grow: 1;
+  overflow: hidden;
+  background: @gray-lighter;
+  min-width: 1000px;
+  height: 100%;
+  .container-header {
+    background: @white;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 1px solid #eee;
+    .header-title {
+      // font-weight: bold;
+			color: #ccc;
+      padding-left: 1.5rem;
+    }
+    .sign-out{
+      padding: 0 2rem;
+      border-left: 1px solid @gray-lighter;
+      a {
+        color: @brand-blue;
+        height: 80px;
+        line-height: 80px;
+        display: block;
+        span {line-height: 80px;}
+      }
+    }
+  }
+  .container-wrap {
+    padding: 1.5rem;
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+    background: @white;
+  }
+}

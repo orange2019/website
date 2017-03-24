@@ -22,6 +22,20 @@ function is_weixin()
     return !!strpos($user_agent, 'MicroMessenger');
 }
 
+/**
+ * 是否移动端
+ * @return bool
+ */
+function is_mobile(){
+
+    $detect = new \Detection\MobileDetect();
+    if ($detect->isMobile() || $detect->isTablet()){
+        return true;
+    }else {
+        return false;
+    }
+}
+
 function log_action($uid , $action , $data){
     $data['uid'] = $uid;
     $data['action'] = $action;

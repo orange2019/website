@@ -8647,26 +8647,27 @@ img.we-thumbnail,
     opacity: 1;
   }
 }
-body {
-  font-size: 1.3rem;
-}
-html,
-body {
+html {
+  font-size: 75%;
   height: 100%;
   overflow: hidden;
+}
+body {
+  font-size: 1rem;
+  color: #333333;
+  height: 100%;
+  overflow: hidden;
+}
+a {
+  color: #3c3c3c;
+}
+a:hover {
+  color: #F39C12;
 }
 .we-border {
   border: 1px solid #fff;
 }
 /*公共*/
-.page-title {
-  color: #222222;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 1rem 0;
-  padding-left: 1rem;
-  border-left: 4px solid #F39C12;
-}
 .we-form-search input {
   min-width: 240px;
   padding: 0.5rem;
@@ -8684,7 +8685,17 @@ body {
 .we-table > thead > tr > td,
 .we-table > tbody > tr > td,
 .we-table > tfoot > tr > td {
+  font-size: 1rem;
   line-height: 3rem;
+  padding: 0.5rem;
+}
+.we-table > thead > tr > th a,
+.we-table > tbody > tr > th a,
+.we-table > tfoot > tr > th a,
+.we-table > thead > tr > td a,
+.we-table > tbody > tr > td a,
+.we-table > tfoot > tr > td a {
+  font-size: 1rem;
 }
 /* 分页 */
 .page ul.pagination {
@@ -8717,207 +8728,108 @@ body {
 .page ul.pagination li.active span {
   background: #eeeeee;
 }
-/* 登录,注册  */
-.login {
-  height: 100%;
-  width: 100%;
-  background: #f0f0f0;
-  padding-top: 150px;
-  display: block;
-}
-.login .login-box {
-  width: 100%;
-  margin: 0 auto;
-  background: #fff;
-  color: #fff;
-}
-.login .login-box .left {
-  width: 40%;
-  height: 100%;
-  padding: 50px;
-}
-.login .login-box .left a {
-  color: #F39C12;
-}
-.login .login-box .right {
-  width: 60%;
-  height: 100%;
-  background: #F39C12;
-  padding: 50px ;
-}
-.login .login-box .login-form-block {
-  background: #fff;
-  padding: 50px;
-  width: 500px;
-  margin: auto;
-}
-.login .login-box .login-form-block .logo {
-  line-height: 4rem;
-  font-size: 3rem;
-  text-align: center;
-  color: #222222;
-}
-.login .login-box .btn-login {
-  background: #F39C12;
-  padding: 1rem;
-}
-.login .copyright {
-  color: #222222;
-  line-height: 3rem;
-}
-.login .reg-box {
-  width: 100%;
-  margin: 0 auto;
-  background: #fff;
-  padding: 50px;
-}
-.login .reg-box .reg-form-block {
-  width: 600px;
-  margin: auto;
-}
-/* flex 布局*/
-.container {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-.navbar {
-  width: 200px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-.navbar .top {
-  width: 200px;
-  background: #222222;
-}
-.navbar .top .logo {
-  width: 200px;
-  height: 80px;
-  text-align: left;
-  padding-left: 1rem;
-  border-bottom: 1px solid #111;
-}
-.navbar .top .logo span {
-  line-height: 80px;
-  color: #fff;
-}
-.navbar .top .nav-top {
-  margin-top: 1px;
-}
-.navbar .top .nav-top > li {
-  height: 5rem;
-  width: 200px;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1px;
-}
-.navbar .top .nav-top > li > a {
-  width: 200px;
-  height: 5rem;
-  color: #F39C12;
-  text-align: left;
-  font-size: 1.4rem;
-  line-height: 5rem;
-  padding: 0 1rem;
-}
-.navbar .top .nav-top > li > a small {
-  font-size: 0.5rem;
-}
-.navbar .top .nav-top > li > a .icon {
-  width: 3rem;
-  height: 3rem;
-  display: inline-block;
-}
-.navbar .top .nav-top > li.active a {
-  background: #F39C12;
-  color: #222222;
-}
-.navbar .top .nav-top > li:hover a {
-  background: #F39C12;
-  opacity: 0.5;
-  color: #222222;
-}
-.nav-sub {
-  height: 5rem;
-  line-height: 5rem;
-  background: #fff;
-}
-.nav-sub ul {
-  margin: 0;
-  height: 5rem;
-  padding-left: 1rem;
-  list-style: none;
-}
-.nav-sub ul li {
-  height: 5rem;
-}
-.nav-sub ul li a {
-  height: 5rem;
-  line-height: 5rem;
-  padding: 0 2rem;
-  color: #1b2032;
-  display: block;
-}
-.nav-sub ul li.active a {
-  color: #F39C12;
-}
-.nav-sub ul li:hover a {
-  color: #222222;
-}
-.nav-sub ul li.display-0 {
-  display: none;
-}
-.container-content {
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  overflow: hidden;
-  background: #eeeeee;
-  min-width: 1000px;
-  height: 100%;
-}
-.container-content .container-header {
-  background: #fff;
-  height: 80px;
-  line-height: 80px;
-  border-bottom: 1px solid #eee;
-}
-.container-content .container-header .header-title {
-  font-weight: bolder;
-  font-size: 1.4rem;
-  padding-left: 1.5rem;
-}
-.container-content .container-header .sign-out {
-  padding: 0 2rem;
-  border-left: 1px solid #eeeeee;
-}
-.container-content .container-header .sign-out a {
-  color: #222222;
-  height: 80px;
-  line-height: 80px;
-  display: block;
-}
-.container-content .container-header .sign-out a span {
-  line-height: 80px;
-}
-.container-content .container-wrap {
-  padding: 1.5rem;
-  width: 100%;
-  height: 90%;
-  overflow: auto;
-}
 /*表单*/
 legend {
-  font-weight: bold;
+  font-size: 1.2rem;
+}
+.we-form select,
+.we-form textarea,
+.we-form input[type="text"],
+.we-form input[type="password"],
+.we-form input[type="datetime"],
+.we-form input[type="datetime-local"],
+.we-form input[type="date"],
+.we-form input[type="month"],
+.we-form input[type="time"],
+.we-form input[type="week"],
+.we-form input[type="number"],
+.we-form input[type="email"],
+.we-form input[type="url"],
+.we-form input[type="search"],
+.we-form input[type="tel"],
+.we-form input[type="color"],
+.we-form .we-form-field {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  height: 3rem;
+  color: #3c3c3c;
+  vertical-align: middle;
+  border: 0;
+  border-bottom: 2px solid #eee;
+  border-radius: 0;
+  -webkit-appearance: none;
+  transition: border-color 0.2s;
+}
+.we-form textarea {
+  height: auto;
+}
+.we-form select:focus,
+.we-form textarea:focus,
+.we-form input[type="text"]:focus,
+.we-form input[type="password"]:focus,
+.we-form input[type="datetime"]:focus,
+.we-form input[type="datetime-local"]:focus,
+.we-form input[type="date"]:focus,
+.we-form input[type="month"]:focus,
+.we-form input[type="time"]:focus,
+.we-form input[type="week"]:focus,
+.we-form input[type="number"]:focus,
+.we-form input[type="email"]:focus,
+.we-form input[type="url"]:focus,
+.we-form input[type="search"]:focus,
+.we-form input[type="tel"]:focus,
+.we-form input[type="color"]:focus {
+  border-color: #F39C12;
+  box-shadow: none;
+}
+.we-form select:hover,
+.we-form textarea:hover,
+.we-form input[type="text"]:hover,
+.we-form input[type="password"]:hover,
+.we-form input[type="datetime"]:hover,
+.we-form input[type="datetime-local"]:hover,
+.we-form input[type="date"]:hover,
+.we-form input[type="month"]:hover,
+.we-form input[type="time"]:hover,
+.we-form input[type="week"]:hover,
+.we-form input[type="number"]:hover,
+.we-form input[type="email"]:hover,
+.we-form input[type="url"]:hover,
+.we-form input[type="search"]:hover,
+.we-form input[type="tel"]:hover,
+.we-form input[type="color"]:hover {
+  border-color: #222222;
+  box-shadow: none;
+}
+.we-form input[type="submit"],
+.we-form input[type="reset"] {
+  display: inline-block;
+  line-height: 3rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+}
+.we-form input[type="submit"] {
+  background-color: #3498DB;
+}
+.we-form input[type="reset"] {
+  background-color: #E74C3C;
+}
+.we-form .we-form-help {
+  font-size: 1rem;
+  color: #E74C3C;
 }
 /*按钮*/
 .btn-ac {
   padding: 3px 1rem;
-  border: 0.5px solid #000;
-  font-size: 0.8rem;
+  border: 1px solid #000;
+  font-size: 1.2rem;
   border-radius: 2px;
   transition: all 0.5s;
   text-align: center;
@@ -8954,6 +8866,201 @@ legend {
 .btn-rule:hover {
   background: #222222;
   color: #F39C12;
+}
+/* flex 布局*/
+.container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.navbar {
+  width: 200px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.navbar .top {
+  width: 200px;
+  background: #222222;
+}
+.navbar .top .logo {
+  width: 200px;
+  height: 80px;
+  text-align: left;
+  padding-left: 1rem;
+  border-bottom: 1px solid #111;
+}
+.navbar .top .logo span {
+  line-height: 80px;
+  color: #fff;
+}
+.navbar .top .nav-top {
+  margin-top: 0;
+}
+.navbar .top .nav-top > li {
+  height: 5rem;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1px;
+}
+.navbar .top .nav-top > li > a {
+  width: 200px;
+  height: 5rem;
+  color: #F39C12;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 5rem;
+  padding: 0 1rem;
+}
+.navbar .top .nav-top > li > a small {
+  font-size: 0.5rem;
+}
+.navbar .top .nav-top > li > a .icon {
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+}
+.navbar .top .nav-top > li.active a {
+  background: #F39C12;
+  color: #222222;
+}
+.navbar .top .nav-top > li:hover a {
+  background: #F39C12;
+  opacity: 0.5;
+  color: #222222;
+}
+.nav-sub {
+  height: 5rem;
+  line-height: 5rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.nav-sub ul {
+  margin: 0;
+  height: 5rem;
+  padding-left: 1rem;
+  list-style: none;
+}
+.nav-sub ul li {
+  height: 5rem;
+}
+.nav-sub ul li a {
+  height: 5rem;
+  line-height: 5rem;
+  padding: 0 2rem;
+  color: #1b2032;
+  font-size: 1.2rem;
+  display: block;
+}
+.nav-sub ul li.active a {
+  color: #F39C12;
+}
+.nav-sub ul li:hover a {
+  color: #222222;
+}
+.nav-sub ul li.display-0 {
+  display: none;
+}
+.container-content {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: hidden;
+  background: #eeeeee;
+  min-width: 1000px;
+  height: 100%;
+}
+.container-content .container-header {
+  background: #fff;
+  height: 80px;
+  line-height: 80px;
+  border-bottom: 1px solid #eee;
+}
+.container-content .container-header .header-title {
+  color: #ccc;
+  padding-left: 1.5rem;
+}
+.container-content .container-header .sign-out {
+  padding: 0 2rem;
+  border-left: 1px solid #eeeeee;
+}
+.container-content .container-header .sign-out a {
+  color: #222222;
+  height: 80px;
+  line-height: 80px;
+  display: block;
+}
+.container-content .container-header .sign-out a span {
+  line-height: 80px;
+}
+.container-content .container-wrap {
+  padding: 1.5rem;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+  background: #fff;
+}
+/* 登录,注册  */
+.login {
+  height: 100%;
+  width: 100%;
+  background: #f0f0f0;
+  padding-top: 150px;
+  display: block;
+}
+.login .login-box {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  color: #fff;
+}
+.login .login-box .left {
+  width: 40%;
+  height: 100%;
+  padding: 50px;
+}
+.login .login-box .left a {
+  color: #F39C12;
+}
+.login .login-box .right {
+  width: 60%;
+  height: 100%;
+  background: #F39C12;
+  padding: 50px ;
+}
+.login .login-box .login-form-block {
+  color: #222;
+  background: #fff;
+  padding: 50px;
+  width: 500px;
+  margin: auto;
+}
+.login .login-box .login-form-block .logo {
+  line-height: 4rem;
+  font-size: 3rem;
+  text-align: center;
+  color: #222222;
+}
+.login .login-box .btn-login {
+  background: #F39C12;
+  padding: 1rem;
+}
+.login .copyright {
+  color: #222222;
+  line-height: 3rem;
+}
+.login .reg-box {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 50px;
+}
+.login .reg-box .reg-form-block {
+  width: 600px;
+  margin: auto;
 }
 /*权限*/
 .rule-box {

@@ -100,7 +100,7 @@ class Data extends Dev {
             $modelName = $model['name'];
             $listCount = $model['list_count'];
 //             $field = $model['list_display'];
-            $order = $model['sort'];
+            $order = $model['sort_field'];
             
             $query = db($modelName)->order($order);
             if ($listCount == 0){

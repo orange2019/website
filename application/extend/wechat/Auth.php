@@ -19,7 +19,9 @@ class Auth
     public function getConfig(){
 
         $request = Request::instance();
-        $config = config('service.wechat');
+//        $config = config('service.wechat');
+        // 修改为从数据库获取
+        $config = $this->getConfigFromDbCache();
 
         $configWx['appid'] = $config['app_id'];
         $configWx['appsecret'] = $config['app_secret'];
@@ -33,6 +35,23 @@ class Auth
 
     }
 
+    public function getConfigFromDbCache(){
+
+        $configCache = cache('wechat_config_data');
+        $uid = session('www_project')['uid'];
+        if ($configCache && isset($configCache[$uid])){
+            $config = $configCache[$uid];
+        }else{
+            $userConfig = db('UserConfig')->where('uid' , $uid)->find();
+            $config = $userConfig['wechat'] ? json_decode($userConfig['wechat']  , true) : null;
+
+            $configData[$uid] = $config;
+            cache('wechat_config_data' , $configData);
+        }
+
+        return $config;
+
+    }
     /**
      * 通过code获取用户信息
      * @param $code

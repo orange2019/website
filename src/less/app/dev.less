@@ -1,0 +1,98 @@
+
+/*权限*/
+.rule-box {
+  display: none;
+}
+.rule-box.show {
+  display: block;
+}
+.group-rule-box {
+  display: none;
+}
+.group-rule-box.show{
+  display: block;
+}
+
+.group-rule-item.level-1 {
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: @brand-blue;
+  line-height: 3.6rem;
+}
+
+.group-rule-item.level-2 {
+  font-size: 1.6rem;
+  padding-left: 1.5rem;
+  clear: both;
+  cursor: pointer;
+  font-weight: bold;
+  color: @brand-blue;
+  line-height: 3rem;
+  span {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 2px solid @brand-blue;
+  }
+}
+.group-rule-item.level-3 {
+  font-size: 10px;
+  color: @brand-blue;
+  float: left;
+  border: 0.5px solid @brand-blue;
+  margin: 0.5rem 0rem 0.5rem 1.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.group-rule-item.level-3:hover {
+  background: @brand-blue;
+  color: @white;
+
+}
+
+.group-rule-item.checked {
+  color: @brand-yellow;
+}
+.group-rule-item.level-2.checked {
+  span {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 2px solid @brand-yellow;
+  }
+}
+.group-rule-item.level-3.checked {
+  border: 0.5px solid @brand-yellow;
+}
+
+.user-group-item {
+  padding: 1.5rem;
+  border-bottom: 0.5px solid @brand-blue;
+}
+
+.user-project-item {
+    margin: 0.5rem 0rem 0.5rem 1.5rem;
+    padding: 0.5rem;
+    border: 0.5px solid @brand-blue;
+    color:  @brand-blue;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.user-project-item:hover {
+  background: @brand-blue;
+  color: @white;
+}
+.user-project-item.checked {
+  border: 0.5px solid @brand-yellow;
+  color: @brand-yellow;
+}
+.user-project-item.checked:hover {
+  background: @brand-yellow;
+  color: @white;
+}
+.group-rule-2 {
+  width: 48%;
+  float: left;
+  margin-right: 2%;
+}
