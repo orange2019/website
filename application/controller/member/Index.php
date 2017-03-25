@@ -15,6 +15,9 @@ class Index extends Home
 {
     public function index(){
 
+        if (is_weixin()){
+            $this->redirect('member/wechat/index');
+        }
         $uid = $this->auth();
 
         dump($uid);

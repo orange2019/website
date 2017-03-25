@@ -1,5 +1,6 @@
 <?php
 namespace app\controller;
+use app\model\MemberAuth;
 use think\Config;
 use think\Controller;
 use think\Request;
@@ -159,7 +160,7 @@ class Base extends Controller {
         $authIp = Request::instance()->ip();
 
         $memberAuth = MemberAuth::get(['member_id'=>$memberId]);
-        $token = md5(session('wechat_openid').time());
+        $token = md5($memberId.time());
         if ($memberAuth){
             $memberAuth->type = $authType;
             $memberAuth->login_ip = $authIp;

@@ -9,6 +9,7 @@
 namespace app\controller;
 
 
+use app\model\Member;
 use LC\FormBuilder;
 use think\Request;
 
@@ -50,11 +51,27 @@ class Auth extends Home
         $request = Request::instance();
         if ($request->isPost()){
 
+            $data = $request->post();
+
+            // 检测手机验证码 TODO
+
+            $Member = new Member();
+            $res = $Member->regWechatBind($data['phone']);
+            if ($res) {
+                session('www_uid' , $res);
+                return $this->formSuccess('绑定成功' , url('member/wechat/index'));
+            }else {
+                $error = $Member->getError();
+                return $this->formError($error . '，请稍后重试！');
+            }
         }else {
 
             $form = FormBuilder::init()
+                ->setFormName('wx-bind')
+                ->addClass('form-ajax')
+                ->setAction($request->url())
                 ->addText('phone' , '' , '' ,'请输入你的手机号码' , true )
-                ->addText('code' , '' , '' , '请输入接受的验证码' , true)
+                ->addText('code' , '' , '' , '请输入接收的验证码' , true)
                 ->addSubmit('绑定')
                 ->build();
 
@@ -63,8 +80,17 @@ class Auth extends Home
         }
     }
 
-    public function wxUnBind(){
+    public function wxUnbind(){
 
+        $uid = session('www_uid');
+
+        $Member = new Member();
+        $res = $Member->unbindWechat($uid);
+        if ($res){
+            return $this->formSuccess('解绑成功' , url('auth/wxBind'));
+        }else {
+            return $this->formError('解绑失败' . $Member->getError());
+        }
     }
 
     public function wxInfo(){
