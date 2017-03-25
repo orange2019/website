@@ -59,7 +59,7 @@ class Auth extends Home
                 ->build();
 
             $this->assign('form' , $form);
-            return $this->fetch();
+            return $this->fetch('auth/wxBind');
         }
     }
 
