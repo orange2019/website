@@ -2467,10 +2467,12 @@
     opacity: 1;
   }
 }
+html {
+  font-size: 75%;
+}
 html,
 body {
   height: 100%;
-  font-size: 13px;
 }
 a {
   color: #2C3E50;

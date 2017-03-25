@@ -5571,10 +5571,12 @@ fieldset[disabled] .o-checkbox-inline {
   overflow: visible;
   clip: auto;
 }
+html {
+  font-size: 75%;
+}
 html,
 body {
   height: 100%;
-  font-size: 13px;
 }
 a {
   color: #2C3E50;
@@ -5691,23 +5693,23 @@ i {
   margin-bottom: 1rem;
 }
 .o-form .o-form-label {
-  line-height: 2.4rem;
-  font-size: 1.2rem;
+  line-height: 3rem;
+  font-size: 1.1rem;
   color: #34495E;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
 }
 .o-form .o-form-content input[type="text"],
 .o-form .o-form-content input[type="hidden"],
 .o-form .o-form-content input[type="password"],
 .o-form .o-form-content input[type="email"],
 .o-form .o-form-content input[type="number"] {
-  height: 2.4rem;
-  line-height: 2rem;
-  font-size: 12px;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1rem;
   border: none;
   border-bottom: 2px solid #eee;
   transition: all 0.5s;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: #2C3E50;
 }
 .o-form .o-form-content input[type="text"]:focus,
@@ -5722,8 +5724,8 @@ i {
 .o-form input[type="reset"] {
   background: #3498DB;
   border: none;
-  border-radius: 8px;
-  line-height: 2.4rem;
+  border-radius: 4px;
+  line-height: 3rem;
   font-size: 12px;
   padding: 0 2rem;
   color: #fff;
@@ -5755,11 +5757,12 @@ i {
 .o-wx-bind .o-form-group.submit input[type="submit"] {
   width: 100%;
   position: relative;
-  top: 4rem;
+  top: 3rem;
+  background: #F39C12;
 }
 .o-wx-bind .sent-check-sms {
   position: relative;
-  top: -4rem;
+  top: -6rem;
 }
 .o-wx-bind .sent-check-sms a {
   font-size: 1rem;
