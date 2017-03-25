@@ -48,7 +48,7 @@ class Base extends Controller {
         $token = input('token' , '');
         $this->getUidByToken($token , 'wx');
 
-        $uid = session('www_uid');;
+        $uid = session('www_uid');
         if (!$uid){
 
             if (is_weixin()){

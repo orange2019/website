@@ -52,7 +52,12 @@ class Auth extends Home
         if ($request->isPost()){
 
             $data = $request->post();
-
+            if ($data['phone'] == ''){
+                return $this->formError('请输入手机号码');
+            }
+            if ($data['code'] == ''){
+                return $this->formError('请输入验证码');
+            }
             // 检测手机验证码 TODO
 
             $Member = new Member();
@@ -87,6 +92,7 @@ class Auth extends Home
         $Member = new Member();
         $res = $Member->unbindWechat($uid);
         if ($res){
+            session('www_uid' , null);
             return $this->formSuccess('解绑成功' , url('auth/wxBind'));
         }else {
             return $this->formError('解绑失败' . $Member->getError());
