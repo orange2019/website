@@ -14,16 +14,15 @@
         <div class="container-content">
           <!--include "../include/top.html"-->
           <div class="container-wrap">
-            <div class="we-panel">
-              <div class="page-title">
+            <div class="we-padding">
+              <div class="we-cf">
                 <notempty name="component">
                   <strong class="we-text-danger">{$component.title}</strong>
                 </notempty>
-                【{$typeData}】权限
-                <a href="{:url('dev/rule/update',['type'=>$type,'component'=>$component['id']])}" class="btn-ac btn-ac-success pjax"><span class="fa fa-plus"></span> 添加</a>
+                <a href="{:url('dev/rule/update',['type'=>$type,'component'=>$component['id']])}" class="we-btn we-btn-success pjax"><span class="fa fa-plus"></span> 添加[{$typeData}]权限</a>
               </div>
               <notempty name="list">
-                <div class="we-scrollable-horizontal we-panel we-padding">
+                <div class="we-scrollable-horizontal">
                   <table class="we-table we-table-striped we-text-nowrap we-table-compact we-table-hover">
                     <thead>
                       <tr>
@@ -32,6 +31,7 @@
                         <th>权限标识</th>
                         <th>状态</th>
                         <th>显示</th>
+                        <th>排序</th>
                         <th>操作</th>
 
                       </tr>
@@ -41,12 +41,11 @@
                       <tr>
                         <td>{$vo.id}</td>
                         <td>{$vo.html}
-                          <eq name="vo.level" value="1"><span class="we-badge we-badge-primary">{$vo.title}</span></eq>
-                          <eq name="vo.level" value="2"><span class="we-badge we-badge-secondary">{$vo.title}</span></eq>
-                          <eq name="vo.level" value="3"><span class="we-badge we-badge-warning">{$vo.title}</span></eq>
+                          <eq name="vo.level" value="1"><strong>{$vo.title}</strong></eq>
+                          <eq name="vo.level" value="2"><strong>{$vo.title}</strong></eq>
+                          <eq name="vo.level" value="3"><small>{$vo.title}</small></eq>
                         </td>
                         <td>{$vo.name}</td>
-
                         <td>
                           <eq name="vo.status" value="1"><span class="we-text-success">正常</span></eq>
                           <eq name="vo.status" value="0"><span class="we-text-warning">禁用</span></eq>
@@ -57,18 +56,22 @@
                           <eq name="vo.display" value="0"><span class="we-text-warning">否</span></eq>
                         </td>
                         <td>
+                          {$vo.sort}
+                        </td>
+                        <td>
                           <eq name="vo.uid" value="1">
-                            <a href="{:url('dev/rule/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
-
                             <eq name="vo.status" value="1">
+                              <a href="{:url('dev/rule/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
                               <a href="{:url('status?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning">禁用</a>
                               <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
                             </eq>
                             <eq name="vo.status" value="0">
+                              <a href="{:url('dev/rule/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
                               <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
                               <a href="{:url('status?status=-1&id='.$vo['id'])}" class="btn-ac btn-ac-danger">删除</a>
                             </eq>
                             <eq name="vo.status" value="-1">
+                              <a href="{:url('dev/rule/update?id='.$vo['id'])}" class="btn-ac btn-ac-info">编辑</a>
                               <a href="{:url('status?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success">启用</a>
                             </eq>
                           </eq>

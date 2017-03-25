@@ -5682,22 +5682,6 @@ em,
 i {
   font-style: normal;
 }
-.o-login-header small {
-  color: #BDC3C7;
-  line-height: 1rem;
-}
-.o-login {
-  width: 100%;
-  background: #fff;
-  padding: 4rem 0;
-}
-.o-login .form-box .o-form-group.submit {
-  padding-top: 1rem;
-}
-.o-login .form-box input[type="submit"] {
-  width: 100%;
-  line-height: 3rem;
-}
 .o-container {
   width: 1200px;
   max-width: 1200px;
@@ -5743,4 +5727,41 @@ i {
   font-size: 12px;
   padding: 0 2rem;
   color: #fff;
+}
+.o-login-header small {
+  color: #BDC3C7;
+  line-height: 1rem;
+}
+.o-login {
+  width: 100%;
+  background: #fff;
+  padding: 4rem 0;
+}
+.o-login .form-box .o-form-group.submit {
+  padding-top: 1rem;
+}
+.o-login .form-box input[type="submit"] {
+  width: 100%;
+  line-height: 3rem;
+}
+.o-wx-bind {
+  background: #fff;
+  padding: 2rem 1rem;
+  overflow: hidden;
+}
+.o-wx-bind .o-form-group {
+  margin-bottom: 2rem;
+}
+.o-wx-bind .o-form-group.submit input[type="submit"] {
+  width: 100%;
+  position: relative;
+  top: 4rem;
+}
+.o-wx-bind .sent-check-sms {
+  position: relative;
+  top: -4rem;
+}
+.o-wx-bind .sent-check-sms a {
+  font-size: 1rem;
+  text-decoration: underline;
 }

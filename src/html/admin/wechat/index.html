@@ -15,11 +15,12 @@
           <!--include "../include/top.html"-->
           <div class="container-wrap">
 
-            <div class="we-panel we-padding we-scrollable-horizontal">
+            <div class="we-g we-scrollable-horizontal">
 
 							<notempty name="config">
-								<div class="we-g">
+
 									<div class="we-u-md-6">
+                    <h2>微信公众号信息</h2>
 										<table class="we-table">
 											<tr>
 												<th>公众号名称</th>
@@ -53,7 +54,7 @@
 
 										</table>
 									</div>
-								</div>
+
 							<else/>
 							<p>还未配置公众号,去<a href="{:url('admin/wechat/config')}" class="pjax">配置</a></p>
 							</notempty>

@@ -8826,6 +8826,14 @@ legend {
   color: #E74C3C;
 }
 /*按钮*/
+.we-btn {
+  line-height: 3rem;
+  height: 3rem;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  border: 0;
+  border-radius: 4px;
+}
 .btn-ac {
   padding: 3px 1rem;
   border: 1px solid #000;
@@ -9008,7 +9016,7 @@ legend {
   height: 100%;
   width: 100%;
   background: #f0f0f0;
-  padding-top: 150px;
+  padding-top: 8%;
   display: block;
 }
 .login .login-box {
@@ -9046,7 +9054,6 @@ legend {
 }
 .login .login-box .btn-login {
   background: #F39C12;
-  padding: 1rem;
 }
 .login .copyright {
   color: #222222;
@@ -9076,49 +9083,39 @@ legend {
   display: block;
 }
 .group-rule-item.level-1 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   cursor: pointer;
-  font-weight: bold;
-  color: #222222;
-  line-height: 3.6rem;
-}
-.group-rule-item.level-2 {
-  font-size: 1.6rem;
-  padding-left: 1.5rem;
-  clear: both;
-  cursor: pointer;
-  font-weight: bold;
   color: #222222;
   line-height: 3rem;
 }
-.group-rule-item.level-2 span {
-  padding: 0.5rem 1rem 0.5rem 0;
-  border-bottom: 2px solid #222222;
+.group-rule-item.level-2 {
+  font-size: 1.2rem;
+  padding-left: 1rem;
+  cursor: pointer;
+  color: #222222;
+  line-height: 3rem;
+  display: inline-block;
 }
 .group-rule-item.level-3 {
-  font-size: 10px;
-  color: #222222;
-  float: left;
-  border: 0.5px solid #222222;
-  margin: 0.5rem 0rem 0.5rem 1.5rem;
+  font-size: 1rem;
+  color: #3c3c3c;
+  display: inline-block;
+  margin: 0.5rem 0rem 0.5rem 1rem;
   padding: 0.5rem;
-  border-radius: 4px;
   cursor: pointer;
   transition: all 0.5s;
 }
 .group-rule-item.level-3:hover {
-  background: #222222;
-  color: #fff;
+  color: #F39C12;
 }
 .group-rule-item.checked {
   color: #F39C12;
 }
-.group-rule-item.level-2.checked span {
-  padding: 0.5rem 1rem 0.5rem 0;
-  border-bottom: 2px solid #F39C12;
+.group-rule-item.level-2.checked {
+  color: #F39C12;
 }
 .group-rule-item.level-3.checked {
-  border: 0.5px solid #F39C12;
+  color: #F39C12;
 }
 .user-group-item {
   padding: 1.5rem;

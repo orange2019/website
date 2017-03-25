@@ -13,33 +13,34 @@
         <div class="container-content">
           <!--include "../include/top.html"-->
           <div class="container-wrap">
-            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
-              <fieldset style="width:400px;">
 
-                <legend>项目添加</legend>
+              <form class="we-form form-ajax we-padding-xs" action="{:url('')}" method="post">
+                <fieldset style="width:400px;">
 
-                <div class="we-form-group">
-                  <label for="" class="we-label">项目名称</label>
-                  <div class="">
-                    <input type="text" name="title" value="" placeholder="输入项目名称" required="">
+                  <legend>项目添加</legend>
+
+                  <div class="we-form-group">
+                    <label for="" class="we-label">项目名称</label>
+                    <div class="">
+                      <input type="text" name="title" value="" placeholder="输入项目名称" required="">
+                    </div>
                   </div>
-                </div>
 
-                <div class="we-form-group">
-                  <label for="" class="we-label">项目代号</label>
-                  <div class="">
-                    <input type="text" name="name" value="" placeholder="输入项目代号(英文)" required="">
+                  <div class="we-form-group">
+                    <label for="" class="we-label">项目代号</label>
+                    <div class="">
+                      <input type="text" name="name" value="" placeholder="输入项目代号(英文)" required="">
+                    </div>
                   </div>
-                </div>
 
-                <div class="we-form-group">
-                  <hr>
-                  <input type="submit" value="提交" class="we-btn we-btn-success">
-                  <input type="submit" value="重置" class="we-btn we-btn-warning">
-                </div>
+                  <div class="we-form-group">
+                    <input type="submit" value="提交" class="we-btn we-btn-success">
+                    <input type="reset" value="重置" class="we-btn we-btn-warning">
+                  </div>
 
-              </fieldset>
-            </form>
+                </fieldset>
+              </form>
+
           </div>
         </div>
       </div>

@@ -47,7 +47,20 @@ class Auth extends Home
     }
 
     public function wxBind(){
+        $request = Request::instance();
+        if ($request->isPost()){
 
+        }else {
+
+            $form = FormBuilder::init()
+                ->addText('phone' , '' , '' ,'请输入你的手机号码' , true )
+                ->addText('code' , '' , '' , '请输入接受的验证码' , true)
+                ->addSubmit('绑定')
+                ->build();
+
+            $this->assign('form' , $form);
+            return $this->fetch();
+        }
     }
 
     public function wxUnBind(){

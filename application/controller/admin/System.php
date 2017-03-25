@@ -74,7 +74,7 @@ class System extends Admin {
                     $res = \app\model\User::create($post);
                 }
                 if ($res){
-                    return $this->formSuccess('操作成功' , url('system/user'));
+                    return $this->formSuccess('操作成功' , url('admin/system/user'));
                 }else{
                     return $this->formError('操作失败');
                 }
@@ -169,6 +169,10 @@ class System extends Admin {
             $mapG['status'] = 1;
             $mapG['uid'] = $uid;
             $groups = db('AuthGroup')->where($mapG)->order('sort','asc')->select();
+
+            if (count($groups) <= 0){
+                return $this->formError('还未添加角色，请先去添加' , url('admin/system/groupUpdate'));
+            }
             $this->assign('groups' , $groups);
             
             $userGroup = db('AuthUserGroup')->where('user_id' , $id)->find();
@@ -270,7 +274,7 @@ class System extends Admin {
                 $res = AuthGroup::create($post);
             }
             if ($res){
-                return $this->formSuccess('操作成功' , url('system/group'));
+                return $this->formSuccess('操作成功' , url('admin/system/group'));
             }else{
                 return $this->formError('操作失败');
             } 
@@ -322,7 +326,7 @@ class System extends Admin {
             $res = $group->save();
             if ($res){
                 // 重置缓存
-                return $this->formSuccess('操作成功' , url('system/group'));
+                return $this->formSuccess('操作成功' , url('admin/system/group'));
             }else{
                 return $this->formError('操作失败');
             }
@@ -355,6 +359,11 @@ class System extends Admin {
             $this->assign('components' , $components);
             
             // 查找所拥有的权限
+            $uid = (session('admin_pid') == 0) ? session('admin_uid') : session('admin_pid');
+            $pUserGroup = db('authUserGroup')->find($uid);
+            $pGroup = db('AuthGroup')->find($pUserGroup['group_id']);
+            $pGroupRules = explode(',' , $pGroup['rules']);
+            $mapRule['id'] = ['in' , $pGroupRules];
             $mapRule['status'] = 1;
             $mapRule['component_id'] = ['in' , $userComponentIds];
             $rule = db('AuthRule')->where($mapRule)->order('sort' , 'asc')->select();
