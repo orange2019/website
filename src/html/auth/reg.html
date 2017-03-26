@@ -2,7 +2,7 @@
 <html>
   <head>
     <!--include "../include/head.html"-->
-    <title>注册</title>
+    <title>登录</title>
     <!--include "../include/css.html"-->
 
   </head>
@@ -10,9 +10,37 @@
     <div id="pjax-container">
       <div id="pjax-content">
 
-				<section>
+        <header class="o-padding-xl o-text-center o-login-header o-container">
+          <h1>欢迎加入</h1>
+          <small>橙子平台</small>
+        </header>
+				<section class="o-reg">
 
+					<div class="o-container">
+
+						<div class="form-box o-padding-top o-g">
+
+							<div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">
+								{$form}
+
+                <div class="o-cf sms-code o-text-right">
+
+                    <a href="javascript:;" class="sent-sms-code">点击发送验证码</a>
+
+                </div>
+
+                <div class="o-cf o-padding-top o-text-center">
+
+                    <a href="{:url('auth/login')}" class="pjax">已有账号，返回登录!</a>
+
+                </div>
+							</div>
+						</div>
+					</div>
 				</section>
+        <div class="o-text-center o-margin-top">
+          <small>Copyright © 2017 橙子网络. All Rights Reserved. </small>
+        </div>
 
       </div>
     </div>

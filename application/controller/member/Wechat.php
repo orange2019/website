@@ -16,6 +16,8 @@ class Wechat extends Home
     public function index(){
 
         $uid = $this->auth();
+        $member = $this->getUserInfoByUid($uid);
+        $this->assign('member' , $member);
 
         return $this->fetch();
     }

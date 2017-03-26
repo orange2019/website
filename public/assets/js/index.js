@@ -2182,11 +2182,35 @@ if (typeof window !== 'undefined') {
 }
 module.exports = exports['default'];
 },{"./modules/default-params":2,"./modules/handle-click":3,"./modules/handle-dom":4,"./modules/handle-key":5,"./modules/handle-swal-dom":6,"./modules/set-params":8,"./modules/utils":9}],11:[function(require,module,exports){
+'use strict';
+
+var Auth = {
+  init: function init() {
+    this.login();
+  },
+  login: function login() {
+    // 更换验证码
+    $('.o-login').find('#img-captcha').bind('click', function () {
+      var src = $(this).attr('data-src');
+      src += '?t=' + Math.random();
+      $(this).attr('src', src);
+    }).trigger('click');
+
+    $('.o-login').find('a.change-captcha').click(function () {
+      $('.o-login').find('#img-captcha').trigger('click');
+    });
+  }
+};
+
+module.exports = Auth;
+
+},{}],12:[function(require,module,exports){
 "use strict";
 
 var pjax = require('jquery-pjax');
 var swal = require('sweetalert');
 var Base = require('./mods/base.js');
+var Auth = require('./default/auth.js');
 
 $(function () {
     addPjax();
@@ -2227,10 +2251,11 @@ function addPjax() {
 
 var pageInit = function pageInit() {
 
-    Base.init();;
+    Base.init();
+    Auth.init();
 };
 
-},{"./mods/base.js":12,"jquery-pjax":1,"sweetalert":10}],12:[function(require,module,exports){
+},{"./default/auth.js":11,"./mods/base.js":13,"jquery-pjax":1,"sweetalert":10}],13:[function(require,module,exports){
 'use strict';
 
 var Base = {
@@ -2370,4 +2395,4 @@ var Base = {
 
 module.exports = Base;
 
-},{}]},{},[11]);
+},{}]},{},[12]);

@@ -6129,7 +6129,7 @@ a {
   color: #2C3E50;
 }
 a:hover {
-  color: #34495E;
+  color: #F39C12;
 }
 *,
 *:before,
@@ -6289,17 +6289,41 @@ i {
   color: #BDC3C7;
   line-height: 1rem;
 }
-.o-login {
+.o-login,
+.o-reg {
   width: 100%;
   background: #fff;
   padding: 4rem 0;
 }
-.o-login .form-box .o-form-group.submit {
+.o-login .form-box .o-form-group.submit,
+.o-reg .form-box .o-form-group.submit {
   padding-top: 1rem;
+  position: relative;
+  top: 4rem;
 }
-.o-login .form-box input[type="submit"] {
+.o-login .form-box input[type="submit"],
+.o-reg .form-box input[type="submit"] {
   width: 100%;
   line-height: 3rem;
+}
+.o-login .form-box .captcha-img,
+.o-reg .form-box .captcha-img,
+.o-login .form-box .sms-code,
+.o-reg .form-box .sms-code {
+  position: relative;
+  top: -4rem;
+}
+.o-login .form-box .captcha-img img,
+.o-reg .form-box .captcha-img img,
+.o-login .form-box .sms-code img,
+.o-reg .form-box .sms-code img {
+  box-shadow: 1px 1px 1px 1px #eee;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.o-login .form-box a,
+.o-reg .form-box a {
+  font-size: 1rem;
 }
 .o-wx-bind {
   background: #fff;

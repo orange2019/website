@@ -3,6 +3,7 @@
 var pjax = require('jquery-pjax');
 var swal = require('sweetalert');
 var Base = require('./mods/base.js');
+var Auth = require('./default/auth.js');
 
 
 $(function() {
@@ -47,6 +48,7 @@ function addPjax() {
 
 var pageInit = function() {
 
-  Base.init();;
+  Base.init();
+  Auth.init();
 
 }

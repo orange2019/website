@@ -6,7 +6,8 @@
 	}
 }
 
-.o-login {
+.o-login,
+.o-reg {
 
 	width: 100%;
 	background: #fff;
@@ -15,10 +16,25 @@
 		// width: 600px;
 		.o-form-group.submit {
 			padding-top: 1rem;
+			position: relative;
+			top: 4rem;
 		}
 		input[type="submit"] {
 			width: 100%;
 			line-height: 3rem;
+		}
+		.captcha-img,
+		.sms-code {
+			position: relative;
+			top: -4rem;
+			img {
+				box-shadow: 1px 1px 1px 1px #eee;
+				border-radius: @radius-size ;
+				cursor: pointer;
+			}
+		}
+		a {
+			font-size: 1rem;
 		}
 	}
 }

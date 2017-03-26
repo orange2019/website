@@ -21,9 +21,28 @@ class Auth extends Home
         $request = Request::instance();
         if ($request->isPost()){
 
+            $data = $request->post();
+            // 验证
+            $validate = validate('Login');
+            if (!$validate->check($data)){
+                return $this->formError($validate->getError());
+            }
+
+            // 登录
+            $Member = new Member();
+            $member = $Member->login($data);
+            if ($member){
+                $this->afterLogin($member);
+                return $this->formSuccess('登录成功' , url('member/index/index'));
+            }else{
+                return $this->formError('登录失败，用户名或密码错误');
+            }
+
         }else {
 
             $form = FormBuilder::init()
+                ->setAction($request->url())
+                ->addClass('form-ajax')
                 ->addText('phone' , '手机号' , '' ,'请输入你的手机号码' , true )
                 ->addPassword('password' , '密码' , '' , '请输入你的密码' , true)
                 ->addText('captcha' , '验证码' , '' , '请输入验证码' , true)
@@ -35,17 +54,69 @@ class Auth extends Home
         }
     }
 
-    public function logout(){
+    protected function afterLogin($member){
+        session('www_uid' , $member->id);
+    }
 
+    public function reg(){
+
+        $request = Request::instance();
+        if ($request->isPost()){
+            $data = $request->post();
+
+            // 验证
+            $validate = validate('Reg');
+            if (!$validate->check($data)){
+                return $this->formError($validate->getError());
+            }
+
+            // 验证两次密码是否输入一样
+            if ($data['password'] != $data['password_again']){
+                return $this->formError('两次输入密码不一致，请重新输入');
+            }
+
+            // 验证短信码 TODO
+
+
+            $Member = new Member();
+            $member = $Member->reg($data);
+            if ($member){
+                $this->afterReg($member);
+                return $this->formSuccess('注册成功' , url('member/index/index'));
+            }else{
+                return $this->formError('注册失败,' . $Member->getError());
+            }
+        }else {
+            $form = FormBuilder::init()
+                ->setAction($request->url())
+                ->addClass('form-ajax')
+                ->addText('phone' , '手机号' , '' ,'请输入你的手机号码' , true )
+                ->addPassword('password' , '密码' , '' , '请输入你的密码' , true)
+                ->addPassword('password_again' , '再次输入密码' , '' , '请确认输入你的密码' , true)
+                ->addText('code' , '验证码' , '' , '请输入接受的手机验证码' , true)
+                ->addSubmit('点击进行注册！')
+                ->build();
+
+            $this->assign('form' , $form);
+            return $this->fetch();
+
+        }
+    }
+
+    public function afterReg($member){
+        session('www_uid' , $member->id);
+    }
+
+    public function logout(){
+        session('www_uid' , null);
+        return $this->formSuccess('退出成功' , url('auth/login'));
     }
 
     public function info(){
 
     }
 
-    public function reg(){
 
-    }
 
     public function wxBind(){
         $request = Request::instance();

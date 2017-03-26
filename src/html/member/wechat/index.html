@@ -11,8 +11,16 @@
       <div id="pjax-content">
 
 				<section class="member-wechat-index o-padding">
+          <div class="o-text-center o-padding">
+            <img src="{$member.avatar}" alt="" height="100" class="o-round">
+            <h1>
+              <span>{$member.name} </span>
+              <a href="{:url('auth/wxUnbind')}" class="confirm-ajax fa fa-window-close o-text-danger" title="确认进行解绑？"></a>
+            </h1>
+            <small><span class="fa fa-mobile"></span> {$member.phone}</small>
+          </div>
 
-          <a href="{:url('auth/wxUnbind')}" class="confirm-ajax o-btn o-btn-success o-btn-block" title="确认进行解绑？">微信关联解绑</a>
+
 
 				</section>
 

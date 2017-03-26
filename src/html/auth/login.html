@@ -22,10 +22,32 @@
 
 							<div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">
 								{$form}
+
+                <div class="o-cf captcha-img">
+                  <div class="o-fl">
+                    <img src="" alt="" data-src="{:captcha_src()}" height="36" class="" id="img-captcha">
+                  </div>
+                  <div class="o-fr">
+                    <a href="javascript:;" class="change-captcha"><span class="fa fa-refresh"></span> 换一张</a>
+                  </div>
+
+                </div>
+
+                <div class="o-cf o-padding-top">
+                  <div class="o-fl">
+                    <a href="{:url('forget')}" class="pjax">忘记密码？</a>
+                  </div>
+                  <div class="o-fr">
+                    <a href="{:url('auth/reg')}" class="pjax">没有账号，去注册!</a>
+                  </div>
+                </div>
 							</div>
 						</div>
 					</div>
 				</section>
+        <div class="o-text-center o-margin-top">
+          <small>Copyright © 2017 橙子网络. All Rights Reserved. </small>
+        </div>
 
       </div>
     </div>

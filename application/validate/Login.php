@@ -5,14 +5,14 @@ use think\Validate;
 class Login extends Validate {
     
     protected $rule = [
-        'email' => 'email',
+        'phone' => 'require',
         'password' => 'require|min:6',
         'captcha'=>'require|captcha'
     ];
     
     protected $message = [
         
-        'email.email' => '邮箱格式错误',
+        'phone.require' => '请输入电话号码',
 //         'email.token' => '请不要重复提交',
         'password.require' => '请输入密码',
         'password.min' => '密码长度不够',
