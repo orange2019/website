@@ -23,7 +23,7 @@ class Auth extends Home
 
             $data = $request->post();
             // 验证
-            $validate = validate('Login');
+            $validate = validate('LoginMember');
             if (!$validate->check($data)){
                 return $this->formError($validate->getError());
             }
@@ -65,7 +65,7 @@ class Auth extends Home
             $data = $request->post();
 
             // 验证
-            $validate = validate('Reg');
+            $validate = validate('RegMember');
             if (!$validate->check($data)){
                 return $this->formError($validate->getError());
             }
