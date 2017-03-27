@@ -18,6 +18,7 @@
         "topthink/framework": "^5.0",
         "niklaslu/php-aliyun-oss": "dev-master",
         "niklaslu/wechat-sdk": "dev-master",
+        "niklaslu/ali-dayu": "dev-master",
         "niklaslu/php-sent-email": "dev-master",
         "niklaslu/un-limit-tree": "dev-master",
         "niklaslu/think-authentication": "^1.0",

@@ -8825,6 +8825,10 @@ legend {
   font-size: 1rem;
   color: #E74C3C;
 }
+.we-form .we-form-radio,
+.we-form .we-form-checkbox {
+  padding: 0 1rem 0 0;
+}
 /*按钮*/
 .we-btn {
   line-height: 3rem;
