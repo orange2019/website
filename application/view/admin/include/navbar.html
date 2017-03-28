@@ -1,1 +1,21 @@
-<div class="navbar"><div class="top"><div class="logo"><span>橙子CMS v0.1</span></div><ul class="we-nav nav-top"><foreach name="tops" item="top"><eq name="top.display" value="1"><li class="{$top.active}"><a href="{:url($top['name'])}" class=""><span class="icon fa fa-{$top['icon']}"></span> <span>{$top.title}</span></a></li></eq></foreach></ul></div></div>
+<div class="navbar">
+    <div class="top">
+        <div class="logo">
+            <span>橙子CMS v0.1</span>
+        </div>
+
+        <ul class="we-nav nav-top">
+            <foreach name="tops" item="top">
+                <eq name="top.display" value="1">
+                    <li class="{$top.active}">
+                        <a href="{:url($top['name'])}" class="">
+                            <span class="icon fa fa-{$top['icon']}"></span>
+                            <span>{$top.title}</span>
+                        </a>
+                </eq>
+                </li>
+            </foreach>
+        </ul>
+    </div>
+
+</div>

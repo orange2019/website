@@ -120,9 +120,9 @@ gulp.task('html', () => {
             includerReg: /<!\-\-include\s+"([^"]+)"\-\->/g
         }))
         // Minify Any HTML
-        .pipe($.htmlmin({
-            collapseWhitespace: true
-        }))
+        // .pipe($.htmlmin({
+        //     collapseWhitespace: true
+        // }))
         // Output Files
         .pipe(gulp.dest('application/view'))
         .pipe($.size({

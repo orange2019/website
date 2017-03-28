@@ -1,1 +1,19 @@
-<div class="navbar"><div class="top"><div class="logo"><span class="we-text-xxl">橙子开发</span></div><ul class="we-nav nav-top"><foreach name="tops" item="top"><li class="{$top.active}"><a href="{:url($top['url'])}" class="pjax"><span class="fa fa-{$top.code} icon"></span> <span>{$top.name}</span></a></li></foreach></ul></div></div>
+<div class="navbar">
+  <div class="top">
+    <div class="logo">
+      <span class="we-text-xxl">橙子开发</span>
+    </div>
+
+    <ul class="we-nav nav-top">
+      <foreach name="tops" item="top">
+      <li class="{$top.active}">
+        <a href="{:url($top['url'])}" class="pjax">
+          <span class="fa fa-{$top.code} icon"></span>
+          <span>{$top.name}</span>
+        </a>
+      </li>
+    </foreach>
+    </ul>
+  </div>
+
+</div>

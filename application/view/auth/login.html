@@ -1,1 +1,70 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="description" content=""><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><script src="/assets/js/pace.min.js"></script><link href="/assets/css/pace-theme-flash.css" rel="stylesheet"><title>登录</title><link rel="stylesheet" href="/assets/css/sweetalert.css"><link rel="stylesheet" href="/assets/css/default.css"></head><body><div id="pjax-container"><div id="pjax-content"><header class="o-padding-xl o-text-center o-login-header o-container"><h1>欢迎登录</h1><small>橙子金融平台个人中心</small></header><section class="o-login"><div class="o-container"><div class="form-box o-padding-top o-g"><div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">{$form}<div class="o-cf captcha-img"><div class="o-fl"><img src="" alt="" data-src="{:captcha_src()}" height="36" class="" id="img-captcha"></div><div class="o-fr"><a href="javascript:;" class="change-captcha"><span class="fa fa-refresh"></span> 换一张</a></div></div><div class="o-cf o-padding-top"><div class="o-fl"><a href="{:url('forget')}" class="pjax">忘记密码？</a></div><div class="o-fr"><a href="{:url('auth/reg')}" class="pjax">没有账号，去注册!</a></div></div></div></div></div></section><div class="o-text-center o-margin-top"><small>Copyright © 2017 橙子网络. All Rights Reserved.</small></div></div></div><script type="text/javascript" src="/assets/js/jquery.min.js"></script><script type="text/javascript" src="/assets/js/index.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>登录</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/default.css">
+
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+        <header class="o-padding-xl o-text-center o-login-header o-container">
+          <h1>欢迎登录</h1>
+          <small>橙子金融平台个人中心</small>
+        </header>
+				<section class="o-login">
+
+					<div class="o-container">
+
+						<div class="form-box o-padding-top o-g">
+
+							<div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">
+								{$form}
+
+                <div class="o-cf captcha-img">
+                  <div class="o-fl">
+                    <img src="" alt="" data-src="{:captcha_src()}" height="36" class="" id="img-captcha">
+                  </div>
+                  <div class="o-fr">
+                    <a href="javascript:;" class="change-captcha"><span class="fa fa-refresh"></span> 换一张</a>
+                  </div>
+
+                </div>
+
+                <div class="o-cf o-padding-top">
+                  <div class="o-fl">
+                    <a href="{:url('forget')}" class="pjax">忘记密码？</a>
+                  </div>
+                  <div class="o-fr">
+                    <a href="{:url('auth/reg')}" class="pjax">没有账号，去注册!</a>
+                  </div>
+                </div>
+							</div>
+						</div>
+					</div>
+				</section>
+        <div class="o-text-center o-margin-top">
+          <small>Copyright © 2017 橙子网络. All Rights Reserved. </small>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </body>
+</html>

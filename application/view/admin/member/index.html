@@ -1,1 +1,137 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="description" content=""><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><script src="/assets/js/pace.min.js"></script><link href="/assets/css/pace-theme-flash.css" rel="stylesheet"><title>{$title}</title><link rel="stylesheet" href="/assets/css/sweetalert.css"><link rel="stylesheet" href="/assets/css/app.css"></head><body><div class="container" id="pjax-container"><div class="container" id="pjax-content"><div class="navbar"><div class="top"><div class="logo"><span>橙子CMS v0.1</span></div><ul class="we-nav nav-top"><foreach name="tops" item="top"><eq name="top.display" value="1"><li class="{$top.active}"><a href="{:url($top['name'])}" class=""><span class="icon fa fa-{$top['icon']}"></span> <span>{$top.title}</span></a></li></eq></foreach></ul></div></div><div class="container-content"><div class="container-header we-cf"><div class="we-fl"><span class="header-title">&nbsp;/ {$title}</span></div><div class="we-fr sign-out"><a href="{:url('admin/auth/logout')}"><span class="fa fa-sign-out fa-3x"></span></a></div><div class="we-fr sign-out"><a href="{:url('admin/auth/info')}" class="pjax"><span class="fa fa-vcard fa-3x"></span></a></div></div><notempty name="subs"><div class="nav-sub we-cf"><ul class="we-cf"><foreach name="subs" item="vo"><li class="{$vo.active} display-{$vo.display} we-fl"><a href="{:url($vo['name'])}" class="pjax">{$vo.title}</a></li></foreach></ul></div></notempty><div class="container-wrap"><div class="we-g"><div class="we-u-md-4"><form class="we-form" action="{:url('admin/member/index')}" method="get"><input type="text" name="keyword" value="{$keyword}" placeholder="输入用户名或电话号码进行查找"></form></div></div><div class="we-scrollable-horizontal we-padding"><notempty name="list"><table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover"><thead><tr><th>UID</th><th></th><th>用户名</th><th>电话</th><th>注册时间</th><th>操作</th></tr></thead><tbody><foreach name="list" item="vo"><tr><td>{$vo.id}</td><td><img src="{$vo.avatar}" alt="" width="36" height="36" class="we-round"></td><td>{$vo.name}</td><td>{$vo.phone}</td><td>{$vo.create_time|date='Y-m-d H:i',###}</td><td></td></tr></foreach></tbody></table><div class="page">{$page}</div><else><p class="we-text-center we-text-danger">未查询到数据</p></notempty></div></div></div></div></div><script type="text/javascript" src="/assets/js/jquery.min.js"></script><script type="text/javascript" src="/assets/js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>{$title}</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/app.css">
+
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <div class="navbar">
+    <div class="top">
+        <div class="logo">
+            <span>橙子CMS v0.1</span>
+        </div>
+
+        <ul class="we-nav nav-top">
+            <foreach name="tops" item="top">
+                <eq name="top.display" value="1">
+                    <li class="{$top.active}">
+                        <a href="{:url($top['name'])}" class="">
+                            <span class="icon fa fa-{$top['icon']}"></span>
+                            <span>{$top.title}</span>
+                        </a>
+                </eq>
+                </li>
+            </foreach>
+        </ul>
+    </div>
+
+</div>
+
+
+            <div class="container-content">
+                <div class="container-header we-cf">
+  <div class="we-fl">
+    <span class="header-title">&nbsp;/ {$title}</span>
+  </div>
+
+  <div class="we-fr sign-out">
+    <a href="{:url('admin/auth/logout')}"><span class="fa fa-sign-out fa-3x"></span></a>
+  </div>
+  <div class="we-fr sign-out">
+    <a href="{:url('admin/auth/info')}" class="pjax"><span class="fa fa-vcard fa-3x"></span></a>
+  </div>
+</div>
+<notempty name="subs">
+<div class="nav-sub we-cf">
+  <ul class="we-cf">
+      <foreach name="subs" item="vo">
+
+          <li class="{$vo.active} display-{$vo.display} we-fl">
+              <a href="{:url($vo['name'])}" class="pjax">{$vo.title}</a>
+          </li>
+
+      </foreach>
+
+  </ul>
+</div>
+
+</notempty>
+
+                <div class="container-wrap">
+
+                  <div class="we-g">
+                    <div class="we-u-md-4">
+                      <form class="we-form" action="{:url('admin/member/index')}" method="get">
+                        <input type="text" name="keyword" value="{$keyword}" placeholder="输入用户名或电话号码进行查找">
+                      </form>
+                    </div>
+
+                  </div>
+
+                    <div class="we-scrollable-horizontal we-padding">
+
+                        <notempty name="list">
+                            <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>UID</th>
+                                        <th></th>
+                                        <th>用户名</th>
+                                        <th>电话</th>
+                                        <th>注册时间</th>
+                                        <th>操作</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <foreach name="list" item="vo">
+                                        <tr>
+                                            <td>{$vo.id}</td>
+                                            <td><img src="{$vo.avatar}" alt="" width="36" height="36" class="we-round"></td>
+                                            <td>{$vo.name}</td>
+                                            <td>{$vo.phone}</td>
+                                            <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                                            <td>
+
+                                            </td>
+
+                                        </tr>
+                                    </foreach>
+                                </tbody>
+                            </table>
+                            <div class="page">
+                                {$page}
+                            </div>
+                            <else/>
+                            <p class="we-text-center we-text-danger">未查询到数据</p>
+                        </notempty>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+
+</body>
+
+</html>

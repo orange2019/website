@@ -66,6 +66,7 @@ class Base extends Controller {
                 //查找是否注册用户
                 $member = $this->getUserInfoByOpenid($userInfo['openid']);
                 if ($member){
+                    session('www_uid' , $member['id']);
                     return $member['id'];
                 }else {
                     $this->redirect('auth/wxBind');

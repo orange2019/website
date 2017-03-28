@@ -11,6 +11,7 @@ namespace app\controller;
 
 use app\model\Member;
 use LC\FormBuilder;
+use LC\Sms;
 use think\Request;
 
 class Auth extends Home
@@ -88,6 +89,7 @@ class Auth extends Home
             }
         }else {
             $form = FormBuilder::init()
+                ->setFormName('pc-reg')
                 ->setAction($request->url())
                 ->addClass('form-ajax')
                 ->addText('phone' , '手机号' , '' ,'请输入你的手机号码' , true )
@@ -116,8 +118,6 @@ class Auth extends Home
 
     }
 
-
-
     public function wxBind(){
         $request = Request::instance();
         if ($request->isPost()){
@@ -130,6 +130,10 @@ class Auth extends Home
                 return $this->formError('请输入验证码');
             }
             // 检测手机验证码 TODO
+            $check = Sms::checkCode('sms_check_code', $data['phone'] , $data['code']);
+            if (!$check){
+                return $this->formError('验证码错误或已过期');
+            }
 
             $Member = new Member();
             $res = $Member->regWechatBind($data['phone']);
@@ -159,7 +163,6 @@ class Auth extends Home
     public function wxUnbind(){
 
         $uid = session('www_uid');
-
         $Member = new Member();
         $res = $Member->unbindWechat($uid);
         if ($res){
@@ -172,6 +175,30 @@ class Auth extends Home
 
     public function wxInfo(){
 
+    }
+
+    public function sentSms(){
+        $request = Request::instance();
+        if ($request->isPost()){
+            $phone = $request->post('phone');
+            // 正则验证手机号码
+            $pattern = '/^(1(([35][0-9])|(47)|[8][012356789]))\d{8}$/';
+            $check = preg_match($pattern, $phone);
+            if (!$check){
+                return $this->formError('无效手机号码');
+            }
+
+            $number = mt_rand(100000 , 999999);
+            $number = strval($number);
+            $params['code'] = $number;
+            $config = Sms::getConfig();
+            $res = Sms::sentByTemplateName('sms_check_code' , $phone , $params , $config);
+            if ($res){
+                return $this->formSuccess();
+            }else {
+                return $this->formError('发送失败');
+            }
+        }
     }
 
 }

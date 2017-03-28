@@ -1,1 +1,63 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="description" content=""><meta name="keywords" content=""><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><script src="/assets/js/pace.min.js"></script><link href="/assets/css/pace-theme-flash.css" rel="stylesheet"><title>登录</title><link rel="stylesheet" href="/assets/css/sweetalert.css"><link rel="stylesheet" href="/assets/css/default.css"></head><body><div id="pjax-container"><div id="pjax-content"><header class="o-padding-xl o-text-center o-login-header o-container"><h1>欢迎加入</h1><small>橙子平台</small></header><section class="o-reg"><div class="o-container"><div class="form-box o-padding-top o-g"><div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">{$form}<div class="o-cf sms-code o-text-right"><a href="javascript:;" class="sent-sms-code">点击发送验证码</a></div><div class="o-cf o-padding-top o-text-center"><a href="{:url('auth/login')}" class="pjax">已有账号，返回登录!</a></div></div></div></div></section><div class="o-text-center o-margin-top"><small>Copyright © 2017 橙子网络. All Rights Reserved.</small></div></div></div><script type="text/javascript" src="/assets/js/jquery.min.js"></script><script type="text/javascript" src="/assets/js/index.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>登录</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/default.css">
+
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+        <header class="o-padding-xl o-text-center o-login-header o-container">
+          <h1>欢迎加入</h1>
+          <small>橙子平台</small>
+        </header>
+				<section class="o-reg">
+
+					<div class="o-container">
+
+						<div class="form-box o-padding-top o-g">
+
+							<div class="o-u-lg-4 o-u-lg-centered o-u-sm-12">
+								{$form}
+
+                <div class="o-cf sms-code o-text-right">
+
+                    <a href="javascript:;" class="sent-sms-code" id="sent-sms" data-sent="0">点击发送验证码</a>
+
+                </div>
+
+                <div class="o-cf o-padding-top o-text-center">
+
+                    <a href="{:url('auth/login')}" class="pjax">已有账号，返回登录!</a>
+
+                </div>
+							</div>
+						</div>
+					</div>
+				</section>
+        <div class="o-text-center o-margin-top">
+          <small>Copyright © 2017 橙子网络. All Rights Reserved. </small>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </body>
+</html>

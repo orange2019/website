@@ -1,1 +1,19 @@
-<div class="we-form-group"><label for="" class="we-label">封面</label><div class=""><input type="hidden" name="cover" id="cover" placeholder="" value="{$data['cover'] ? $data['cover'] : ''}"> <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="cover">上传</button><div id="pre-img-cover" class="we-padding-top"><notempty name="data['cover']"><img src="{$data['cover']}" alt="" height="50"></notempty></div></div></div><div class="we-form-group"><label for="" class="we-label">详细内容</label><div class=""><textarea name="content" rows="5" class="we-editor">{$data.content}</textarea></div></div>
+<div class="we-form-group">
+  <label for="" class="we-label">封面</label>
+  <div class="">
+    <input type="hidden" name="cover" id="cover" placeholder="" value="{$data['cover'] ? $data['cover'] : ''}">
+    <button type="button" class="we-btn-img we-btn we-btn-primary" data-id="cover">上传</button>
+    <div id="pre-img-cover" class="we-padding-top">
+        <notempty name="data['cover']">
+            <img src="{$data['cover']}" alt="" height="50" />
+        </notempty>
+    </div>
+  </div>
+</div>
+
+<div class="we-form-group">
+    <label for="" class="we-label">详细内容</label>
+    <div class="">
+        <textarea name="content" rows="5" class="we-editor">{$data.content}</textarea>
+    </div>
+</div>

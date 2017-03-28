@@ -128,6 +128,18 @@ class Sms extends Admin
      */
     public function lists(){
 
+        $templateId = input('template_id');
+        $map['template_id'] = $templateId;
+        $query = [];
+        $list = db('sms')->where($map)->order('create_time desc')->paginate(20 , false , ['query' , $query]);
+        $page = $list->render();
+
+        $this->assign('list' , $list);
+        $this->assign('page' , $page);
+
+        $template = db('SmsTemplate')->find($templateId);
+        $this->assign('template' , $template);
+        return $this->fetch();
     }
 
     /**

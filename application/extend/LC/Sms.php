@@ -27,10 +27,29 @@ class Sms
 
     static public function sentByTemplateId($templateId , $phone , $params , $config = null , $extend = ''){
 
+        $template = db('SmsTemplate')->find($templateId);
+        if (!$template){
+            return false;
+        }
+        $res = self::sentByTemplate($template , $phone , $params , $config  , $extend );
+        return $res;
+
+    }
+
+    static public function sentByTemplateName($templateName , $phone , $params , $config = null , $extend = ''){
+        $template = db('SmsTemplate')->where('name' , $templateName)->where('status' , 1)->find();
+        if (!$template){
+            return false;
+        }
+        $res = self::sentByTemplate($template , $phone , $params , $config  , $extend );
+        return $res;
+    }
+
+    static public function sentByTemplate($template , $phone , $params , $config = null , $extend = ''){
+
         if (!$config){
             $config = self::getConfig();
         }
-        $template = db('SmsTemplate')->find($templateId);
 
         if ($template['type'] == 1){
             // 阿里大鱼
@@ -57,9 +76,36 @@ class Sms
                 return false;
             }
         }
-
     }
 
+    static public function checkCode($templateName , $phone , $code ){
+        $template = db('SmsTemplate')->where('name' , $templateName)->where('status' , 1)->find();
+        if (!$template){
+            return false;
+        }
+
+        $map['phone'] = $phone;
+        $map['code'] = $code;
+        $map['status'] = 0;
+        $sms = \app\model\Sms::where($map)->find();
+        if ($sms){
+            //
+            $sms->status = 1;
+            $sms->save();
+            // 判断是否过期
+            $deadline = $sms->deadline;
+            if ($deadline < time()){
+
+                return false;
+            }else{
+                return true;
+            }
+        }else {
+
+            return false;
+        }
+
+    }
     static public function recordDb($template  , $phone , $params , $config = null){
         if (!$config){
             $config = self::getConfig();
@@ -80,10 +126,19 @@ class Sms
 
     }
 
-    static public function sentByTemplateName($templateName){
 
+
+    static public function getSmsContent($content , $params){
+        if (!is_array($params)){
+            $params = json_decode($params , true);
+        }
+
+        foreach ($params as $k => $v){
+            $content = str_replace('${'.$k.'}' , $v , $content);
+        }
+
+        return $content;
     }
-
     static public function getConfig($uid = null){
         if (!$uid){
             $project = session('www_project');
