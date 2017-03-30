@@ -94,7 +94,7 @@ class Sms
             $sms->save();
             // 判断是否过期
             $deadline = $sms->deadline;
-            if ($deadline < time()){
+            if ($deadline < time() && $deadline != 0){
 
                 return false;
             }else{
@@ -106,6 +106,7 @@ class Sms
         }
 
     }
+
     static public function recordDb($template  , $phone , $params , $config = null){
         if (!$config){
             $config = self::getConfig();

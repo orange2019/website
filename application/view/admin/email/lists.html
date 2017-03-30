@@ -78,7 +78,7 @@
 
                     <div class="we-padding we-scrollable-horizontal">
                         <div class="we-cf">
-                          <h3>{$template.title} {$template.id_no}</h3>
+                          <h3>{$template.title} {$template.name}</h3>
                         </div>
                         <div class="we-cf">
 
@@ -86,27 +86,23 @@
                                 <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
                                     <thead>
                                         <tr>
-                                            <th>电话</th>
+                                            <th>邮箱</th>
                                             <th>发送内容</th>
                                             <th>发送时间</th>
-                                            <th>验证码</th>
+                                            <th>备注</th>
                                             <th></th>
-
-
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <foreach name="list" item="vo">
                                             <tr>
-                                                <td>{$vo.phone}</td>
-                                                <td>{:\\LC\\Sms::getSmsContent($template['content'],$vo['params'])}</td>
+                                                <td>{$vo.email}</td>
+                                                <td>{:\\LC\\Email::getEmailContent($template['content'],$vo['params'])}</td>
                                                 <td>{$vo.create_time|date='Y-m-d H:i:s' , ###}</td>
                                                 <td>
                                                   [{$vo.code}]
 
-                                                </td>
-                                                <td>
                                                   <eq name="vo.status" value="0">
                                                     <if condition="(($vo['deadline'] == 0) OR ($vo['deadline'] egt time()))" >
                                                     未过期
@@ -116,6 +112,9 @@
                                                   <else/>
                                                     <span class="we-text-success">已使用</span>
                                                   </eq>
+
+                                                </td>
+                                                <td>
 
                                                 </td>
 

@@ -49,7 +49,7 @@
                                                 </td>
                                                 <td>
                                                   <eq name="vo.status" value="0">
-                                                    <if condition="(($vo['deadline'] != 0) AND ($vo['deadline'] egt time()))" >
+                                                    <if condition="(($vo['deadline'] == 0) OR ($vo['deadline'] egt time()))" >
                                                     未过期
                                                     <else/>
                                                     <span class="we-text-danger">已过期</span>

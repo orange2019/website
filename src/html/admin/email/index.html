@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+<div class="container" id="pjax-container">
+    <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+
+        <div class="container-content">
+            <!--include "../include/top.html"-->
+            <div class="container-wrap">
+
+                <div class="we-padding we-scrollable-horizontal">
+                    <div class="we-cf">
+                        <div class="we-fl">
+                            <a href="{:url('admin/email/templateUpdate')}" class="pjax we-btn we-btn-success">添加模板</a>
+                        </div>
+                        <div class="we-fr">
+                            <a href="{:url('admin/email/config')}" class="pjax">邮件服务器配置</a>
+                        </div>
+                    </div>
+                    <div class="we-cf">
+
+                        <notempty name="list">
+                            <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                                <thead>
+                                <tr>
+                                    <th>模板ID</th>
+                                    <th>模板名称</th>
+                                    <th>标识</th>
+                                    <th>内容</th>
+                                    <th>是否验证码</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                    <th>发送记录</th>
+                                    <th></th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name="list" item="vo">
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.title}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.content}</td>
+                                        <td>
+                                            <eq name="vo.is_code" value="0"><span class="we-text-danger">否</span></eq>
+                                            <eq name="vo.is_code" value="1"><span class="">是</span></eq>
+                                        </td>
+                                        <td>
+                                            <eq name="vo.status" value="0">未审核通过</eq>
+                                            <eq name="vo.status" value="1">审核通过</eq>
+                                        </td>
+                                        <td>
+                                            <eq name="vo.status" value="0">
+
+                                                <a href="{:url('admin/email/templateStatus?status=1&id='.$vo['id'])}" class="btn-ac btn-ac-success confirm-ajax" title="确认设置审核通过？">审核通过</a>
+                                                <a href="{:url('admin/email/templateUpdate?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">编辑</a>
+                                                <a href="{:url('admin/email/templateDelete?id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
+                                            </eq>
+                                            <eq name="vo.status" value="1">
+                                                <a href="{:url('admin/email/templateStatus?status=0&id='.$vo['id'])}" class="btn-ac btn-ac-warning confirm-ajax"  title="设置审核未通过?">禁用模板</a>
+                                                <a href="{:url('admin/email/templateUpdate?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">编辑</a>
+                                                <a href="{:url('admin/email/templateDelete?id='.$vo['id'])}" class="btn-ac btn-ac-danger confirm-ajax" title="确认删除？">删除</a>
+                                            </eq>
+                                        </td>
+                                        <td>
+                                            <a href="{:url('admin/email/lists?template_id='.$vo['id'])}" class="pjax">查看记录</a>
+                                        </td>
+                                        <td>
+                                            <a href="{:url('admin/email/sent?id='.$vo['id'])}" class="btn-ac pjax">发送</a>
+                                        </td>
+
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+                            <div class="page">
+                                {$page}
+                            </div>
+                            <else/>
+                            <p class="we-text-center we-text-danger">未查询到数据</p>
+                        </notempty>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--include "../include/script.html"-->
+</body>
+
+</html>

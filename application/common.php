@@ -37,11 +37,11 @@ function is_mobile(){
 }
 
 function log_action($uid , $action , $data){
-    $data['uid'] = $uid;
-    $data['action'] = $action;
-    $data['data'] = $data;
+    $log['uid'] = $uid;
+    $log['action'] = $action;
+    $log['data'] = $data;
     
-    $msg = json_encode($data);
+    $msg = json_encode($log);
     Log::write($msg , 'data');
 }
 

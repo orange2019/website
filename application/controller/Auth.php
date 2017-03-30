@@ -76,8 +76,11 @@ class Auth extends Home
                 return $this->formError('两次输入密码不一致，请重新输入');
             }
 
-            // 验证短信码 TODO
-
+            // 验证短信码
+            $check = Sms::checkCode('sms_check_code', $data['phone'] , $data['code']);
+            if (!$check){
+                return $this->formError('验证码错误或已过期');
+            }
 
             $Member = new Member();
             $member = $Member->reg($data);
@@ -129,7 +132,7 @@ class Auth extends Home
             if ($data['code'] == ''){
                 return $this->formError('请输入验证码');
             }
-            // 检测手机验证码 TODO
+            // 检测手机验证码
             $check = Sms::checkCode('sms_check_code', $data['phone'] , $data['code']);
             if (!$check){
                 return $this->formError('验证码错误或已过期');
