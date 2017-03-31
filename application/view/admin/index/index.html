@@ -75,7 +75,20 @@
           <div class="container-wrap">
 
             <div class="we-panel we-padding we-scrollable-horizontal">
+              <h3>站点项目入口</h3>
+              <hr>
+              <ul class="we-avg-md-4">
+                <foreach name="projects" item="vo">
+                  <li class="we-padding-right">
+                    <eq name="current" value="$vo['id']">
+                      <a href="{:url('admin/index/current?id='.$vo['id'])}" class="btn-ac btn-ac-danger  we-block">{$vo.title}</a>
+                      <else/>
+                      <a href="{:url('admin/index/current?id='.$vo['id'])}" class="btn-ac we-block">{$vo.title}</a>
+                    </eq>
+                  </li>
 
+                </foreach>
+              </ul>
               <h3 class="we-text-xl">快捷入口</h3>
               <hr>
               <foreach name="categorys" item="vo">

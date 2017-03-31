@@ -11,10 +11,24 @@ class Index extends Admin {
         $categorys = $this->getMenus($uid , 'admin/index/index')['menus'];
         $categorys = \niklaslu\UnLimitTree::unlimitedForLayer($categorys);
         $this->assign('categorys' , $categorys);
+
+        $projects = get_user_project($uid);
+        $this->assign('projects' , $projects);
+
+        $current = session('admin_project_id') ? session('admin_project_id') : 0;
+        $this->assign('current' , $current);
         
         return $this->fetch();
     }
-    
+
+    public function current(){
+
+        $id = input('id');
+
+        session('admin_project_id' , $id);
+
+        return $this->redirect('admin/category/index');
+    }
     protected function checkProject(){
     
         $pid = session('admin_pid');

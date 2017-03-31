@@ -144,19 +144,24 @@ class Home extends Base{
     }
     
     protected function getPosts($url , $categorys){
-        
-        $url = urldecode($url);
-        foreach ($categorys as $v){
-            $ids[] = $v['id'];
+
+        if ($categorys){
+            $url = urldecode($url);
+            foreach ($categorys as $v){
+                $ids[] = $v['id'];
+            }
+
+            $map['category_id'] = ['in' , $ids];
+            $map['status'] = 1;
+            $map['url'] = $url;
+
+            $posts = db('posts')->where($map)->find();
+
+            return $posts;
+        }else {
+            return null;
         }
-        
-        $map['category_id'] = ['in' , $ids];
-        $map['status'] = 1;
-        $map['url'] = $url;
-        
-        $posts = db('posts')->where($map)->find();
-        
-        return $posts;
+
        
     }
     

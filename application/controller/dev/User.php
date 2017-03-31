@@ -202,6 +202,7 @@ class User extends Dev {
         
             $res = db('Project')->where('id='.$data['id'])->setField('theme_id' , $data['theme_id']);
             if ($res){
+                cache_clear('user_project_list');
                 return $this->formSuccess('操作成功');
             }else{
                 return $this->formError('操作失败');
@@ -247,6 +248,7 @@ class User extends Dev {
             $res = \app\model\Category::update($data);
             $category = db('category')->find($data['id']);
              if ($res){
+                 cache_clear('user_project_list');
                 return $this->formSuccess('操作成功' , url('dev/user/category?id='.$category['project_id']));
             }else{
                 return $this->formError('操作失败');

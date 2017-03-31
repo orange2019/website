@@ -47,7 +47,7 @@ class project extends Admin {
         if ($request->isPost()){
             
             $data = $request->post();
-            $data['info'] = $data['info'] ? json_encode($data['info']) : '';
+            $data['info'] = (isset($data['info']) && $data['info']) ? json_encode($data['info']) : '';
             
             $res = \app\model\Project::update($data);
             if ($res){
