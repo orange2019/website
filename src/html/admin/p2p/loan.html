@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+
+                  <div class="we-g">
+                    <div class="we-u-md-4">
+                      <form class="we-form" action="{:url('admin/loan/index')}" method="get">
+                        <input type="text" name="keyword" value="" placeholder="输入用户名或电话号码进行查找">
+                      </form>
+                    </div>
+
+                  </div>
+
+                    <div class="we-scrollable-horizontal we-padding">
+
+                        <notempty name="list">
+                            <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>电话</th>
+                                        <th>申请时间</th>
+                                        <th>操作</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <foreach name="list" item="vo">
+                                        <tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.name}</td>
+                                            <td>{$vo.phone}</td>
+                                            <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                                            <td>
+
+                                            </td>
+
+                                        </tr>
+                                    </foreach>
+                                </tbody>
+                            </table>
+                            <div class="page">
+                                {$page}
+                            </div>
+                            <else/>
+                            <p class="we-text-center we-text-danger">未查询到数据</p>
+                        </notempty>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>
