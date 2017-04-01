@@ -9,6 +9,8 @@
 namespace app\controller\admin;
 
 
+use think\Request;
+
 class P2p extends Admin
 {
     public function index(){
@@ -30,4 +32,49 @@ class P2p extends Admin
         return $this->fetch();
 
     }
+
+    public function loanStep1(){
+
+        return $this->step(1);
+    }
+
+    public function loanStep2(){
+        return $this->step(2);
+    }
+
+    public function loanStep3(){
+        return $this->step(3);
+    }
+
+    public function loanStep4(){
+        return $this->step(4);
+    }
+
+    public function loanStep5(){
+        return $this->step(5);
+    }
+
+    public function loanStep6(){
+        return $this->step(6);
+    }
+
+    public function loanStep7(){
+        return $this->step(7);
+    }
+
+    protected function step($step){
+
+        $request = Request::instance();
+        if ($request->isPost()){
+
+        }else {
+            $id = input('id' , 0);
+            $loan = db('P2pLoan')->find($id);
+
+            $this->assign('loan' , $loan);
+            $this->assign('step' , $step);
+            return $this->fetch('admin/p2p/step');
+        }
+    }
+
 }

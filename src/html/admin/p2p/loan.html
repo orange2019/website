@@ -75,7 +75,7 @@
                                               {:\\LC\\P2p::step($vo['step'])}
                                             </td>
                                             <td>
-                                              <eq name="vo.step" value="0"><a href="#" class="btn-ac btn-ac-info">联系用户受理申请</a></eq>
+                                              <a href="{:url('admin/p2p/loanStep'.($vo['step']+1).'?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">{:\\LC\\P2p::step($vo['step']+1)}处理</a>
                                             </td>
                                             <td>
                                               <eq name="vo.step" value="0"><a href="#" class="btn-ac btn-ac-danger">取消受理</a></eq>
