@@ -25,6 +25,8 @@ class P2p extends Admin
         $this->assign('list' , $list);
         $this->assign('page' , $page);
 
+        $this->assign('steps' , config('p2p.loan_step'));
+
         return $this->fetch();
 
     }

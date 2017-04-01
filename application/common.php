@@ -36,6 +36,21 @@ function is_mobile(){
     }
 }
 
+/**
+ * 验证手机号码
+ * @param $phone
+ * @return bool
+ */
+function check_phone($phone){
+    // 正则验证手机号码
+    $pattern = '/^(1(([35][0-9])|(47)|[8][012356789]))\d{8}$/';
+    $check = preg_match($pattern, $phone);
+    if (!$check){
+        return false;
+    }else{
+        return true;
+    }
+}
 function log_action($uid , $action , $data){
     $log['uid'] = $uid;
     $log['action'] = $action;

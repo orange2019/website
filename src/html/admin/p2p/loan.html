@@ -28,6 +28,17 @@
 
                     <div class="we-scrollable-horizontal we-padding">
 
+                        <div class="we-cf">
+                          <ul class="we-avg-md-12">
+                            <li><a href="{:url('')}" class="pjax">全部</a></li>
+                            <foreach name="steps" item="vo" key="k">
+                            <li>
+                              <a href="{:url('?step='.$k)}">{$vo}</a>
+                            </li>
+                          </foreach>
+                          </ul>
+                          <hr>
+                        </div>
                         <notempty name="list">
                             <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
                                 <thead>
@@ -35,8 +46,14 @@
                                         <th>ID</th>
                                         <th>用户名</th>
                                         <th>电话</th>
+                                        <th>性别</th>
+                                        <th>城市</th>
+                                        <th>职业</th>
+                                        <th>资产状况</th>
                                         <th>申请时间</th>
+                                        <th>所处状态</th>
                                         <th>操作</th>
+                                        <th></th>
 
                                     </tr>
                                 </thead>
@@ -46,9 +63,22 @@
                                             <td>{$vo.id}</td>
                                             <td>{$vo.name}</td>
                                             <td>{$vo.phone}</td>
+                                            <td>
+                                              <eq name="vo.sex" value="1">男</eq>
+                                              <eq name="vo.sex" value="2">女</eq>
+                                            </td>
+                                            <td>{$vo.city}</td>
+                                            <td>{:\\LC\\P2p::occupation($vo['occupation'])}</td>
+                                            <td>{:\\LC\\P2p::assets($vo['assets'])}</td>
                                             <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
                                             <td>
-
+                                              {:\\LC\\P2p::step($vo['step'])}
+                                            </td>
+                                            <td>
+                                              <eq name="vo.step" value="0"><a href="#" class="btn-ac btn-ac-info">联系用户受理申请</a></eq>
+                                            </td>
+                                            <td>
+                                              <eq name="vo.step" value="0"><a href="#" class="btn-ac btn-ac-danger">取消受理</a></eq>
                                             </td>
 
                                         </tr>

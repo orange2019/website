@@ -21,4 +21,5 @@ class Wechat extends Home
 
         return $this->fetch();
     }
+
 }

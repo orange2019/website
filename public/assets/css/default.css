@@ -6245,6 +6245,10 @@ i {
   color: #34495E;
   letter-spacing: 2px;
 }
+.o-form .o-form-radio,
+.o-form .o-form-checkbox {
+  margin-right: 1rem;
+}
 .o-form .o-form-content input[type="text"],
 .o-form .o-form-content input[type="hidden"],
 .o-form .o-form-content input[type="password"],
@@ -6346,4 +6350,27 @@ i {
 .o-wx-bind .sent-check-sms a {
   font-size: 1rem;
   text-decoration: underline;
+}
+/* 微信个人中心 */
+.member-wechat-index .header {
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+.member-wechat-index .index-list {
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+/* 微信 */
+.wechat-p2p-apply {
+  background: #ffffff;
+}
+.wechat-p2p-apply .submit {
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.wechat-p2p-apply .apply-help {
+  border: 1px solid #dd514c;
+}
+.wechat-p2p-apply .apply-help a {
+  color: #dd514c;
 }

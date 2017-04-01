@@ -10,15 +10,34 @@
     <div id="pjax-container">
       <div id="pjax-content">
 
-				<section class="member-wechat-index o-padding">
-          <div class="o-text-center o-padding">
-            <img src="{$member.avatar}" alt="" height="100" class="o-round">
-            <h1>
-              <span>{$member.name} </span>
-              <a href="{:url('auth/wxUnbind')}" class="confirm-ajax fa fa-window-close o-text-danger" title="确认进行解绑？"></a>
-            </h1>
-            <small><span class="fa fa-mobile"></span> {$member.phone}</small>
+				<section class="member-wechat-index">
+          <div class=" o-g header o-padding-top o-padding-bottom">
+            <div class="o-u-sm-4">
+              <img src="{$member.avatar}" alt="" width="100%" class="o-round">
+            </div>
+            <div class="o-u-sm-8">
+              <h1>
+                <span>{$member.name} </span>
+                <a href="{:url('auth/wxUnbind')}" class="confirm-ajax fa fa-window-close o-text-danger" title="确认解除绑定？"></a>
+              </h1>
+              <small><span class="fa fa-mobile"></span> {$member.phone}</small>
+            </div>
+
+
           </div>
+
+          <a href="{:url('wechat/p2p/index')}" class="pjax o-g o-padding index-list o-block">
+            <div class="o-u-sm-2 ">
+              <span class="fa fa-money fa-2x"></span>
+            </div>
+            <div class="o-u-sm-8 ">
+              <span class="">P2P金融</span>
+            </div>
+            <div class="o-u-sm-2 o-text-right">
+              <span class="fa fa-angle-right"></span>
+            </div>
+          </a>
+
 
 				</section>
 
