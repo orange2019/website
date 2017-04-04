@@ -32,10 +32,37 @@
                 <a href="{:url('auth/wxUnbind')}" class="confirm-ajax fa fa-window-close o-text-danger" title="确认解除绑定？"></a>
               </h1>
               <small><span class="fa fa-mobile"></span> {$member.phone}</small>
+              <div>
+                <a href="{:url('member/wechat/info')}" class="pjax">个人资料信息 <span class="fa fa-edit"></span></a>
+              </div>
             </div>
 
 
           </div>
+
+          <a href="{:url('member/wechat/assets')}" class="pjax o-g o-padding index-list o-block">
+            <div class="o-u-sm-2 ">
+              <span class="fa fa-money fa-2x"></span>
+            </div>
+            <div class="o-u-sm-8 ">
+              <span class="">我的资产</span>
+            </div>
+            <div class="o-u-sm-2 o-text-right">
+              <span class="fa fa-angle-right"></span>
+            </div>
+          </a>
+
+          <a href="{:url('member/wechat/finance')}" class="pjax o-g o-padding index-list o-block">
+            <div class="o-u-sm-2 ">
+              <span class="fa fa-money fa-2x"></span>
+            </div>
+            <div class="o-u-sm-8 ">
+              <span class="">我的投资</span>
+            </div>
+            <div class="o-u-sm-2 o-text-right">
+              <span class="fa fa-angle-right"></span>
+            </div>
+          </a>
 
           <a href="{:url('wechat/p2p/index')}" class="pjax o-g o-padding index-list o-block">
             <div class="o-u-sm-2 ">

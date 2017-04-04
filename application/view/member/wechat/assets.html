@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>我的资产</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/default.css">
+
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-member-assets">
+          <div class="o-padding assets-num">
+            <span>我的资产</span>
+            <br>
+            <strong class="o-text-xl">{$money|money=###}</strong>
+          </div>
+					<div class="o-text-center money-change">
+					  <ul class="o-avg-sm-2">
+					    <li>
+					      <a href="{:url('member/wechat/moneyIn')}" class="pjax">充值</a>
+					    </li>
+              <li>
+                <a href="{:url('member/wechat/moneyOut')}" class="pjax">提现</a>
+
+              </li>
+					  </ul>
+					</div>
+          
+
+
+				</section>
+        <div class="o-padding o-text-center">
+          <hr>
+          <a href="{:url('member/wechat/index')}" class="pjax o-text-primary">返回</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </body>
+</html>

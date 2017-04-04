@@ -36,6 +36,11 @@ function is_mobile(){
     }
 }
 
+function money($value , $decimals = 2 ,$dec_point = '.' , $thousands_sep = ','){
+    $value = number_format($value / 100 , $decimals , $dec_point , $thousands_sep );
+    return $value;
+}
+
 /**
  * 验证手机号码
  * @param $phone
@@ -116,6 +121,31 @@ function cache_set($name , $value , $key = ''){
     }
 }
 
+function get_user_info($uid , $field = null){
+
+    $data = cache('user_info_list');
+    if (isset($data[$uid]) && $data[$uid]){
+        if ($field){
+            return $data[$uid][$field] ? $data[$uid][$field] : '';
+        }else{
+            return $data[$uid];
+        }
+    }else {
+        $user = db('user')->find($uid);
+        if ($user){
+            $data[$uid] = $user;
+            cache('user_info_list' , $data);
+            if ($field){
+                return $user[$field] ? $user[$field]: '';
+            }else{
+                return $user;
+            }
+        }else{
+            return null;
+        }
+
+    }
+}
 /**
  * 获取用户组
  * @param unknown $uid

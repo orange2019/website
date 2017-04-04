@@ -9014,6 +9014,7 @@ legend {
   height: 90%;
   overflow: auto;
   background: #fff;
+  padding-bottom: 15rem;
 }
 /* 登录,注册  */
 .login {
@@ -9150,4 +9151,8 @@ legend {
   width: 48%;
   float: left;
   margin-right: 2%;
+}
+.loan-step-form {
+  background: #eeeeee;
+  padding: 1rem;
 }

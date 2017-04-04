@@ -8,7 +8,7 @@
 @import "../../node_modules/amazeui/less/grid.less";
 @import "../../node_modules/amazeui/less/block-grid.less";
 @import "../../node_modules/amazeui/less/button.less";
-
+@import "../../node_modules/amazeui/less/table.less";
 @import "../../node_modules/amazeui/less/form.less";
 @import "../../node_modules/amazeui/less/utility.less";
 
@@ -43,7 +43,8 @@
 		input[type="hidden"],
 		input[type="password"],
 		input[type="email"],
-		input[type="number"] {
+		input[type="number"],
+		textarea {
 			height: 3rem;
 			line-height: 3rem;
 			font-size: 1rem;
@@ -58,9 +59,14 @@
 		input[type="hidden"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
-		input[type="number"]:focus {
+		input[type="number"]:focus ,
+		textarea:focus{
 			border-bottom: 2px solid @color-brand-primary;
 			box-shadow: none;
+		}
+
+		textarea {
+			height: 10rem;
 		}
 
 

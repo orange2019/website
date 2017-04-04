@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>p2p买入</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-raise">
+
+					<h3 class="o-padding-top o-padding-left o-text-xxl">买入</h3>
+					<hr>
+
+					<div class="raise-form o-padding">
+            <div class="o-margin-bottom">
+              <p>剩余可购买金额 {$total|money=###}</p>
+              <p><a href="{:url('member/wechat/assets')}" class="pjax o-text-danger" ><small>查看我的可用金额</small></a></p>
+              <hr>
+            </div>
+            <div class="">
+              {$form}
+            </div>
+            <p><small>同意<a href="" >《买入协议》</a></small></p>
+					</div>
+
+					<div class="form-help o-margin">
+            <hr>
+            <h3 class="o-text-center">交易须知</h3>
+					</div>
+				</section>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>

@@ -9,7 +9,9 @@
 namespace app\model;
 
 
-class MemberValueLog
-{
+use think\Model;
 
+class MemberValueLog extends Model
+{
+    protected $autoWriteTimestamp = true;
 }

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>{$title}</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/app.css">
+
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <div class="navbar">
+    <div class="top">
+        <div class="logo">
+            <span>橙子CMS v0.1</span>
+        </div>
+
+        <ul class="we-nav nav-top">
+            <foreach name="tops" item="top">
+                <eq name="top.display" value="1">
+                    <li class="{$top.active}">
+                        <a href="{:url($top['name'])}" class="">
+                            <span class="icon fa fa-{$top['icon']}"></span>
+                            <span>{$top.title}</span>
+                        </a>
+                </eq>
+                </li>
+            </foreach>
+        </ul>
+    </div>
+
+</div>
+
+
+        <div class="container-content">
+          <div class="container-header we-cf">
+  <div class="we-fl">
+    <span class="header-title">&nbsp;/ {$title}</span>
+  </div>
+
+  <div class="we-fr sign-out">
+    <a href="{:url('admin/auth/logout')}"><span class="fa fa-sign-out fa-3x"></span></a>
+  </div>
+  <div class="we-fr sign-out">
+    <a href="{:url('admin/auth/info')}" class="pjax"><span class="fa fa-vcard fa-3x"></span></a>
+  </div>
+</div>
+<notempty name="subs">
+<div class="nav-sub we-cf">
+  <ul class="we-cf">
+      <foreach name="subs" item="vo">
+
+          <li class="{$vo.active} display-{$vo.display} we-fl">
+              <a href="{:url($vo['name'])}" class="pjax">{$vo.title}</a>
+          </li>
+
+      </foreach>
+
+  </ul>
+</div>
+
+</notempty>
+
+          <div class="container-wrap">
+
+            <div class="we-g">
+              <div class="we-u-md-6">
+                <h3>申请信息</h3>
+                <table class="we-table">
+                  <tr>
+                    <td>申请人：</td>
+                    <th>{$loan.name}</th>
+                    <td>联系电话</td>
+                    <th>{$loan.phone}</th>
+                  </tr>
+
+                  <tr>
+                    <td>性别</td>
+                    <th>
+                      <eq name="loan.sex" value="1">男</eq>
+                      <eq name="loan.sex" value="2">女</eq>
+                    </th>
+                    <td>城市</td>
+                    <th>
+                      {$loan.city}
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>职业</td>
+                    <th>{:\\LC\\P2p::occupation($loan['occupation'])}</th>
+                    <td>资产状况</td>
+                    <th>{:\\LC\\P2p::assets($loan['assets'])}</th>
+                  </tr>
+                  <tr>
+                    <td>申请时间</td>
+                    <th colspan="3">{$loan.create_time|date='Y-m-d H:i',###}</th>
+                  </tr>
+                </table>
+                <hr>
+
+                <EGT name="loan.step" value="1">
+                  <h3>基础信息</h3>
+                  <table class="we-table">
+                    <tr>
+                      <td>资金用途</td>
+                      <th>{$loan.use_info}</th>
+                      <td>预计借款金额</td>
+                      <th>￥{$loan.value_pre|money=###}</th>
+                    </tr>
+                    <tr>
+                      <td>预计借款期限</td>
+                      <th>{$loan.time_limit} (月)</th>
+                      <td>预计还款方式</td>
+                      <th>{:\\LC\\P2p::repayment($loan['repayment'])}</th>
+                    </tr>
+                  </table>
+                  <hr>
+                </EGT>
+                <notempty name="guarantees" item="v" key="k">
+                  <h3>担保信息</h3>
+                  <ul class="we-avg-md-3">
+                    <foreach name="guarantees" item="v" key="k" >
+                      <li>
+                        <strong>{$v.name}</strong>
+                        <eq name="v.value" value="1"><span class="we-text-success">有</span></eq>
+                        <eq name="v.value" value="0"><span class="we-text-danger">无</span></eq>
+                      </li>
+                    </foreach>
+                  </ul>
+                  <hr>
+                </notempty>
+                <notempty name="examines" item="v" key="k">
+                  <h3>审核信息</h3>
+                  <ul class="we-avg-md-3">
+                    <foreach name="examines" item="v" key="k" >
+                      <li>
+                        <strong>{$v.name}</strong>
+                        <eq name="v.value" value="1"><span class="we-text-success">验证通过</span></eq>
+                        <eq name="v.value" value="0"><span class="we-text-danger">验证不通过</span></eq>
+                      </li>
+                    </foreach>
+                  </ul>
+                  <hr>
+                </notempty>
+                <h3>用户详细资料</h3>
+                <notempty name="info">
+                <table class="we-table">
+                  <tr>
+                    <td>真实姓名</td>
+                    <th>{$info.realname}</th>
+                    <td>身份证号</td>
+                    <th>{$info.identify_no}</th>
+                  </tr>
+                  <tr>
+                    <td>联系地址</td>
+                    <th colspan="3">{$info.address}</th>
+
+                  </tr>
+                  <tr>
+                    <td>公司名称</td>
+                    <th>{$info.company}</th>
+                    <td>年收入</td>
+                    <th>￥{$info.income_year|money=###}</th>
+                  </tr>
+                  <tr>
+                    <td>开户银行</td>
+                    <th>{$info.bank_name} {$info.bank_branch}</th>
+                    <td>卡号</td>
+                    <th>{$info.bank_card}</th>
+                  </tr>
+                  <tr>
+                    <td>紧急联系人</td>
+                    <th>{$info.contract_name}</th>
+                    <td>联系人电话</td>
+                    <th>{$info.contract_phone}</th>
+                  </tr>
+                  <tr>
+                    <td>资产状况</td>
+                    <th colspan="3">{$info.assets}</th>
+                  </tr>
+                  <gt name="info.level_value" value="0">
+                    <td>用户评级</td>
+                    <th colspan="3">{:\\LC\\P2p::levelValue($loan['level_value'])}</th>
+                  </gt>
+
+                </table>
+                <else/>
+                <p class="we-text-danger">还未编辑用户资料</p>
+                </notempty>
+                <hr>
+
+
+              </div>
+              <div class="we-u-md-6">
+                <h3>{:\\LC\\P2p::step($loan['step']+1)}操作</h3>
+                <eq name="loan.step" value="0">
+                  <p>符合受理条件，提示申请人完善资料，并记录完善下面信息</p>
+                  <div class="loan-step-form">
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="1">
+                  <p>检查申请人提供资料，确认资料是否全部提供并做记录 <br>
+                    <span class="we-text-danger">用户资料是否提供完毕选择为否时不会进入下一步操作！</span>
+                  </p>
+                  <div class="loan-step-form">
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="2">
+                  <p>审核申请人的相关资料及担保信息 <br>
+                    <span class="we-text-danger">用户审核是否通过选择为否时不会进入下一步操作！</span>
+                  </p>
+                  <div class="loan-step-form">
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="3">
+                  <p>添加对应金融产品进行资金筹集
+                  </p>
+                  <div class="loan-step-form">
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="4">
+                  <div class="loan-step-form">
+                    <div class="">
+                      <h4>金融协议 编号:{:\\LC\\P2p::getFinanceNum($finance)}</h4>
+                      <table class="we-table">
+                        <tr>
+                          <td>备案号</td>
+                          <th colspan="3">{$finance.code}</th>
+                        </tr>
+                        <tr>
+                          <td>借款金额</td>
+                          <th>{$finance.num|money=###}</th>
+                          <td>借款期限</td>
+                          <th>{$finance.time_limit}</th>
+                        </tr>
+                        <tr>
+                          <td>还款利率</td>
+                          <th>{$finance.interest_rate}%</th>
+                          <td>还款方式</td>
+                          <th>{:\\LC\\P2p::repayment($finance.repayment)}</th>
+                        </tr>
+                        <tr>
+                          <td>投资利率</td>
+                          <th>{$finance.income_rate}%</th>
+                          <td>最低投资额度</td>
+                          <th>{$finance.min_num|money=###}</th>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="">
+                      <h4>资金筹集进度</h4>
+                      <div class="">
+                        <table class="we-table">
+                          <tr>
+                            <td>金额</td>
+                            <th>{$raise|money=###}</th>
+                            <td>比例</td>
+                            <th>{$percentage}%</th>
+
+                          </tr>
+                          <tr>
+                            <td>开始时间</td>
+                            <th>{$finance['raise_start_time']|date='Y-m-d',###}</th>
+                            <td>结束时间</td>
+                            <th>{$finance['raise_end_time']|date='Y-m-d',###}</th>
+                          </tr>
+                          <tr>
+                            <td colspan="4" class="we-text-center">
+                              <if condition="($finance['raise_end_time'] EGT time())" >
+                                <span>筹资进行中</span>
+                                <else/>
+                                <span class="we-text-danger">筹资已结束</span>
+                              </if>
+                              <a href="#" class="pjax we-text-info">查看详细筹资情况</a>
+                            </td>
+                          </tr>
+                        </table>
+
+                      </div>
+                    </div>
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="5">
+                  <p>
+                    给借款人发放相应款项，及生成对应还款账单
+                  </p>
+                  <table class="we-table">
+
+                    <tr>
+                      <td>借款金额</td>
+                      <th>{$finance.num|money=###}</th>
+                      <td>借款期限</td>
+                      <th>{$finance.time_limit}</th>
+                    </tr>
+                    <tr>
+                      <td>还款利率</td>
+                      <th>{$finance.interest_rate}%</th>
+                      <td>还款方式</td>
+                      <th>{:\\LC\\P2p::repayment($finance.repayment)}</th>
+                    </tr>
+
+                  </table>
+                  <div class="loan-step-form">
+                    {$form}
+                  </div>
+                </eq>
+                <eq name="loan.step" value="6">
+                  <div class="">
+                    <noempty name="order">
+                      <table class="we-table">
+                        <tr>
+                          <th>还款时间</th>
+                          <th>还款金额</th>
+                          <th>本金</th>
+                          <th>利息</th>
+                          <th>滞纳金</th>
+                        </tr>
+                        <tr>
+                          <td>{$order.bill_date|date='Y-m-d',###}</td>
+                          <td>{$order.sum|money=###}</td>
+                          <td>{$order.principal|money=###}</td>
+                          <td>{$order.interest|money=###}</td>
+                          <td>{$order.late_fee|money=###}</td>
+                        </tr>
+                      </table>
+                      <div class="we-text-center">
+                        <a href="{:url('admin/p2p/order?loan_id='.$loan.id)}" class="we-text-primary">查看所有</a>
+                      </div>
+                    </notempty>
+                  </div>
+                </eq>
+                <hr>
+                <notempty name="logs" >
+                  <h3>操作记录</h3>
+                  <table class="we-table">
+                    <tr>
+                      <th>时间</th>
+                      <th>操作人</th>
+                      <th>操作步骤</th>
+                      <th>备注信息</th>
+                    </tr>
+                    <foreach name="logs" item="log">
+                      <tr>
+                        <td>{$log.create_time|date='Y-m-d H:i' , ###}</td>
+                        <td>{$log.uid|get_user_info=### , 'name'}</td>
+                        <td>{:\\LC\\P2p::step($log['step']+1)}</td>
+                        <td>{$log.info}</td>
+                      </tr>
+
+                    </foreach>
+                  </table>
+                  <hr>
+                </notempty>
+                <notempty name="form_cancel">
+                  <h3>取消受理借款</h3>
+                  <div class="loan-step-form">
+                    {$form_cancel}
+                  </div>
+                  <hr>
+                </notempty>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+
+  </body>
+</html>

@@ -1,8 +1,12 @@
 <?php
 namespace app\controller\wechat;
 use app\controller\Base;
+use app\model\P2pFinance;
 use app\model\P2pLoan;
+use app\model\P2pProduct;
+use app\model\P2pRaise;
 use LC\FormBuilder;
+use think\Db;
 use think\Request;
 
 /**
@@ -14,7 +18,21 @@ use think\Request;
 class P2p extends Base
 {
     public function index(){
+        $uid = session('www_project')['uid'];
 
+        $memberId = $this->auth();
+        $loan = \LC\P2p::getMyLoan($memberId);
+        $this->assign('loan' , $loan);
+
+        $Product = new P2pProduct();
+        $products = $Product->getListsDetailByUid($uid);
+        $Finance = new P2pFinance();
+
+        foreach ($products as $k=>$v){
+            $v['finance_lists'] = $Finance->getListsByPid($v->id);
+            $products[$k] = $v;
+        }
+        $this->assign('products' , $products);
         return $this->fetch();
     }
 
@@ -48,6 +66,11 @@ class P2p extends Base
             }
         }else{
 
+            $loan = \LC\P2p::getMyLoan($uid);
+            if ($loan){
+                return $this->redirect('wechat/p2p/myLoan');
+            }
+
             $form = FormBuilder::init()
                 ->setFormName('wechat-p2p-apply')
                 ->setAction(url(''))
@@ -68,11 +91,95 @@ class P2p extends Base
         }
     }
 
-    public function myloan(){
+    public function myLoan(){
 
+        $uid = $this->auth();
+        $loan = \LC\P2p::getMyLoan($uid);
+        $this->assign('loan' , $loan);
+
+        return $this->fetch();
     }
 
     public function finance(){
+        $id = input('id' , 0);
+        $memberId = $this->auth();
+        $finance = db('P2pFinance')->find($id);
+        $isSelf = ($memberId == $finance['member_id']) ? 1 : 0;
+        $this->assign('is_self' , $isSelf);
+
+        if ($finance){
+            $P2pFinance = new P2pFinance();
+            $raise = $P2pFinance->getRaiseById($finance['id']);
+            $total = $finance['num'] - $raise;
+            $loan = db('P2pLoan')->where('finance_id' , $finance['id'])->find();
+
+            $this->assign('finance' , $finance);
+            $this->assign('loan' , $loan);
+            $this->assign('raise' , $raise);
+            $this->assign('total' , $total);
+
+            if ($isSelf == 0 && $total >0 && $finance['raise_end_time'] > time()){
+                $this->assign('go_btn' , 1);
+            }else{
+                $this->assign('go_btn' , 0);
+            }
+            return $this->fetch();
+
+        }else{
+            return $this->formError('错误');
+        }
+    }
+
+    public function raise(){
+        $request  = Request::instance();
+        $memberId = $this->auth();
+        if ($request->isPost()){
+            $data = $request->post();
+            $num = $data['num'];
+            $financeId = $data['finance_id'];
+
+            Db::startTrans();
+            try {
+                $Raise = new P2pRaise();
+                $res = $Raise->financeIn($financeId , $memberId  ,$num);
+                if ($res === false){
+                    throw new \Exception($Raise->getError());
+                }
+
+                Db::commit();
+
+            }catch (\Exception $e){
+                $error = $e->getMessage();
+                Db::rollback();
+                return $this->formError($error);
+            }
+
+            return $this->formSuccess('买入成功' , url('wechat/p2p/index'));
+
+        }else {
+            $id = input('finance_id' , 0);
+            $finance = db('P2pFinance')->find($id);
+            $isSelf = ($memberId == $finance['member_id']) ? 1 : 0;
+            $this->assign('is_self' , $isSelf);
+
+            $P2pFinance = new P2pFinance();
+            $raise = $P2pFinance->getRaiseById($finance['id']);
+            $total = $finance['num'] - $raise;
+
+            $this->assign('finance' , $finance);
+            $this->assign('raise' , $raise);
+            $this->assign('total' , $total);
+
+            $form = FormBuilder::init()->addClass('form-ajax')
+                    ->setAction($request->url(true))
+                    ->addText('num' , '买入金额'  , '' , '最低买入'.money($finance['min_num']) , true)
+                    ->addHidden('finance_id' , '' , $finance['id'])
+                    ->addSubmit('同意协议并购买')->build();
+
+            $this->assign('form' , $form);
+
+            return $this->fetch();
+        }
 
     }
 }

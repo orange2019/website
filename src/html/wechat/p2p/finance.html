@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>P2P金融</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-finance">
+
+          <eq name="go_btn" value="1">
+            <div class="go-btn">
+              <a href="{:url('wechat/p2p/raise?finance_id='.$finance['id'])}" class="o-btn o-btn-danger o-btn-block o-btn-xl">买入</a>
+            </div>
+          </eq>
+          <h3 class="o-text-xl o-margin-bottom">{:\\LC\\P2p::getFinanceNum($finance)}</h3>
+          <table class="o-table">
+            <tr>
+              <td colspan="2">{$finance.code}</td>
+            </tr>
+            <tr>
+              <td>借款金额</td>
+              <th>{$finance.num|money=###}</th>
+            </tr>
+            <tr>
+              <td>借款期限</td>
+              <th>{$finance.time_limit}(月)</th>
+            </tr>
+            <eq name="is_self" value="0">
+            <tr>
+              <td>预计收益</td>
+              <th>{$finance.income_rate}%</th>
+            </tr>
+            <tr>
+              <td>最低投资额度</td>
+              <th>{$finance.min_num|money=###}</th>
+            </tr>
+            </eq>
+
+          </table>
+          <hr>
+          <h3 class="o-margin-bottom">筹资进度</h3>
+          <table class="o-table">
+            <tr>
+              <td>已筹集资金</td>
+              <th>{$raise|money=###}</th>
+            </tr>
+            <tr>
+              <td>还需筹集</td>
+              <th>{$total|money=###}</th>
+            </tr>
+            <tr>
+              <td>进度</td>
+              <th>{$raise/$finance['num']*100}%</th>
+            </tr>
+            <tr>
+              <td>截止时间</td>
+              <th>{$finance.raise_end_time|date='Y-m-d',###}</th>
+            </tr>
+          </table>
+				</section>
+        <div class="o-padding o-text-center">
+          <hr>
+          <a href="{:url('member/wechat/index')}" class="pjax o-text-primary">个人中心</a>
+          <a href="{:url('member/wechat/index')}" class="pjax o-text-primary">P2P首页</a>
+          <br><br><br><br><br><br><br>
+        </div>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>

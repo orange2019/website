@@ -54,6 +54,8 @@ class User extends Dev {
                     $res = \app\model\User::create($post);
                 }
                 if ($res){
+                    $uid = $post['id'] ? $post['id'] : $res->id;
+                    cache_clear('user_info_list' , $uid);
                     return $this->formSuccess('操作成功' , url('dev/user/index?pid='.config('dev.root_uid')));
                 }else{
                     return $this->formError('操作失败');

@@ -12,7 +12,7 @@
 
 				<section class="wechat-p2p-index">
 
-					<ul class="o-avg-sm-2">
+					<ul class="o-avg-sm-2 header">
 						<li class="o-padding">
 							<a href="#" class="o-btn o-btn-danger o-btn-block">我要出借</a>
 						</li>
@@ -20,7 +20,91 @@
 							<a href="{:url('wechat/p2p/apply')}" class="o-btn o-btn-success o-btn-block pjax">我要借款</a>
 						</li>
 					</ul>
+
+          <hr>
+          <notempty name="loan">
+          <div class="o-padding">
+            <div class="o-g my-loan">
+              <div class="o-u-sm-8">
+                <h3>我的借款申请</h3>
+                <div><small>{$loan.create_time|date='Y-m-d',###}</small></div>
+              </div>
+              <div class="o-u-sm-4 o-text-right">
+                <div class="">
+                  <small class="o-text-warning">{:\\LC\\P2p::step($loan['step'])}</small>
+                </div>
+                <div class="">
+                  <a href="{:url('wechat/p2p/myLoan')}" class="view-link pjax">点击查看</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <hr>
+        </notempty>
+        <notempty name="products">
+          <foreach name="products" item="product">
+            <div class="o-padding">
+              <h3>{$product.name}</h3>
+              <hr>
+              <notempty name="product.finance_lists">
+                <foreach name="product.finance_lists" item="v">
+                  <div class="product-finance-lists">
+
+                    <h3 class="o-text-sm o-cf">
+                      <a href="{:url('wechat/p2p/finance?id='.$v->id)}" class="pjax">
+                        <div class="o-fl">
+                          编号:{:\\LC\\P2p::getFinanceNum($v)}
+                        </div>
+                        <div class="o-fr">
+                          <span class="fa fa-angle-right"></span>
+                        </div>
+
+                      </a>
+                    </h3>
+                    <hr>
+                    <div class="">
+                      <div class="o-text-xl">
+                        {$v.num|money=###}
+                      </div>
+                      <div class="finance-percentage-box">
+                        <div class="finance-percentage" style="width:{$v.percentage * 100}%">
+                        </div>
+                      </div>
+                      <div class="o-cf">
+                        <div class="o-fl">
+                          完成进度
+                        </div>
+                        <div class="o-fr">
+                          {$v.percentage * 100}%
+                        </div>
+                      </div>
+                      <div class="o-cf">
+                        <div class="o-fl">
+                          <small>截止时间</small>
+                        </div>
+                        <div class="o-fr">
+                          <small>{$v.raise_end_time|date='Y-m-d' , ###}</small>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </foreach>
+              <else/>
+              <p class="o-text-danger">尽请期待</p>
+              </notempty>
+            </div>
+          </foreach>
+        </notempty>
+
 				</section>
+
+        <div class="o-padding o-text-center">
+          <hr>
+          <a href="{:url('member/wechat/index')}" class="pjax o-text-primary">返回</a>
+          <br><br><br><br><br>
+        </div>
 
       </div>
     </div>

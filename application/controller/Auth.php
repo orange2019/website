@@ -34,7 +34,8 @@ class Auth extends Home
             $member = $Member->login($data);
             if ($member){
                 $this->afterLogin($member);
-                return $this->formSuccess('登录成功' , url('member/index/index'));
+                $url = is_mobile() ? url('member/wechat/index') : url('member/index/index');
+                return $this->formSuccess('登录成功' , $url);
             }else{
                 return $this->formError('登录失败，用户名或密码错误');
             }
@@ -77,16 +78,17 @@ class Auth extends Home
             }
 
             // 验证短信码
-            $check = Sms::checkCode('sms_check_code', $data['phone'] , $data['code']);
-            if (!$check){
-                return $this->formError('验证码错误或已过期');
-            }
+//            $check = Sms::checkCode('sms_check_code', $data['phone'] , $data['code']);
+//            if (!$check){
+//                return $this->formError('验证码错误或已过期');
+//            }
 
             $Member = new Member();
             $member = $Member->reg($data);
             if ($member){
                 $this->afterReg($member);
-                return $this->formSuccess('注册成功' , url('member/index/index'));
+                $url = is_mobile() ? url('member/wechat/index') : url('member/index/index');
+                return $this->formSuccess('注册成功' , $url);
             }else{
                 return $this->formError('注册失败,' . $Member->getError());
             }
