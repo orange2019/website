@@ -96,7 +96,7 @@ class P2p extends Base
         $uid = $this->auth();
         $loan = \LC\P2p::getMyLoan($uid);
         $this->assign('loan' , $loan);
-        
+
         return $this->fetch();
     }
 
