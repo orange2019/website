@@ -60,7 +60,7 @@ class P2p extends Base
 
             $res = P2pLoan::create($data);
             if ($res){
-                return $this->formSuccess('申请成功，请等待工作人员与您进行联系');
+                return $this->formSuccess('申请成功，请等待工作人员与您进行联系' , url('wechat/p2p/myLoan'));
             }else {
                 return $this->formError('申请失败，请稍后重试');
             }
@@ -80,7 +80,7 @@ class P2p extends Base
                 ->addRadio('sex' , '性别' , $userInfo['sex'] ,[1=>'男',2=>'女'] )
                 ->addText('city' , '城市' , '' , '请输入您生活工作的城市')
                 ->addRadio('occupation' , '职业' , 1 , config('p2p.occupation'))
-                ->addCheckbox('assets' , '资产情况' , [] , config('p2p.assets'))
+                ->addCheckbox('assets[]' , '资产情况' , [] , config('p2p.assets'))
                 ->addHidden('member_id' , '' , $userInfo['id'])
 
                 ->addSubmit('提交借款申请')
@@ -96,7 +96,7 @@ class P2p extends Base
         $uid = $this->auth();
         $loan = \LC\P2p::getMyLoan($uid);
         $this->assign('loan' , $loan);
-
+        
         return $this->fetch();
     }
 
