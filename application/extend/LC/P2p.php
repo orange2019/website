@@ -109,16 +109,21 @@ class P2p
         $map['member_id'] = $uid;
         $map['status'] = 0;
         $loan = db('P2pLoan')->where($map)->find();
-
-        if ($loan['finance_id']){
-            $Finance = new P2pFinance();
-            $loan['finance'] = db('P2pFinance')->find($loan['finance_id']);
-            $loan['raise_num'] = $Finance->getRaiseById($loan['finance_id']);
-        }else {
-            $loan['finance'] = null;
-            $loan['raise_num'] = 0;
+        if ($loan){
+            if ($loan['finance_id']){
+                $Finance = new P2pFinance();
+                $loan['finance'] = db('P2pFinance')->find($loan['finance_id']);
+                $loan['raise_num'] = $Finance->getRaiseById($loan['finance_id']);
+            }else {
+                $loan['finance'] = null;
+                $loan['raise_num'] = 0;
+            }
+            return $loan;
+        }else{
+            return false;
         }
-        return $loan;
+
+
     }
 
     static public function getFinanceNum($finance){

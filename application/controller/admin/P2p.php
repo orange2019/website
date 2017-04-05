@@ -12,6 +12,7 @@ namespace app\controller\admin;
 use app\model\P2pFinance;
 use app\model\P2pLoan;
 use app\model\P2pLoanLog;
+use app\model\P2pOrder;
 use LC\FormBuilder;
 use think\Db;
 use think\Request;
@@ -180,6 +181,73 @@ class P2p extends Admin
             $this->assign('form_cancel' , $formCancel);
             return $this->fetch('admin/p2p/step');
         }
+    }
+
+    public function order(){
+
+        $size = input('size' , 12);
+        $map['a.status'] = ['EGT' , 0];
+        $query = [];
+
+        $financeId = input('finance_id' , 0);
+        if ($financeId){
+            $map['a.finance_id'] = $financeId;
+            $query['finance_id'] = $financeId;
+        }
+        $loanId = input('loan_id' , 0);
+        if ($loanId){
+            $map['a.loan_id'] = $loanId;
+            $query['loan_id'] = $loanId;
+        }
+
+
+        $list = db('P2pOrder')->alias('a')
+            ->join('t_member b' , 'a.member_id = b.id')
+            ->where($map)
+            ->field('a.* , b.name')
+            ->order('create_time desc')
+            ->paginate($size , false , ['query'=>$query]);
+        $page = $list->render();
+
+        $this->assign('list' , $list);
+        $this->assign('page' , $page);
+        return $this->fetch();
+
+    }
+
+    public function lateFeeCreate(){
+
+        set_time_limit(0);
+        $time = time();
+        $time = strtotime('2017-05-05 23:59:59');
+        $map['pay_deadline'] = ['elt' , $time];
+        $map['status'] = 0;
+        Db::startTrans();
+        try {
+            $orders = P2pOrder::where($map)->lock(true)->select();
+            foreach ($orders as $order){
+                $days = ceil( ($time - $order->pay_deadline) / 24 / 3600 );
+                $num = $order->sum;
+                $fee = $num * $days * config('p2p.late_fee_rate');
+
+                $order->late_fee = $fee;
+                $order->late_days = $days;
+                $res = $order->save();
+                if ($res === false){
+                   throw  new \Exception('计算错误，请重试');
+                }
+
+            }
+
+            Db::commit();
+        }catch (\Exception $e){
+            Db::rollback();
+            return $this->formError($e->getMessage());
+        }
+
+        return $this->formSuccess('Success');
+
+
     }
 
 }

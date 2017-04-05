@@ -20,9 +20,9 @@ class P2p extends Base
     public function index(){
         $uid = session('www_project')['uid'];
 
-        $memberId = $this->auth();
-        $loan = \LC\P2p::getMyLoan($memberId);
-        $this->assign('loan' , $loan);
+//        $memberId = $this->auth();
+//        $loan = \LC\P2p::getMyLoan($memberId);
+//        $this->assign('loan' , $loan);
 
         $Product = new P2pProduct();
         $products = $Product->getListsDetailByUid($uid);

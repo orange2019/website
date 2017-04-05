@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+
+                  <div class="we-g">
+                    <div class="we-u-md-4">
+                      <form class="we-form" action="{:url('admin/p2p/order')}" method="get">
+                        <input type="text" name="keyword" value="" placeholder="输入用户名或电话号码进行查找">
+                      </form>
+                    </div>
+                    <div class="we-u-md-2">
+                    <a href="{:url('admin/p2p/lateFeeCreate')}" class="we-btn we-btn-danger confirm-ajax we-btn-block">生成滞纳金</a>  
+                    </div>
+
+                  </div>
+
+                    <div class="we-scrollable-horizontal we-padding">
+
+                        <div class="we-cf">
+
+                          <hr>
+                        </div>
+                        <notempty name="list">
+                            <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>账单日</th>
+                                        <th>金额</th>
+                                        <th>本金</th>
+                                        <th>利息</th>
+                                        <th>滞纳金</th>
+                                        <th>罚息天数</th>
+                                        <th>状态</th>
+                                        <th></th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <foreach name="list" item="vo">
+                                        <tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.name}</td>
+                                            <td>{$vo.bill_date|date='Y-m-d',###}</td>
+                                            <td class="we-text-danger">{$vo.sum|money=###}</td>
+                                            <td>{$vo.principal|money=###}</td>
+                                            <td>{$vo.interest|money=###}</td>
+                                            <td>{$vo.late_fee|money=###}</td>
+                                            <td>{$vo.late_days}</td>
+                                            <td>
+                                              <eq name="vo.status" value="0"><span class="we-text-danger">未还款</span></eq>
+                                              <eq name="vo.status" value="1"><span>已还款</span></eq>
+                                            </td>
+                                            <td></td>
+
+                                        </tr>
+                                    </foreach>
+                                </tbody>
+                            </table>
+                            <div class="page">
+                                {$page}
+                            </div>
+                            <else/>
+                            <p class="we-text-center we-text-danger">未查询到数据</p>
+                        </notempty>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>
