@@ -53,9 +53,28 @@ class P2pOrder extends Model
 
         $res = $this->saveAll($datas);
         if ($res === false){
+            $this->error = '生成还款账单失败';
             return false;
-        }else{
+        }
+
+        $resM = $this->loanOut($memberId , $money);
+        if ($resM === false){
+            $this->error = '贷款发放失败';
+            return false;
+        }
+
+        return true;
+    }
+
+    public function loanOut($memberId , $num){
+
+        $MemberValue = new MemberValue();
+        $res = $MemberValue->moneyChange($memberId , $num , 'loan');
+        if ($res){
             return true;
+        }else{
+            $this->error = $MemberValue->getError();
+            return false;
         }
     }
 }

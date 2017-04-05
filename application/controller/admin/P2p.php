@@ -11,6 +11,7 @@ namespace app\controller\admin;
 
 use app\model\P2pFinance;
 use app\model\P2pLoan;
+use app\model\P2pLoanLog;
 use LC\FormBuilder;
 use think\Db;
 use think\Request;
@@ -19,6 +20,7 @@ class P2p extends Admin
 {
     public function index(){
 
+        $this->redirect('admin/p2p/loan');
     }
 
     public function loan(){
@@ -37,6 +39,32 @@ class P2p extends Admin
 
     }
 
+    public function loanCancel(){
+
+        $request = Request::instance();
+        if ($request->isPost()){
+            $data = $request->post();
+            $loanId = $data['id'];
+            $cancelReason = $data['cancel_reason'];
+
+            Db::startTrans();
+            try {
+                $Loan = new P2pLoan();
+                $res = $Loan->cancel($loanId , $cancelReason);
+                if ($res === false){
+                    throw new \Exception($Loan->getError());
+                }
+                Db::commit();
+            }catch (\Exception $e){
+                Db::rollback();
+                return $this->formError($e->getMessage());
+            }
+
+            return $this->formSuccess('操作成功' , session('loan_back'));
+
+
+        }
+    }
     public function loanStep1(){
 
         return $this->step(1);

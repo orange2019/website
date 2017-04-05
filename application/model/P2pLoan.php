@@ -128,13 +128,13 @@ class P2pLoan extends Model
             $Order = new P2pOrder();
             $resO = $Order->createLists($update['id']);
             if ($resO === false){
-                $this->error = '生成还款账单失败';
+                $this->error = $Order->getError();
                 return false;
             }
             // 生成收益账单
             $Raise = new P2pRaise();
             $resR = $Raise->updateInterest($update['id']);
-            if ($resO === false){
+            if ($resR === false){
                 $this->error = '更新收益账单失败';
                 return false;
             }
@@ -175,6 +175,40 @@ class P2pLoan extends Model
           return $res->id;
         }else {
             $this->error = '更新金融项目失败';
+            return false;
+        }
+
+    }
+
+    public function cancel($id , $info = ''){
+
+        // 更改状态为-1
+        $loan = $this->lock(true)->find($id);
+        $loan->status = -1;
+        $res = $loan->save();
+        if ($res === false){
+            $this->error = '更改状态失败';
+            return false;
+        }
+
+        // 检查是否有相关借款账单
+
+        // 取消项目finance
+        $Finance = new P2pFinance();
+        $resF = $Finance->cancel($loan->finance_id);
+        if ($resF === false){
+            $this->error = $Finance->getError();
+            return false;
+        }
+
+        // 记录
+        $log['loan_id'] = $id;
+        $log['uid'] = session('admin_uid');
+        $log['step'] = -1;
+        $log['info'] = $info;
+        $resLog = P2pLoanLog::create($log);
+        if ($resLog === false){
+            $this->error = '记录失败';
             return false;
         }
 

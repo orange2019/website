@@ -38,4 +38,53 @@ class P2pFinance extends Model
         return $count ? $count : 0;
     }
 
+    /**
+     * 取消产品项目
+     * @param $financeId
+     * @return bool
+     */
+    public function cancel($financeId){
+
+        if ($financeId == 0){
+            return true;
+        }
+
+        $finance = $this->find($financeId);
+        $finance->status = -1;
+        $res = $finance->save();
+        if ($res === false){
+            $this->error = '取消对应产品项目失败';
+            return false;
+        }
+
+
+        // 项目对应筹资状态改变
+        $raises = P2pRaise::where('finance_id' , $financeId)->select();
+        if (count($raises) > 0){
+            $MemberValue = new MemberValue();
+            foreach ($raises as $raise){
+                // 改变状态
+                $raise->status = -1;
+                $resR = $raise->save();
+                if ($resR === false){
+                    $this->error = '改变项目筹资条目状态失败';
+                    return false;
+                }
+                // 退回投资
+                $num = $raise->num / 100;
+                $memberId = $raise->member_id;
+                $resM = $MemberValue->moneyChange($memberId , $num , 'raise_back');
+                if (!$resM){
+                    $this->error = '退回筹资失败';
+                    return false;
+                }
+
+            }
+
+
+        }
+
+        return true;
+    }
+
 }
