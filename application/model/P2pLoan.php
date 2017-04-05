@@ -157,7 +157,7 @@ class P2pLoan extends Model
 
     public function createFinanceData($finance , $loan ){
 
-        if ($finance['id']){
+        if (isset($finance['id'])){
             $finance['raise_end_time'] = strtotime($finance['raise_end_time']) + 24 * 3600 -1;
             $res = P2pFinance::update($finance);
         }else {

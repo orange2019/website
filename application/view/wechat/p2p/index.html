@@ -23,36 +23,12 @@
 
 				<section class="wechat-p2p-index">
 
-					<ul class="o-avg-sm-2 header">
-						<li class="o-padding">
-							<a href="#" class="o-btn o-btn-danger o-btn-block">我要出借</a>
-						</li>
-						<li class="o-padding">
+					<div class="header o-padding">
+		
 							<a href="{:url('wechat/p2p/apply')}" class="o-btn o-btn-success o-btn-block pjax">我要借款</a>
-						</li>
-					</ul>
 
-          <hr>
-          <notempty name="loan">
-          <div class="o-padding">
-            <div class="o-g my-loan">
-              <div class="o-u-sm-8">
-                <h3>我的借款申请</h3>
-                <div><small>{$loan.create_time|date='Y-m-d',###}</small></div>
-              </div>
-              <div class="o-u-sm-4 o-text-right">
-                <div class="">
-                  <small class="o-text-warning">{:\\LC\\P2p::step($loan['step'])}</small>
-                </div>
-                <div class="">
-                  <a href="{:url('wechat/p2p/myLoan')}" class="view-link pjax">点击查看</a>
-                </div>
+					</div>
 
-              </div>
-            </div>
-          </div>
-          <hr>
-        </notempty>
         <notempty name="products">
           <foreach name="products" item="product">
             <div class="o-padding">

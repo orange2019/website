@@ -12,11 +12,66 @@
 
 				<section class="wechat-p2p-myloan">
 
-					<h3 class="o-padding-top o-padding-left">我的借款 <small class="o-text-warning">{:\\LC\\P2p::step($loan['step'])}</small></h3>
+					<h3 class="o-padding-top o-padding-left">我的借款 </h3>
 					<hr>
 
 					<div class="o-padding">
-            
+            <div class="">
+              提交时间: {$loan['create_time']|date='Y-m-d',###}
+            </div>
+            <div class="">
+              受理状态：
+              <small class="o-text-warning">{:\\LC\\P2p::step($loan['step'])}</small>
+              <span>-></span>
+              <small class="o-text-warning">{:\\LC\\P2p::step($loan['step']+1)}</small>
+            </div>
+
+            <EGT name="loan.step" value="1">
+            <div class="o-margin-top">
+              <div class="">
+                借款用途: {$loan.use_info}
+              </div>
+              <div class="">
+                还款方式: {:\\LC\\P2p::repayment($loan['repayment'])}
+              </div>
+              <div class="">
+                预计金额: {$loan.value_pre|money=###}
+              </div>
+              <div class="">
+                借款期限：{$loan.time_limit} (月)
+              </div>
+            </div>
+
+
+
+            </EGT>
+
+            <div class="o-margin-top">
+              资料是否提交完毕:
+              <eq name="loan.info_complete" value="1"><small>已提交</small></eq>
+              <eq name="loan.info_complete" value="0"><small class="o-text-danger">否</small></eq>
+            </div>
+            <div class="">
+              评估审核是否通过：
+              <eq name="loan.check_complete" value="1"><small>已通过</small></eq>
+              <eq name="loan.check_complete" value="0"><small class="o-text-danger">未审核</small></eq>
+            </div>
+
+            <notempty name="loan.finance">
+              <div class="o-margin-top">
+                筹资项目已生成
+              </div>
+              <div class="">
+                {$loan.finance.code}
+              </div>
+              <div class="">
+                已投金额: {$loan.raise_num}
+              </div>
+              <div class="">
+                完成度: <span class="o-text-danger">{$loan.raise_num / $loan.finance.num}%</span>
+              </div>
+
+            </noempty>
 					</div>
 
 				</section>

@@ -91,6 +91,10 @@ class P2p extends Base
         }
     }
 
+    /**
+     * 我的申请
+     * @return mixed
+     */
     public function myLoan(){
 
         $uid = $this->auth();
@@ -99,6 +103,19 @@ class P2p extends Base
 
         return $this->fetch();
     }
+
+    public function historyLoan(){
+
+        $uid = $this->auth();
+        $map['status'] = ['in' , [-1,1]];
+        $map['member_id'] = $uid;
+
+        $list = db('P2pLoan')->where($map)->order('create_time desc')->select();
+        $this->assign('list' , $list);
+        return $this->fetch();
+    }
+
+
 
     public function finance(){
         $id = input('id' , 0);

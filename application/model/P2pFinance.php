@@ -20,6 +20,7 @@ class P2pFinance extends Model
     public function getListsByPid($productId , $p = 1, $pagesize = 5){
 
         $map['product_id'] = $productId;
+        $map['status'] = 0;
         $list = $this->where($map)->order('create_time desc')->page($p , $pagesize)->select();
         foreach ($list as $k=>$v){
             $v['raise_num'] = $this->getRaiseById($v->id);

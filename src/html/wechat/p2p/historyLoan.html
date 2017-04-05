@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>历史借款</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-raise">
+
+					<h3 class="o-padding-top o-padding-left o-text-xxl">历史借款</h3>
+					<hr>
+					<notempty name="list">
+						<foreach name="list" item="vo">
+							<div class="o-padding">
+								<div>申请时间：{$vo.create_time|date='Y-m-d' , ###}</div>
+								<div class="">
+									<span>处理情况：</span>
+									<eq name="vo.status" value="1">已完成</eq>
+									<eq name="vo.status" value="-1" >已取消</eq>
+								</div>
+							</div>
+						</foreach>
+					<else/>
+					<p>还未有历史记录</p>
+				</notempty>
+
+				</section>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>

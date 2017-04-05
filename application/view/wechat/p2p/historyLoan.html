@@ -11,7 +11,7 @@
 <script src="/assets/js/pace.min.js"></script>
 <link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
 
-    <title>P2P金融</title>
+    <title>历史借款</title>
     <link rel="stylesheet" href="/assets/css/sweetalert.css">
 <link rel="stylesheet" href="/assets/css/default.css">
 
@@ -21,18 +21,25 @@
     <div id="pjax-container">
       <div id="pjax-content">
 
-				<section class="wechat-p2p-apply">
+				<section class="wechat-p2p-raise">
 
-					<h3 class="o-padding-top o-padding-left">借款申请</h3>
+					<h3 class="o-padding-top o-padding-left o-text-xxl">历史借款</h3>
 					<hr>
+					<notempty name="list">
+						<foreach name="list" item="vo">
+							<div class="o-padding">
+								<div>申请时间：{$vo.create_time|date='Y-m-d' , ###}</div>
+								<div class="">
+									<span>处理情况：</span>
+									<eq name="vo.status" value="1">已完成</eq>
+									<eq name="vo.status" value="-1" >已取消</eq>
+								</div>
+							</div>
+						</foreach>
+					<else/>
+					<p>还未有历史记录</p>
+				</notempty>
 
-					<div class="apply-form o-padding">
-						{$form}
-					</div>
-
-          <div class="o-padding o-text-center">
-            <a href="{:url('wechat/p2p/historyLoan')}" class="pjax o-text-primary">历史借款查看</a>
-          </div>
 				</section>
 
       </div>
