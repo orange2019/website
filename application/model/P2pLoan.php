@@ -133,7 +133,7 @@ class P2pLoan extends Model
             }
             // 生成收益账单
             $Raise = new P2pRaise();
-            $resR = $Raise->updateInterest($update['id']);
+            $resR = $Raise->updateInterest($update['id'] , $update['loan_date']);
             if ($resR === false){
                 $this->error = '更新收益账单失败';
                 return false;

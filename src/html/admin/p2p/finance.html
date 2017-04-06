@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+</head>
+
+<body>
+    <div class="container" id="pjax-container">
+        <div class="container" id="pjax-content">
+            <!--include "../include/navbar.html"-->
+
+            <div class="container-content">
+                <!--include "../include/top.html"-->
+                <div class="container-wrap">
+
+                  <div class="we-g">
+                    <div class="we-u-md-4">
+                      <form class="we-form" action="{:url('admin/p2p/finance')}" method="get">
+                        <input type="text" name="keyword" value="" placeholder="">
+                      </form>
+                    </div>
+                    <div class="we-u-md-2">
+                    <a href="{:url('admin/p2p/project')}" class="we-btn we-btn-danger confirm-ajax we-btn-block">产品配置</a>
+                    </div>
+
+                  </div>
+
+                    <div class="we-scrollable-horizontal we-padding">
+
+                        <div class="we-cf">
+
+                          <hr>
+                        </div>
+                        <notempty name="list">
+                            <table class="we-table we-table-striped we-text-nowrap we-table-centered we-table-compact we-table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>编号</th>
+																				<th>备案号</th>
+																				<th>借款人</th>
+																				<th>金额</th>
+																				<th>借款利率</th>
+																				<th>还款方式</th>
+																				<th>借款期限</th>
+																				<th>筹资期限</th>
+																				<th>最低投资额</th>
+																				<th>投资收益率</th>
+                                        <th>状态</th>
+                                        <th></th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <foreach name="list" item="vo">
+                                        <tr>
+                                            <td>{$vo.id}</td>
+																						<td>{:\\LC\\P2p::getFinanceNum($vo , $vo['name'])}</td>
+																						<td>{$vo.code}</td>
+																						<td>{$vo.member_name}</td>
+																						<td>{$vo.num|money=###}</td>
+																						<td>{$vo.interest_rate}%</td>
+																						<td>{:\\LC\\P2p::repayment($vo['repayment'])}</td>
+																						<td>{$vo.raise_start_time|date='Y.m.d',###}-{$vo.raise_end_time|date='Y.m.d',###}</td>
+																						<td>{$vo.min_num|money=###}</td>
+																						<td>{$vo.income_rate}%</td>
+                                            <td>
+                                              <eq name="vo.status" value="0"><span class="we-text-danger">无效</span></eq>
+                                              <eq name="vo.status" value="1"><span>有效</span></eq>
+                                            </td>
+                                            <td></td>
+
+                                        </tr>
+                                    </foreach>
+                                </tbody>
+                            </table>
+                            <div class="page">
+                                {$page}
+                            </div>
+                            <else/>
+                            <p class="we-text-center we-text-danger">未查询到数据</p>
+                        </notempty>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--include "../include/script.html"-->
+</body>
+
+</html>

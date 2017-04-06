@@ -1,8 +1,10 @@
 <?php
 namespace app\controller\wechat;
 use app\controller\Base;
+use app\model\MemberValue;
 use app\model\P2pFinance;
 use app\model\P2pLoan;
+use app\model\P2pOrder;
 use app\model\P2pProduct;
 use app\model\P2pRaise;
 use LC\FormBuilder;
@@ -195,6 +197,76 @@ class P2p extends Base
 
             $this->assign('form' , $form);
 
+            return $this->fetch();
+        }
+
+    }
+
+    public function order(){
+
+        $loanId = input('loan_id' , 0);
+        $loan = db('P2pLoan')->find($loanId);
+        $memberId = $this->auth();
+        if ($loan['member_id'] != $memberId){
+            $this->formError('没有权限');
+        }
+
+        $map['member_id'] = $memberId;
+        $map['loan_id'] = $loanId;
+        $map['status'] = ['EGT' , 0];
+
+        $orders = db('P2pOrder')->where($map)->order(['pay_deadline'=>'asc'])->select();
+        $this->assign('orders' , $orders);
+
+        session('order_back' , Request::instance()->url(true));
+
+        return $this->fetch();
+    }
+
+    public function orderPay(){
+
+        $request = Request::instance();
+        $memberId = $this->auth();
+        if ($request->isPost()){
+            $data = $request->post();
+            $orderId = $data['order_id'];
+            $type = $data['type'];
+            if ($orderId){
+                Db::startTrans();
+                try {
+                    $Order = new P2pOrder();
+                    $res = $Order->payList($orderId , $type);
+                    if ($res === false){
+                        throw new \Exception($Order->getError());
+                    }
+                    Db::commit();
+                }catch (\Exception $e){
+                    Db::rollback();
+                    return $this->formError($e->getMessage());
+                }
+
+                return $this->formSuccess('操作成功' , session('order_back'));
+            }else{
+                return $this->formError('支付失败，'.'未找到账单');
+            }
+
+        }else {
+            $orderId = input('order_id' , 0);
+            $order = db('P2pOrder')->find($orderId);
+            $this->assign('order' , $order);
+
+            if ($order['status'] == 0){
+                $form = FormBuilder::init()
+                    ->addClass('form-ajax')
+                    ->setAction($request->url(true))
+                    ->addHidden('order_id' , '' , $order['id'])
+                    ->addRadio('type' , '支付方式' , 1 , config('pay.type'))
+                    ->addSubmit('确认支付')->build();
+            }else {
+                $form = null;
+            }
+
+            $this->assign('form' , $form);
             return $this->fetch();
         }
 

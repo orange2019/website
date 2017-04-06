@@ -7,7 +7,11 @@
  * Time: 下午11:18
  */
 return [
+
     'late_fee_rate' => 0.002,
+
+    'raise_back_days' => 3,
+
     'loan_step' => [
         0 => '提交申请',
         1 => '贷款受理',

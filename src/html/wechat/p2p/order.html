@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>我的账单</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-order">
+
+					<h3 class="o-padding-top o-padding-left o-text-xxl">我的账单</h3>
+					<div class="o-text-right o-padding-right">
+						<a href="{:url('member/wechat/index')}" class="o-text-primary">返回首页</a>
+					</div>
+					<hr>
+					<notempty name="orders">
+						<foreach name="orders" item="vo">
+							<div class="o-margin order-list">
+								<a href="{:url('wechat/p2p/orderPay?order_id='.$vo['id'])}" class="pjax o-block o-padding ">
+								<div class="o-cf">
+									<div class="o-fl">
+										{$vo.bill_date|date='Y.m.d' , ###}
+									</div>
+									<div class="o-fr">
+										<small>
+											<eq name="vo.status" value="1">已还款</eq>
+											<eq name="vo.status" value="0" ><span class="o-text-danger">未还款</span></eq>
+										</small>
+
+									</div>
+								</div>
+								<div class="">
+									<small>账单金额</small>
+									<div class="">
+										<strong class="o-text-xl">{:money($vo.sum+$vo.late_fee)}</strong>
+									</div>
+								</div>
+								</a>
+							</div>
+						</foreach>
+					<else/>
+					<p>还未有账单记录</p>
+				</notempty>
+
+				</section>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>

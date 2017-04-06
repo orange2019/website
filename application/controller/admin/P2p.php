@@ -9,10 +9,12 @@
 namespace app\controller\admin;
 
 
+use app\model\MemberValue;
 use app\model\P2pFinance;
 use app\model\P2pLoan;
 use app\model\P2pLoanLog;
 use app\model\P2pOrder;
+use app\model\P2pRaise;
 use LC\FormBuilder;
 use think\Db;
 use think\Request;
@@ -183,6 +185,31 @@ class P2p extends Admin
         }
     }
 
+    /**
+     * 筹资项目
+     */
+    public function finance(){
+
+        $size = input('size' , 12);
+        $map['a.status'] = ['EGT' , 0];
+        $query = [];
+
+        $list = db('P2pFinance')->alias('a')
+            ->join('t_p2p_product b' , 'a.product_id = b.id')
+            ->join('t_member c' , 'a.member_id = c.id')
+            ->where($map)
+            ->field('a.* , b.name,c.name member_name')
+            ->order('create_time desc')
+            ->paginate($size , false , ['query'=>$query]);
+        $page = $list->render();
+
+        $this->assign('list' , $list);
+        $this->assign('page' , $page);
+        return $this->fetch();
+    }
+    /*
+     * 还款账单
+     */
     public function order(){
 
         $size = input('size' , 12);
@@ -215,29 +242,38 @@ class P2p extends Admin
 
     }
 
+    /**
+     * 生成滞纳金,优先从钱包扣款
+     */
     public function lateFeeCreate(){
 
         set_time_limit(0);
         $time = time();
-        $time = strtotime('2017-05-05 23:59:59');
-        $map['pay_deadline'] = ['elt' , $time];
-        $map['status'] = 0;
+//        $time = strtotime('2017-05-07 23:59:59');
+
         Db::startTrans();
         try {
-            $orders = P2pOrder::where($map)->lock(true)->select();
-            foreach ($orders as $order){
-                $days = ceil( ($time - $order->pay_deadline) / 24 / 3600 );
-                $num = $order->sum;
-                $fee = $num * $days * config('p2p.late_fee_rate');
-
-                $order->late_fee = $fee;
-                $order->late_days = $days;
-                $res = $order->save();
-                if ($res === false){
-                   throw  new \Exception('计算错误，请重试');
-                }
-
+            $Order = new P2pOrder();
+            $res = $Order->lateFeeCreate($time);
+            if ($res === false){
+                throw  new \Exception($Order->getError());
             }
+//            $map['pay_deadline'] = ['elt' , $time];
+//            $map['status'] = 0;
+//            $orders = P2pOrder::where($map)->lock(true)->select();
+//            foreach ($orders as $order){
+//                $days = ceil( ($time - $order->pay_deadline) / 24 / 3600 );
+//                $num = $order->sum;
+//                $fee = $num * $days * config('p2p.late_fee_rate');
+//
+//                $order->late_fee = $fee;
+//                $order->late_days = $days;
+//                $res = $order->save();
+//                if ($res === false){
+//                   throw  new \Exception('计算错误，请重试');
+//                }
+//
+//            }
 
             Db::commit();
         }catch (\Exception $e){
@@ -248,6 +284,89 @@ class P2p extends Admin
         return $this->formSuccess('Success');
 
 
+    }
+
+    /*
+     * 投资明细
+     */
+    public function raise(){
+
+        $size = input('size' , 12);
+        $map['a.status'] = ['EGT' , 0];
+        $query = [];
+
+        $financeId = input('finance_id' , 0);
+        if ($financeId){
+            $map['a.finance_id'] = $financeId;
+            $query['finance_id'] = $financeId;
+        }
+
+        $list = db('P2pRaise')
+            ->join('t_member b' , 'a.member_id = b.id')
+            ->join('t_p2p_finance c' , 'c.id = a.finance_id')
+            ->where($map)
+            ->field('a.* , b.name , c.code')
+            ->order('create_time desc')
+            ->alias('a')
+            ->paginate($size , false , ['query'=>$query]);
+        $page = $list->render();
+
+        $this->assign('list' , $list);
+        $this->assign('page' , $page);
+        return $this->fetch();
+    }
+
+    /**
+     * 出借收益结算
+     */
+    public function raiseShare(){
+
+        set_time_limit(0);
+        $time = time();
+        $time = strtotime('2017-07-09 00:00:00');
+
+        Db::startTrans();
+        try {
+
+            $Raise = new P2pRaise();
+            $res = $Raise->doShare($time);
+            if ($res === false){
+
+                throw new \Exception($Raise->getError());
+            }
+//            $raiseBackDays = config('p2p.raise_back_days');
+//            $map['recycle_date'] = ['elt' , $time - ($raiseBackDays * 24 * 3600)];
+//            $map['status'] = 0;
+//            $raises = P2pRaise::where($map)->lock(true)->select();
+//
+//            $MemberValue = new MemberValue();
+//            foreach ($raises as $raise){
+//                $memberId = $raise->member_id;
+//                $money = $raise->sum / 100;
+//
+//                $resM = $MemberValue->moneyChange($memberId , $money , 'raise_share');
+//                if ($resM === 'false'){
+//                    throw new \Exception($MemberValue->getError());
+//                }
+//
+//                $raise->status = 1;
+//                $raise->recycle_time = $time;
+//                $resR = $raise->save();
+//                if ($resR === false){
+//                    throw new \Exception('结算错误');
+//                }
+//
+//            }
+
+            Db::commit();
+
+        }catch (\Exception $e){
+
+            Db::rollback();
+            return $this->formError($e->getMessage());
+        }
+
+        return $this->formSuccess('Success');
     }
 
 }

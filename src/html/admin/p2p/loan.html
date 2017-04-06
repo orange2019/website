@@ -19,7 +19,7 @@
 
                   <div class="we-g">
                     <div class="we-u-md-4">
-                      <form class="we-form" action="{:url('admin/loan/index')}" method="get">
+                      <form class="we-form" action="{:url('admin/p2p/loan')}" method="get">
                         <input type="text" name="keyword" value="" placeholder="输入用户名或电话号码进行查找">
                       </form>
                     </div>
@@ -72,10 +72,15 @@
                                             <td>{:\\LC\\P2p::assets($vo['assets'])}</td>
                                             <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
                                             <td>
+                                              <eq name="vo.status" value="1"><span>已完结:</span></eq>
+                                              <eq name="vo.status" value="0"><span class="we-text-danger">进行中:</span></eq>
                                               {:\\LC\\P2p::step($vo['step'])}
+                                              
                                             </td>
                                             <td>
-                                              <a href="{:url('admin/p2p/loanStep'.($vo['step']+1).'?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">{:\\LC\\P2p::step($vo['step']+1)}处理</a>
+                                              <eq name="vo.status" value="0">
+                                                <a href="{:url('admin/p2p/loanStep'.($vo['step']+1).'?id='.$vo['id'])}" class="btn-ac btn-ac-info pjax">{:\\LC\\P2p::step($vo['step']+1)}处理</a>
+                                              </eq>
                                             </td>
                                             <td>
                                               <eq name="vo.step" value="0"><a href="#" class="btn-ac btn-ac-danger">取消受理</a></eq>

@@ -166,4 +166,23 @@ class Wechat extends Home
         }
     }
 
+    /**
+     * 我的投资
+     */
+    public function finance(){
+
+        $memberId = $this->auth();
+        $map['a.member_id'] = $memberId;
+        $map['a.status'] = ['in' , [0,1]];
+        $list = db('P2pRaise')
+            ->join('t_p2p_finance b' , 'a.finance_id = b.id')
+            ->alias('a')
+            ->where($map)
+            ->order('a.create_time desc')
+            ->select();
+
+        $this->assign('list' , $list);
+        return $this->fetch();
+    }
+
 }

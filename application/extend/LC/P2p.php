@@ -126,7 +126,13 @@ class P2p
 
     }
 
-    static public function getFinanceNum($finance){
+    /**
+     * 获取产品编号
+     * @param $finance
+     * @return string
+     */
+    static public function getFinanceNum($finance , $productName = null){
+
         if (is_object($finance)){
             $id = $finance->id + 100000;
             $productId = $finance->product_id;
@@ -134,9 +140,15 @@ class P2p
             $id = $finance['id'] + 100000;
             $productId = $finance['product_id'];
         }
-        $product = P2pProduct::get($productId);
-        return $product->getAttr('name') . $id;
+        if (!$productName){
+            $product = P2pProduct::get($productId);
+            $productName = $product->getAttr('name');
+        }
+
+        return $productName . $id;
     }
+
+
 
     static public function stepInfoForm($step , $data = null){
         $form = '';
@@ -223,4 +235,5 @@ class P2p
 
         return $form;
     }
+
 }

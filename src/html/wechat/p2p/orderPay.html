@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>账单详情</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-order">
+
+					<h3 class="o-padding-top o-padding-left o-text-xl">{$order.bill_date|date='Y.m.d',###}账单</h3>
+					<div class="o-padding">
+						<div class="">
+							<small>账单金额</small>
+							<div class="o-text-xl">{:money($order.sum+$order.late_fee)}</div>
+						</div>
+
+						<div class="">
+							<small>详细</small>
+							<div class="">
+								<span>本金:</span>
+								<span>{$order.principal|money=###}</span>
+							</div>
+							<div class="">
+								<span>利息:</span>
+								<span>{$order.interest|money=###}</span>
+							</div>
+							<div class="">
+								<span>滞纳金:</span>
+								<span>{$order.late_fee|money=###}</span>
+							</div>
+							<div class="">
+								<span>罚息天数:</span>
+								<span>{$order.late_days}</span>
+							</div>
+						</div>
+
+						<div class="o-margin-top">
+							<hr>
+							{$form}
+						</div>
+					</div>
+
+				</section>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>

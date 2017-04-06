@@ -63,9 +63,22 @@ class P2pOrder extends Model
             return false;
         }
 
+        $loan->step = $loan->step + 1;
+        $resL = $loan->save();
+        if ($resL === false){
+            $this->error = '借款状态更新失败';
+            return false;
+        }
+
         return true;
     }
 
+    /**
+     * 发放贷款
+     * @param $memberId
+     * @param $num
+     * @return bool
+     */
     public function loanOut($memberId , $num){
 
         $MemberValue = new MemberValue();
@@ -76,5 +89,92 @@ class P2pOrder extends Model
             $this->error = $MemberValue->getError();
             return false;
         }
+    }
+
+    /**
+     * 支付账单
+     * @param $orderId
+     * @param int $type
+     */
+    public function payList($orderId , $type = 1){
+
+        $order = $this->find($orderId);
+        $memberId = $order->member_id;
+        $money = $order->sum + $order->late_fee;
+        if ($type == 1){
+            // 钱包支付
+            $MemberValue = new MemberValue();
+            $res = $MemberValue->moneyChange($memberId , $money / 100 * -1 , 'pay_p2p');
+            if ($res === false){
+                $this->error = $MemberValue->getError();
+                return false;
+            }
+        }
+
+        $order->status = 1;
+        $resO = $order->save();
+        if ($resO === false){
+            $this->error = '账单状态改变失败';
+            return false;
+        }
+
+        // 判断是否全部支付完成
+        $loanId = $order->loan_id;
+        $map['loan_id'] = $loanId;
+        $map['status'] = 0;
+        $count = $this->where($map)->count();
+        if($count == 0){
+            $loan = P2pLoan::get($loanId);
+            $loan->step = $loan->step + 1;
+            $loan->status = 1;
+            $resL = $loan->save();
+            if ($resL === false){
+                $this->error = '借款记录更新失败';
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public function lateFeeCreate($time = null , $auto = 1){
+
+        if ($time === null){
+            $time = time();
+        }
+
+        $map['pay_deadline'] = ['elt' , $time];
+        $map['status'] = 0;
+        $orders = $this->where($map)->lock(true)->select();
+        $MemberValue = new MemberValue();
+        foreach ($orders as $order){
+            if ($auto == 1){
+                // 先从钱包扣款
+                $memberId = $order->member_id;
+                $money= ($order->sum + $order->late_fee)/100;
+                $resM = $MemberValue->moneyChange($memberId , $money * -1 , 'pay_p2p_auto');
+            }else{
+                $resM = false;
+            }
+
+            if ($resM === false){
+                $days = ceil( ($time - $order->pay_deadline) / 24 / 3600 );
+                $num = $order->sum;
+                $fee = $num * $days * config('p2p.late_fee_rate');
+
+                $order->late_fee = $fee;
+                $order->late_days = $days;
+                $res = $order->save();
+                if ($res === false){
+//                    throw  new \Exception('计算错误，请重试');
+                    $this->error = '计算错误，请重试';
+                    return false;
+                }
+
+            }
+        }
+
+        return true;
     }
 }

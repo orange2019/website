@@ -6662,3 +6662,13 @@ i {
   left: 0;
   padding: 1rem;
 }
+.wechat-p2p-order .order-list {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #eeeeee;
+}
+.member-wechat-finance .finance-list {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #eeeeee;
+}

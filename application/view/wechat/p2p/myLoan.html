@@ -53,8 +53,6 @@
               </div>
             </div>
 
-
-
             </EGT>
 
             <div class="o-margin-top">
@@ -79,10 +77,21 @@
                 已投金额: {$loan.raise_num}
               </div>
               <div class="">
-                完成度: <span class="o-text-danger">{$loan.raise_num / $loan.finance.num}%</span>
+                完成度: <span class="o-text-danger">{$loan.raise_num / $loan.finance.num * 100}%</span>
               </div>
 
-            </noempty>
+            </notempty>
+
+            <EGT name="loan.step" value="6">
+              <hr>
+            <div class="o-margin-top">
+              <div class="o-text-center">
+                <a href="{:url('wechat/p2p/order?loan_id='.$loan['id'])}" class="pjax o-text-primary">查看还款账单</a>
+              </div>
+
+            </div>
+
+            </EGT>
 					</div>
 
 				</section>

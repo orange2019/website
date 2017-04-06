@@ -104,15 +104,20 @@ class P2pRaise extends Model
 
     }
 
-    public function updateInterest($loanId){
+    public function updateInterest($loanId , $dateTime){
 
         $loan = P2pLoan::get($loanId);
         $financeId = $loan->finance_id;
-        $datetime = $loan->loan_date;
-        return $this->updateInterestByFinance($financeId , $datetime);
+        return $this->updateInterestByFinance($financeId , $dateTime);
 
     }
 
+    /**
+     * 更新收益利息
+     * @param $financeId
+     * @param $datetime
+     * @return bool
+     */
     public function updateInterestByFinance($financeId , $datetime ){
 
         $finance = P2pFinance::get($financeId);
@@ -138,5 +143,46 @@ class P2pRaise extends Model
         }
 
         return true;
+    }
+
+    /**
+     * 分享收益操作
+     * @param null $time
+     * @return bool
+     */
+    public function doShare($time = null){
+
+        if ($time === null){
+            $time = time();
+        }
+
+        $raiseBackDays = config('p2p.raise_back_days');
+        $map['recycle_date'] = ['elt' , $time - ($raiseBackDays * 24 * 3600)];
+        $map['status'] = 0;
+
+        $raises = $this->where($map)->lock(true)->select();
+
+        $MemberValue = new MemberValue();
+        foreach ($raises as $raise){
+            $memberId = $raise->member_id;
+            $money = $raise->sum / 100;
+
+            $resM = $MemberValue->moneyChange($memberId , $money , 'raise_share');
+            if ($resM === 'false'){
+                $this->error = $MemberValue->getError();
+                return false;
+//                throw new \Exception($MemberValue->getError());
+            }
+
+            $raise->status = 1;
+            $raise->recycle_time = $time;
+            $resR = $raise->save();
+            if ($resR === false){
+                $this->error = '结算错误';
+                return false;
+//                throw new \Exception('结算错误');
+            }
+
+        }
     }
 }

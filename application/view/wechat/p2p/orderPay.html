@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+
+<script src="/assets/js/pace.min.js"></script>
+<link href="/assets/css/pace-theme-flash.css" rel="stylesheet" />
+
+    <title>账单详情</title>
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
+<link rel="stylesheet" href="/assets/css/default.css">
+
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="wechat-p2p-order">
+
+					<h3 class="o-padding-top o-padding-left o-text-xl">{$order.bill_date|date='Y.m.d',###}账单</h3>
+					<div class="o-padding">
+						<div class="">
+							<small>账单金额</small>
+							<div class="o-text-xl">{:money($order.sum+$order.late_fee)}</div>
+						</div>
+
+						<div class="">
+							<small>详细</small>
+							<div class="">
+								<span>本金:</span>
+								<span>{$order.principal|money=###}</span>
+							</div>
+							<div class="">
+								<span>利息:</span>
+								<span>{$order.interest|money=###}</span>
+							</div>
+							<div class="">
+								<span>滞纳金:</span>
+								<span>{$order.late_fee|money=###}</span>
+							</div>
+							<div class="">
+								<span>罚息天数:</span>
+								<span>{$order.late_days}</span>
+							</div>
+						</div>
+
+						<div class="o-margin-top">
+							<hr>
+							{$form}
+						</div>
+					</div>
+
+				</section>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../../include/head.html"-->
+    <title>我的投资</title>
+    <!--include "../../include/css.html"-->
+
+  </head>
+  <body>
+    <div id="pjax-container">
+      <div id="pjax-content">
+
+				<section class="member-wechat-finance">
+
+					<h3 class="o-padding-top o-padding-left o-text-xxl">我的投资</h3>
+
+					<hr>
+					<notempty name="list">
+						<foreach name="list" item="vo">
+							<div class="o-margin finance-list o-padding">
+
+								<div class="o-cf">
+									<div class="o-fl">
+										{:\\LC\\P2p::getFinanceNum($vo)}
+									</div>
+									<div class="o-fr">
+										<small>
+											<eq name="vo.status" value="1">已结算</eq>
+											<eq name="vo.status" value="0" ><span class="o-text-danger">未结算</span></eq>
+										</small>
+
+									</div>
+								</div>
+								<div class="">
+									<small>投资金额</small>
+									<div class="">
+										<strong class="o-text-xl">{:money($vo.num)}</strong>
+									</div>
+									<div class="">
+										<small>预计收益：{$vo.interest|money=###}</small>
+									</div>
+									<div class="">
+										<span>冻结期至：{$vo.recycle_date|date='Y.m.d',###}</span>
+									</div>
+								</div>
+
+							</div>
+						</foreach>
+					<else/>
+					<p class="o-text-center o-text-danger">还未有投资记录</p>
+				</notempty>
+
+				</section>
+
+      </div>
+    </div>
+
+    <!--include "../../include/script.html"-->
+  </body>
+</html>
