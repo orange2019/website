@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--include "../include/head.html"-->
+    <title>{$title}</title>
+    <!--include "../include/css.html"-->
+
+  </head>
+  <body>
+    <div class="container" id="pjax-container">
+      <div class="container" id="pjax-content">
+        <!--include "../include/navbar.html"-->
+        <div class="container-content">
+          <!--include "../include/top.html"-->
+          <div class="container-wrap">
+            <form class="we-form form-ajax we-panel" action="{:url('')}" method="post">
+              <fieldset style="width:400px;">
+
+                <legend>app添加/编辑</legend>
+
+                <div class="we-form-group">
+                  <label for="" class="we-label">名称 <small class="we-text-danger"></small></label>
+                  <div class="">
+                    <input type="text" name="name" value="{$data.name}" placeholder="输入标识代号" required="">
+                  </div>
+                </div>
+
+								<div class="we-form-group">
+									<label for="" class="we-label">public_key <small class="we-text-danger"></small></label>
+									<div class="">
+										<input type="text" name="public_key" value="{$data.public_key}" placeholder="" required="">
+									</div>
+								</div>
+
+                <div class="we-form-group">
+                  <input type="hidden" name="id" value="{$data.id}">
+                  <hr>
+                  <input type="submit" value="提交" class="we-btn we-btn-success">
+                  <input type="reset" value="重置" class="we-btn we-btn-warning">
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--include "../include/script.html"-->
+  </body>
+</html>

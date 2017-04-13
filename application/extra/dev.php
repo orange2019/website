@@ -168,5 +168,20 @@ return [
                ]
            ]
        ],
+       'api' => [
+           'name' => 'api接口',
+           'url'  => 'dev/api/index',
+           'code' => 'database',
+           'child' => [
+               'api-index' => [
+                   'name' => 'app列表',
+                   'url'  => 'dev/api/index'
+               ],
+               'api-update' => [
+                   'name' => '更新',
+                   'url'  => 'dev/api/update'
+               ]
+           ]
+       ]
    ],
 ];
