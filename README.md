@@ -19,7 +19,7 @@
   + SSH `git@github.com:niklauslu/orange.git`  
 
 
-  1.克隆项目到本地文件夹 `my project`
+  1.克隆项目到本地文件夹 `my-project`
   2.打开项目文件夹进行composer包和npm包获取
   ```
   composer install
