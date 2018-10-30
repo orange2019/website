@@ -1,0 +1,20 @@
+{
+    "name": "niklaslu/php-form-builder",
+    "description": "php表单构造器",
+    "keyword" : ["php" , "form-builder"],
+    "license": "apache2.0",
+    "authors": [
+        {
+            "name": "Niklas Lu",
+            "email": "332553882@qq.com"
+        }
+    ],
+    "version" : "1.0.1",
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "niklaslu\\" : "src"
+        }
+    }
+
+}

@@ -1,0 +1,19 @@
+{
+    "name": "niklaslu/ali-dayu",
+    "description": "alidayu sms class",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "lucong",
+            "email": "332553882@qq.com"
+        }
+    ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload" : {
+	    "psr-4" : {
+	      "niklaslu\\" : "src"
+	    }
+	  }
+}

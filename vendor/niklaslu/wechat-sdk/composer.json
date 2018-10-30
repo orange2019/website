@@ -1,0 +1,20 @@
+{
+    "name": "niklaslu/wechat-sdk",
+    "description": "php wechat sdk",
+    "type": "composer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "niklas lu",
+            "email": "332553882@qq.com"
+        }
+    ],
+    "version": "1.0.4",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload" : {
+	    "psr-4" : {
+	      "niklaslu\\" : "src"
+	    }
+	  }
+}
