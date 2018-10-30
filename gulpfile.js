@@ -223,7 +223,7 @@ gulp.task('start', ['default'], () => {
     //     server: 'public'
     // });
     browserSync({
-      proxy : "http://orange.cc512.com/",
+      proxy : "http://juren.com/",
       notify: false,
       logPrefix: 'ASK',
     });
