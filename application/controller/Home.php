@@ -133,6 +133,11 @@ class Home extends Base{
         $map['project_id'] = $project_id;
         $map['status'] = 1;
         $categorys = db('category')->where($map)->order('sort' , 'asc')->select();
+
+        foreach ($categorys as $key => $value) {
+            $value['info'] = $value['info'] ? json_decode($value['info'], true) : null;
+            $categorys[$key] = $value;
+        }
         
         return $categorys;
     }
