@@ -81,7 +81,7 @@ class Posts extends Admin {
             }
             
             $data['seo'] = json_encode($data['seo']);
-            $data['info'] = json_encode($data['info']);
+            $data['info'] = isset($data['info']) ? json_encode($data['info']): '' ;
             
             $category = db('category')->find($data['category_id']);
             $data['url'] = $category['url'] . $data['name'] . '.html' ;

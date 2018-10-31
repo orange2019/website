@@ -83,7 +83,34 @@
       <div class="text-center h3 category-title-sub">{$category.info.title_sub}</div>
       <div class="text-center h6 category-title">{$category.title}</div>
 
-  
+      <div class="news-list" id="news-list">
+        <ul>
+          <volist name="list" id="vo" >
+              <li>
+                  <a href="{$vo.url}">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <img src="{$vo.cover}" alt="" width="270" height="160">
+                      </div>
+                      <div class="col-md-9">
+                        <h3 class="title">{$vo.title}</h3>
+                        <p class="desc">新闻简述</p>
+                        <time>{$vo.create_time|date='Y-m-d',###}</time>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+          </volist>
+          
+        </ul>
+
+        <div class="text-center">
+            {$page}
+        </div>
+    
+      </div>
+
+
     </section>
 
 

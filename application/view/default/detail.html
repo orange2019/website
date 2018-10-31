@@ -80,8 +80,9 @@
     </section>
 
     <section id="page-content">
-      <div class="text-center h3 category-title-sub">{$category.info.title_sub}</div>
-      <div class="text-center h6 category-title">{$category.title}</div>
+      <div class="text-center h3 post-title">{$detail.title}</div>
+      <div class="text-center post-time">{$detail.create_time|date='Y-m-d',###}</div>
+      <hr>
 
       <div class="info">
         {$detail.content}

@@ -97,6 +97,7 @@ footer .container-fluid {padding-right: 0px; padding-left: 0px;}
     min-height: 400px;
     background: #ffffff;
     margin: 15px 0 0 0;
+    padding-top: 30px;
 }
 
 #page-content .category-title {
@@ -110,6 +111,18 @@ footer .container-fluid {padding-right: 0px; padding-left: 0px;}
     color: #999999;
     line-height: 48px;
 } 
+
+#page-content .post-title {
+    font-size: 36px;
+    color: #666666;
+    line-height: 48px;
+}
+
+#page-content .post-time {
+    font-size: 16px;
+    color: #999999;
+    line-height: 24px;
+}
 
 #navs-page {
     width: 1200px;
@@ -163,3 +176,39 @@ footer .container-fluid {padding-right: 0px; padding-left: 0px;}
     max-width: 100%;
 }
 
+#news-list {
+    margin: 30px auto;
+    width: 1200px;
+    padding: 15px;
+}
+
+#news-list ul li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+#news-list ul li .desc{
+    margin-top: 1rem;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    height: 4rem;
+    color: #666666;
+}
+
+#news-list ul li time{
+    margin-top: 1rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    color: #999999;
+}
+
+.pagination a , .pagination span{
+    color: #333333 !important;
+    
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color:#ff6602 !important;
+    border-color: #ff6602 !important;
+}

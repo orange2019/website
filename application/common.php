@@ -325,3 +325,14 @@ function parse_config($val){
     }
     
 }
+
+function get_albums($rid , $limit = 4 , $rType = 'category' , $type = '' ){
+    $map['relation_id'] = $rid;
+    $map['relation_type'] = $rType;
+    if($type){
+        $map['type'] = $type;
+    }
+    
+    $res = db('album')->where($map)->limit(0,$limit)->select();
+    return $res;
+}
