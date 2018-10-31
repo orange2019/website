@@ -1,0 +1,56 @@
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">聚仁概况</a></li>
+                            <volist name="navs_sub['about']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">服务项目</a></li>
+                            <volist name="navs_sub['service']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">合作优势</a></li>
+                            <volist name="navs_sub['cooperation']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">客服中心</a></li>
+                            <volist name="navs_sub['customer']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <img src="{$project.info.qrcode}" class="img-responsive center-block">
+                    <p class="telphone text-center"> {$project.info.tel}</p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <p class="text-center Copyright">{$project.info.copyright} <a href="">{$project.info.beian}</a></p>
+        </div>
+
+    </footer>

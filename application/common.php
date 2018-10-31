@@ -41,6 +41,13 @@ function money($value , $decimals = 2 ,$dec_point = '.' , $thousands_sep = ','){
     return $value;
 }
 
+function getFansLink(){
+    $map['status'] = 1;
+    $list = db('fanslink')->where($map)->select();
+
+    return $list;
+}
+
 /**
  * 验证手机号码
  * @param $phone

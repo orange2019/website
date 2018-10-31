@@ -15,6 +15,7 @@ class ComposerStaticInit313a9b88dc192b965fa71b33c7536832
         array (
             'think\\composer\\' => 15,
             'think\\captcha\\' => 14,
+            'think\\' => 6,
         ),
         'n' => 
         array (
@@ -34,6 +35,10 @@ class ComposerStaticInit313a9b88dc192b965fa71b33c7536832
         'think\\captcha\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-captcha/src',
+        ),
+        'think\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/thinkphp/library/think',
         ),
         'niklaslu\\' => 
         array (

@@ -15,7 +15,7 @@ return [
     // 服务器地址
     'hostname'       => '59939c0a9a983.gz.cdb.myqcloud.com',
     // 数据库名
-    'database'       => 'juren2018',
+    'database'       => '2018_juren',
     // 用户名
     'username'       => 'root',
     // 密码

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
+    'think\\' => array($baseDir . '/thinkphp/library/think'),
     'niklaslu\\' => array($vendorDir . '/niklaslu/ali-dayu/src', $vendorDir . '/niklaslu/php-aliyun-oss/src', $vendorDir . '/niklaslu/php-form-builder/src', $vendorDir . '/niklaslu/php-sent-email/src', $vendorDir . '/niklaslu/think-authentication/src', $vendorDir . '/niklaslu/un-limit-tree/src', $vendorDir . '/niklaslu/wechat-sdk/src'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
 );

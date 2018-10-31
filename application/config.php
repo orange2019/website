@@ -128,6 +128,8 @@ return [
         'taglib_begin' => '<',
         // 标签库标签结束标记
         'taglib_end'   => '>',
+
+        'auto_rule'   => 2
     ],
 
     // 视图输出字符串内容替换

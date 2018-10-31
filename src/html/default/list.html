@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <!--include "include/head.html"-->
-    <title>{$seo.title}</title>
-    <!--include "include/css.html"-->
+<html lang="zh-CN"><head>
+	<!--include "./include/head.html"-->
+	</head>
+	<body>
+		<!--include "./include/header.html"-->
+		
+		<div class="offset"></div>
 
-  </head>
-  <body>
-    <div class="container" id="pjax-container">
-      <div class="container" id="pjax-content">
-
+		<!--banner-->
+		<section id="category-banner" style="background: url({$channel.info.cover})">
+			<div class="text-center channel-title">
+				{$channel.title}
+			</div>
+		</section>
+    <!--banner-->
+    
+    <section id="navs-page">
+      <div class="navs-sub">
+          <ul class="navs">
+              <volist name="navs_sub[$channel['name']]" id="vo">
+                <eq name="vo.id" value="$category.id">
+                  <li class="active"><a href="{$vo.url}">{$vo.title}</a></li>
+                <else/>
+                  <li><a href="{$vo.url}">{$vo.title}</a></li>
+                </eq>
+                  
+              </volist>
+          </ul>
       </div>
-    </div>
+      <div class="navs-link">
+        <a href="/">首页</a>
+        <span>&gt;</span>
+        <a href="{$channel.url}">{$channel.title}</a>
+        <neq name="channel.id" value="$category.id">
+            <span>&gt; {$category.title}</span>
+        </neq>
+      </div>
+      
+    </section>
 
-    <!--include "../include/script.html"-->
-  </body>
-</html>
+    <section id="page-content">
+      <div class="text-center h3 category-title-sub">{$category.info.title_sub}</div>
+      <div class="text-center h6 category-title">{$category.title}</div>
+
+  
+    </section>
+
+
+
+		<!--footer-->
+			<!--include "./include/footer.html"-->
+		<!--footer-->
+
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="baidu-site-verification" content="Kd2osz6NLi">
+<title>{$project.info.name}</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/style.css?t={:time()}">
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.js"></script>
+<![endif]-->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+	</head>
+	<body>
+		<header>
+        <!--nav-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!--小导航-->
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a href="/" class="navbar-brand"> <img src="{$project.logo}" class="img-responsive"> </a> </div>
+                <!--小导航-->
+                <!--导航-->
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav navbar-right">
+                        <volist name="navs" id="vo" >
+                            <eq name="vo.name" value="$channel.name">
+                                <li><a class="active" href="{$vo.url}">{$vo.title}</a></li>
+                            <else/>
+                                <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </eq>
+                            
+                        </volist>
+                    </ul>
+                </div>
+                <!--导航-->
+            </div>
+        </nav>
+    </header>
+		
+		<div class="offset"></div>
+
+		<!--banner-->
+		<section id="category-banner" style="background: url({$channel.info.cover})">
+			<div class="text-center channel-title">
+				{$channel.title}
+			</div>
+		</section>
+    <!--banner-->
+    
+    <section id="navs-page">
+      <div class="navs-sub">
+          <ul class="navs">
+              <volist name="navs_sub[$channel['name']]" id="vo">
+                <eq name="vo.id" value="$category.id">
+                  <li class="active"><a href="{$vo.url}">{$vo.title}</a></li>
+                <else/>
+                  <li><a href="{$vo.url}">{$vo.title}</a></li>
+                </eq>
+                  
+              </volist>
+          </ul>
+      </div>
+      <div class="navs-link">
+        <a href="/">首页</a>
+        <span>&gt;</span>
+        <a href="{$channel.url}">{$channel.title}</a>
+        <neq name="channel.id" value="$category.id">
+            <span>&gt; {$category.title}</span>
+        </neq>
+      </div>
+      
+    </section>
+
+    <section id="page-content">
+      <div class="text-center h3 category-title-sub">{$category.info.title_sub}</div>
+      <div class="text-center h6 category-title">{$category.title}</div>
+
+   
+    </section>
+
+
+
+		<!--footer-->
+			<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">聚仁概况</a></li>
+                            <volist name="navs_sub['about']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">服务项目</a></li>
+                            <volist name="navs_sub['service']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">合作优势</a></li>
+                            <volist name="navs_sub['cooperation']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="Listtitle"><a href="javascript:;">客服中心</a></li>
+                            <volist name="navs_sub['customer']" id="vo">
+                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <img src="{$project.info.qrcode}" class="img-responsive center-block">
+                    <p class="telphone text-center"> {$project.info.tel}</p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <p class="text-center Copyright">{$project.info.copyright} <a href="">{$project.info.beian}</a></p>
+        </div>
+
+    </footer>
+		<!--footer-->
+
+</body></html>

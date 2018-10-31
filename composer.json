@@ -15,7 +15,7 @@
     }],
     "require": {
         "php": ">=5.4.0",
-        "topthink/framework": "^5.0",
+        "topthink/framework": "v5.0.11",
         "niklaslu/php-aliyun-oss": "dev-master",
         "niklaslu/wechat-sdk": "dev-master",
         "niklaslu/ali-dayu": "dev-master",

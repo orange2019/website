@@ -14,10 +14,11 @@ class Home extends Base{
         $controller = $request->controller();
         $this->controllerLimit($controller);
 
-        $domain = $request->server('HTTP_HOST');
+        // $domain = $request->server('HTTP_HOST');
 //        $url = $request->baseUrl();
 
-        $project = $this->getProject($domain);
+        $project = $this->getProject();
+        $this->assign('project' , $project);
         session('www_project' , $project);
 
     }
@@ -41,6 +42,13 @@ class Home extends Base{
             $categorys = $this->getAllCategorys($project['id']);
             $navs = UnLimitTree::unlimitedForLayer($categorys);
             $this->assign('navs' , $navs);
+
+            // 二级栏目处理
+            $navSub = [];
+            foreach ($navs as $key => $value) {
+                $navSub[$value['name']] = $value['child'];
+            }
+            $this->assign('navs_sub' , $navSub);
             
             // 获取栏目主题
             $themeId = $project['theme_id'];
@@ -108,11 +116,13 @@ class Home extends Base{
         }
     }
     
-    protected function getProject($domain){
+    protected function getProject($domain = null){
         
-        $map['domain'] = $domain;
+        // $map['domain'] = $domain;
+        $map['name'] = 'default';
         $map['status'] = 1;
         $project = db('Project')->where($map)->find();
+        $project['info'] = $project['info'] ? json_decode($project['info'] , true) : null;
         
         session('home_project_id' , $project['id']);
         return $project;
@@ -197,6 +207,7 @@ class Home extends Base{
         
         // 找到当前频道
         $channel = get_channel_by_category($category);
+        $channel['info'] = $channel['info'] ? json_decode($channel['info'] , true) : null;
         $this->assign('channel' ,$channel);
         
         if ($detail == false){

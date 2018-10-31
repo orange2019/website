@@ -18,3 +18,4 @@ define('EXTEND_PATH', __DIR__ . '/../application/extend/');
 define('STATIC_VERSION' , '0.0.2');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
+

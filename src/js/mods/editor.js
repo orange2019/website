@@ -17,8 +17,8 @@ var Editor = {
 		     height : '450px',
 		     filterMode : false,
 		     allowFileManager : false,
-		     uploadJson : '/file/upload',
-		     fileManagerJson : '/file/data',
+		    //  uploadJson : '/file/upload',
+		    //  fileManagerJson : '/file/data',
 		     formatUploadUrl : false,
 				 allowImageRemote : false,
 		     afterBlur : function(){
@@ -32,8 +32,8 @@ var Editor = {
 		       basePath : '/static/kindeditor/',
 		       pluginsPath : '/static/kindeditor/plugins/',
 		       allowFileManager : false,
-		       uploadJson : '/file/upload',
-		       fileManagerJson : '/file/data',
+		      //  uploadJson : '/file/upload',
+		      //  fileManagerJson : '/file/data',
 		       formatUploadUrl : false,
 					 allowImageRemote : false
 

@@ -223,7 +223,7 @@ gulp.task('start', ['default'], () => {
     //     server: 'public'
     // });
     browserSync({
-      proxy : "http://juren.com/",
+      proxy : "http://juren.io/",
       notify: false,
       logPrefix: 'ASK',
     });
