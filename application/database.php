@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'       => '2018_juren',
     // 用户名
-    'username'       => 'root',
+    'username'       => 'juren2018',
     // 密码
-    'password'       => 'Lc19890512',
+    'password'       => 'juren_2018',
     // 端口
     'hostport'       => '5579',
     // 连接dsn
