@@ -43,6 +43,17 @@
       <div class="text-center h3 category-title-sub">{$category.info.title_sub}</div>
       <div class="text-center h6 category-title">{$category.title}</div>
 
+      <div class="row" id="case-list">
+
+          <volist name="list" id="v">
+          <div class="col-md-3 text-center">
+            <div class="block">
+              <img src="{$v.cover}" class="img-responsive center-block">
+            </div>
+            <h4 class="text-center">{$v.title}</h4>
+            <p>{$v.description}</p>
+          </div>
+          </volist>
    
     </section>
 

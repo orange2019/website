@@ -49,7 +49,7 @@ class Posts extends Admin {
         
         $map['status'] = ['>=' , 0];
         
-        $list = db('posts')->where($map)->order('sort' , 'asc')->paginate($pagesize , false , $query);
+        $list = db('posts')->where($map)->order(['sort' => 'asc' , 'create_time' => 'desc'])->paginate($pagesize , false , $query);
         $page = $list->render();
         
         $this->assign('list' , $list);

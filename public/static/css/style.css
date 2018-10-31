@@ -212,3 +212,8 @@ footer .container-fluid {padding-right: 0px; padding-left: 0px;}
     background-color:#ff6602 !important;
     border-color: #ff6602 !important;
 }
+
+#case-list {
+    width: 1200px;
+    margin: 30px auto;
+}

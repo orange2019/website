@@ -336,3 +336,10 @@ function get_albums($rid , $limit = 4 , $rType = 'category' , $type = '' ){
     $res = db('album')->where($map)->limit(0,$limit)->select();
     return $res;
 }
+
+function get_posts($categoryId , $limit = 3){
+    $map['category_id'] = $categoryId;
+    $map['status'] = 1;
+    $res = db('posts')->where($map)->order(['sort' => 'asc' , 'create_time' => 'desc'])->limit(0,$limit)->select();
+    return $res;
+}

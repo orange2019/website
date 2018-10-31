@@ -222,7 +222,7 @@ class Home extends Base{
             $map['category_id'] = $category['id'];
             $map['status'] = 1;
             $listCount = $category['list_count'];
-            $list = db('posts')->where($map)->order('sort' , 'asc')->paginate($listCount,false);
+            $list = db('posts')->where($map)->order(['sort' => 'asc' , 'create_time' => 'desc'])->paginate($listCount,false);
             $page = $list->render();
             $this->assign('list' , $list);
             $this->assign('page' , $page);
