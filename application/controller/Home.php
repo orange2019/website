@@ -205,9 +205,11 @@ class Home extends Base{
                 }
             }
         }
+
+        // dump($category);
         // 栏目数据
-        $info = $category['info'] ? json_decode($category['info'] , true) : null;
-        $category['info'] = $info;
+        // $info = $category['info'] ? json_decode($category['info'] , true) : null;
+        // $category['info'] = $info;
         $this->assign('category' , $category);
         
         // 找到当前频道
