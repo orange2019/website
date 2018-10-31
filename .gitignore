@@ -1,10 +1,8 @@
 .idea
 composer.lock
 *.log
-thinkphp
 .settings/
 .buildpath
 .project
-vendor/
 runtime/
 node_modules/
