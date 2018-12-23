@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--include "../include/head.html"-->
-    <title>saas管理系统登录</title>
-    <!--include "../include/css.html"-->
 
-  </head>
-  <body class="login">
+<head>
+  <!--include "../include/head.html"-->
+  <title>saas管理系统登录</title>
+  <!--include "../include/css.html"-->
 
-    <div class="login-box">
+</head>
 
-        <div class="login-form-block">
-          <h3 class="logo">橙子后台管理系统</h3>
-          <hr>
-          <form class="we-form form-ajax" action="{:url('')}" method="post">
-            <div class="we-form-group">
-              <input type="email" name="email" value="" placeholder="请输入登录邮箱" required="">
-            </div>
+<body class="login">
 
-            <div class="we-form-group">
-              <input type="password" name="password" value="" placeholder="请输入登录密码" required="">
-            </div>
+  <div class="login-box">
 
-            <div class="we-form-group">
-              <input type="text" name="captcha" value="" placeholder="请输入验证码" required="">
-            </div>
+    <div class="login-form-block">
+      <h3 class="logo">官网后台管理系统</h3>
+      <hr>
+      <form class="we-form form-ajax" action="{:url('')}" method="post">
+        <div class="we-form-group">
+          <input type="email" name="email" value="" placeholder="请输入登录邮箱" required="">
+        </div>
 
-            <div class="we-form-group">
-              <img src="{:captcha_src()}" alt="" width="150" height="40" class="captcha-again captcha-img">
-              <a href="javascript:;" class="captcha-again">看不清？换一张</a>
-            </div>
+        <div class="we-form-group">
+          <input type="password" name="password" value="" placeholder="请输入登录密码" required="">
+        </div>
 
-            <div class="we-form-group">
-              <!-- {:token()} -->
-              <input type="submit" class="we-btn  we-btn-block btn-login" value="登录">
-            </div>
-            <div class="we-form-group we-cf">
-              <!-- <a href="{:url('')}">注册</a> -->
-              <div class="we-fr">
-                <a href="javascript:alert('请联系系统管理人员！');">忘记密码?</a>
-              </div>
-            </div>
+        <div class="we-form-group">
+          <input type="text" name="captcha" value="" placeholder="请输入验证码" required="">
+        </div>
 
-          </form>
+        <div class="we-form-group">
+          <img src="{:captcha_src()}" alt="" width="150" height="40" class="captcha-again captcha-img">
+          <a href="javascript:;" class="captcha-again">看不清？换一张</a>
+        </div>
 
-      </div>
+        <div class="we-form-group">
+          <!-- {:token()} -->
+          <input type="submit" class="we-btn  we-btn-block btn-login" value="登录">
+        </div>
+        <div class="we-form-group we-cf">
+          <!-- <a href="{:url('')}">注册</a> -->
+          <div class="we-fr">
+            <a href="javascript:alert('请联系系统管理人员！');">忘记密码?</a>
+          </div>
+        </div>
+
+      </form>
 
     </div>
-    <div class="copyright we-text-center">
-      Copyright © 2017 ORANGE NETWORK All rights reserved.
-    </div>
 
-    <!--include "../include/script.html"-->
-    <script type="text/javascript">
-      var captchaReset = function(){
+  </div>
+  <div class="copyright we-text-center">
+    Copyright © 2017 ORANGE NETWORK All rights reserved.
+  </div>
 
-        $('.captcha-again').bind('click', function() {
+  <!--include "../include/script.html"-->
+  <script type="text/javascript">
+    var captchaReset = function () {
 
-          var src = "{:captcha_src()}" + '?t=' + Math.random();
-          $('.captcha-img').attr('src', src);
-        }).trigger('click');
-      }
+      $('.captcha-again').bind('click', function () {
 
-      captchaReset();
-    </script>
-  </body>
+        var src = "{:captcha_src()}" + '?t=' + Math.random();
+        $('.captcha-img').attr('src', src);
+      }).trigger('click');
+    }
+
+    captchaReset();
+  </script>
+</body>
+
 </html>
