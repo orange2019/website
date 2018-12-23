@@ -292,8 +292,7 @@ abstract class Connection
                 if ($config['debug']) {
                     $startTime = microtime(true);
                 }
-                dump($config);
-                dump($params);
+
                 $this->links[$linkNum] = new PDO($config['dsn'], $config['username'], $config['password'], $params);
                 if ($config['debug']) {
                     // 记录数据库连接信息
