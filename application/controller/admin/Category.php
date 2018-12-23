@@ -144,7 +144,7 @@ class Category extends Admin {
             }
             
             // seo
-            $data['seo'] = json_encode($data['seo']);
+            $data['seo'] = isset($data['seo']) ? json_encode($data['seo']) : '';
             
             $res = \app\model\Category::update($data);
             if ($res){

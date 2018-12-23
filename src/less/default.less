@@ -1,98 +1,60 @@
-
-@import "../../node_modules/amazeui/less/variables.less";
-@import "../../node_modules/amazeui/less/mixins.less";
-// Defaults
-@import "../../node_modules/amazeui/less/base.less";
-
-// Layout
-@import "../../node_modules/amazeui/less/grid.less";
-@import "../../node_modules/amazeui/less/block-grid.less";
-@import "../../node_modules/amazeui/less/button.less";
-@import "../../node_modules/amazeui/less/table.less";
-@import "../../node_modules/amazeui/less/form.less";
-@import "../../node_modules/amazeui/less/utility.less";
-
-@import "../../node_modules/font-awesome/less/font-awesome.less";
-
-@import "./sweetalert/theme.less";
-@import "./base.less";
-@import "./reset.less";
-
-
-.o-container {
-	width: 1200px;
-	max-width: 1200px;
-	margin: auto;
+a:hover {
+  text-decoration: none !important;
+  color: #17a2b8 !important;
 }
 
-.o-form {
-	.o-form-group {
-		margin-bottom: 1rem;
-	}
-	.o-form-label {
-		line-height: 3rem;
-		font-size: 1.1rem;
-		color: @color-dark;
-		letter-spacing: 2px;
-	}
-	.o-form-radio , .o-form-checkbox {
-		margin-right: 1rem;
-	}
-	.o-form-content {
-		input[type="text"],
-		input[type="hidden"],
-		input[type="password"],
-		input[type="email"],
-		input[type="number"],
-		textarea {
-			height: 3rem;
-			line-height: 3rem;
-			font-size: 1rem;
-			border: none;
-			border-bottom: 2px solid #eee;
-			transition: all 0.5s;
-			letter-spacing : 1px;
-			color: @color-darker;
-		}
-
-		input[type="text"]:focus,
-		input[type="hidden"]:focus,
-		input[type="password"]:focus,
-		input[type="email"]:focus,
-		input[type="number"]:focus ,
-		textarea:focus{
-			border-bottom: 2px solid @color-brand-primary;
-			box-shadow: none;
-		}
-
-		textarea {
-			height: 10rem;
-		}
-
-
-	}
-
-	input[type="submit"],
-	input[type="reset"] {
-		background: @color-blue;
-		border: none;
-		border-radius: @radius-size;
-		line-height: 3rem;
-		font-size: 12px;
-		padding: 0 2rem;
-		color: #fff;
-	}
-
+.index-about-item {
+  height: 300px;
+  overflow: hidden;
 }
 
-.o-btn {
-	height: 3rem;
-	line-height: 3rem;
-	font-size: 1.2rem;
-	border-radius: 2px;
-	border: 0;
-	padding: 0 2rem;
+.about-box {
+  border-radius: 1.5rem;
+  overflow: hidden;
+
+  .nav-link.active {
+    border-right: 5px solid #17a2b8;
+  }
+}
+.about-content {
+  height: 800px;
+  overflow: auto;
+
+  .about-content-info {
+    img {
+      max-width: 100% !important;
+      a {
+        color: #17a2b8 !important;
+      }
+    }
+  }
 }
 
-@import "./default/auth.less";
-@import "./default/member.less";
+.content-info {
+  img {
+    max-width: 100% !important;
+    a {
+      color: #17a2b8 !important;
+    }
+  }
+}
+
+.news-list-item {
+  height: 144px;
+  overflow: hidden;
+}
+
+.index-list-box {
+  height: 144px;
+  overflow: hidden;
+}
+
+.pagination {
+  span,
+  a {
+    display: inline;
+    width: 3rem;
+    text-align: center;
+    height: 3rem;
+  }
+}

@@ -180,7 +180,7 @@ class Theme extends Dev {
             return $this->formError('模板被使用，无法删除');
         }
         
-        $res = db('Tempalte')->where('id' ,$id)->delete();
+        $res = db('Template')->where('id' ,$id)->delete();
         if ($res){
             return $this->formSuccess('操作成功');
         }else{

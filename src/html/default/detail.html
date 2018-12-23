@@ -1,58 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
-	<!--include "./include/head.html"-->
-	</head>
-	<body>
-		<!--include "./include/header.html"-->
-		
-		<div class="offset"></div>
+<html lang="zh-CN">
 
-		<!--banner-->
-		<section id="category-banner" style="background: url({$channel.info.cover})">
-			<div class="text-center channel-title">
-				{$channel.title}
-			</div>
-		</section>
-    <!--banner-->
-    
-    <section id="navs-page">
-      <div class="navs-sub">
-          <ul class="navs">
-              <volist name="navs_sub[$channel['name']]" id="vo">
-                <eq name="vo.id" value="$category.id">
-                  <li class="active"><a href="{$vo.url}">{$vo.title}</a></li>
-                <else/>
-                  <li><a href="{$vo.url}">{$vo.title}</a></li>
-                </eq>
-                  
-              </volist>
-          </ul>
+<head>
+  <!--include "./include/head.html"-->
+</head>
+
+<body class="bg-light">
+  <!--include "./include/header.html"-->
+
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-12 col-sm-12 ">
+        <div class="about-box border p-3">
+          <div class="text-muted h3 text-center">{$detail.title}</div>
+          <div class="mt-3 p-3 content-info text-muted">{$detail.content}</div>
+        </div>
       </div>
-      <div class="navs-link">
-        <a href="/">首页</a>
-        <span>&gt;</span>
-        <a href="{$channel.url}">{$channel.title}</a>
-        <neq name="channel.id" value="$category.id">
-            <span>&gt; {$category.title}</span>
-        </neq>
-      </div>
-      
-    </section>
 
-    <section id="page-content">
-      <div class="text-center h3 post-title">{$detail.title}</div>
-      <div class="text-center post-time">{$detail.create_time|date='Y-m-d',###}</div>
-      <hr>
-
-      <div class="info">
-        {$detail.content}
-      </div>
-    </section>
+    </div>
+  </div>
 
 
+  <!--include "./include/footer.html"-->
 
-		<!--footer-->
-			<!--include "./include/footer.html"-->
-		<!--footer-->
+  <!--include "./include/script.html"-->
+</body>
 
-</body></html>
+</html>

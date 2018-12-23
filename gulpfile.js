@@ -67,12 +67,12 @@ gulp.task('copy', () => {
                 return 'public/assets/css';
             }
             if (file.path.indexOf('pace-progress') > -1) {
-              if (file.path.indexOf('pace.min.js') > -1) {
-                  return 'public/assets/js';
-              }
-              if (file.path.indexOf('themes') > -1) {
-                  return 'public/assets/css';
-              }
+                if (file.path.indexOf('pace.min.js') > -1) {
+                    return 'public/assets/js';
+                }
+                if (file.path.indexOf('themes') > -1) {
+                    return 'public/assets/css';
+                }
             }
             return 'public/assets';
         }))
@@ -84,10 +84,10 @@ gulp.task('copy', () => {
 // 处理less
 gulp.task('less', () => {
     return gulp.src([
-      'src/less/app.less',
-      'src/less/default.less',
-      'src/less/mobile.less'
-    ])
+            'src/less/app.less',
+            'src/less/default.less',
+            'src/less/mobile.less'
+        ])
         // .pipe($.concat('app.less'))
         .pipe($.changed('less', {
             extension: '.less'
@@ -133,48 +133,48 @@ gulp.task('html', () => {
 
 // 打包 Common JS 模块
 var bundleInit = () => {
-  var entryFiles = [
-    'src/js/app.js',
-    'src/js/index.js'
-  ];
+    var entryFiles = [
+        'src/js/app.js',
+        'src/js/index.js'
+    ];
 
-  entryFiles.map(function(index) {
-    // var b = watchify(browserify({
-    //     entries: index,
-    //     basedir: __dirname,
-    //     cache: {},
-    //     packageCache: {}
-    // }));
-    var b = browserify({
-        entries: index,
-        basedir: __dirname,
-        cache: {},
-        packageCache: {}
-    });
+    entryFiles.map(function (index) {
+        // var b = watchify(browserify({
+        //     entries: index,
+        //     basedir: __dirname,
+        //     cache: {},
+        //     packageCache: {}
+        // }));
+        var b = browserify({
+            entries: index,
+            basedir: __dirname,
+            cache: {},
+            packageCache: {}
+        });
 
-    b.transform('babelify', {
+        b.transform('babelify', {
             presets: ['es2015']
         })
         // 如果你想把 jQuery 打包进去，注销掉下面一行
         // .transform('browserify-shim', {global: true});
 
-    b.on('update', () => {
-        bundle(b);
-    }).on('log', $.util.log);
+        b.on('update', () => {
+            bundle(b);
+        }).on('log', $.util.log);
 
-    // bundle(b);
-    var sourceFile = index.replace('src/js/','');
-    b.bundle()
-        .on('error', $.util.log.bind($.util, 'Browserify Error'))
-        .pipe(source(sourceFile))
-        .pipe(buffer())
-        .pipe(gulp.dest('public/assets/js'))
-        .pipe($.uglify())
-        .pipe($.rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('public/assets/js'));
-  });
+        // bundle(b);
+        var sourceFile = index.replace('src/js/', '');
+        b.bundle()
+            .on('error', $.util.log.bind($.util, 'Browserify Error'))
+            .pipe(source(sourceFile))
+            .pipe(buffer())
+            .pipe(gulp.dest('public/assets/js'))
+            .pipe($.uglify())
+            .pipe($.rename({
+                suffix: '.min'
+            }))
+            .pipe(gulp.dest('public/assets/js'));
+    });
 
 };
 
@@ -195,7 +195,7 @@ gulp.task('browserify', bundleInit);
 
 // clean
 gulp.task('clean', () => {
-    return del(['public/assets/*','application/view/*'], {
+    return del(['public/assets/*', 'application/view/*'], {
         dot: true
     });
 });
@@ -223,12 +223,12 @@ gulp.task('start', ['default'], () => {
     //     server: 'public'
     // });
     browserSync({
-      proxy : "http://juren.io/",
-      notify: false,
-      logPrefix: 'ASK',
+        proxy: "http://localhost/",
+        notify: false,
+        logPrefix: 'ASK',
     });
 
-    gulp.watch(['public/assets/**/*','application/**/*'], reload);
+    gulp.watch(['public/assets/**/*', 'application/**/*'], reload);
 });
 
 // 默认任务

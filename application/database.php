@@ -13,15 +13,15 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => '59939c0a9a983.gz.cdb.myqcloud.com',
+    'hostname'       => 'rm-wz9077258c2ibppy7ro.mysql.rds.aliyuncs.com',
     // 数据库名
-    'database'       => '2018_juren',
+    'database'       => 'website',
     // 用户名
-    'username'       => 'juren2018',
+    'username'       => 'kxm_2018',
     // 密码
-    'password'       => 'juren_2018',
+    'password'       => 'kxm-2018',
     // 端口
-    'hostport'       => '5579',
+    'hostport'       => '3306',
     // 连接dsn
     'dsn'            => '',
     // 数据库连接参数

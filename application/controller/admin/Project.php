@@ -36,7 +36,7 @@ class project extends Admin {
             }
         
         }else{
-            
+            $this->assign('title' , 'tianjia');
             return $this->fetch();
         }
     }

@@ -37,7 +37,8 @@
                             <hr>
                             <foreach name="configs" item="c">
                                 <div class="we-form-group we-g">
-                                    <label for="" class="we-label we-u-sm-3">{$c[1]} <small class="we-text-danger">{$c[3] ? $c[3] : ''}</small></label>
+                                    <label for="" class="we-label we-u-sm-3">{$c[1]} <small class="we-text-danger">{$c[3]
+                                            ? $c[3] : ''}</small></label>
                                     <div class="we-u-sm-9">
                                         <eq name="c[2]" value="num">
                                             <input type="number" name="info[{$c[0]}]" value="{$info[$c[0]] ? $info[$c[0]] : ''}">
@@ -74,7 +75,7 @@
                                 <input type="hidden" name="id" value="{$data.id}">
                                 <hr>
                                 <input type="submit" value="提交" class="we-btn we-btn-success">
-                                <input type="submit" value="重置" class="we-btn we-btn-warning">
+                                <input type="reset" value="重置" class="we-btn we-btn-warning">
                             </div>
 
                         </fieldset>

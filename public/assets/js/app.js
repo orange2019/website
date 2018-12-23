@@ -2234,10 +2234,12 @@ var Category = {
 	categoryTypeChange: function categoryTypeChange() {
 
 		var select = $('#category-type');
-		var url = select.attr('data-url');
+		// console.log(select)
+		// var url = select.attr('data-id');
 		select.bind('change', function () {
+			// console.log(url)
 			var type = select.val();
-			location.href = url + '?type=' + type;
+			// location.href = url + '?type=' + type;
 		});
 
 		var select1 = $('#posts-update');

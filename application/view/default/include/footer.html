@@ -1,56 +1,42 @@
-<footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="col-md-3">
-                        <ul>
-                            <li class="Listtitle"><a href="javascript:;">聚仁概况</a></li>
-                            <volist name="navs_sub['about']" id="vo">
-                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
-                            </volist>
-                        </ul>
-                    </div>
+<div class="bg-dark pt-3 pb-3">
+    <div class="container text-light">
+        <div class="row">
+            <div class="col-md-8 d-none d-sm-none d-md-block border-right">
+                <div class="row">
+                    <div class="col-3">
+                        <a href="/about" class="text-light">关于卡西慕</a>
 
-                    <div class="col-md-3">
-                        <ul>
-                            <li class="Listtitle"><a href="javascript:;">服务项目</a></li>
-                            <volist name="navs_sub['service']" id="vo">
-                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
-                            </volist>
-                        </ul>
+                        <volist name="navs_sub['about']" id="vo">
+                            <div class="mt-2"><a href="{$vo.url}" class="text-white-50">{$vo.title}</a></div>
+                        </volist>
                     </div>
-
-                    <div class="col-md-3">
-                        <ul>
-                            <li class="Listtitle"><a href="javascript:;">合作优势</a></li>
-                            <volist name="navs_sub['cooperation']" id="vo">
-                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
-                            </volist>
-                        </ul>
+                    <div class="col-3">
+                        <a href="" class="text-light">细胞 - 说</a>
                     </div>
-
-                    <div class="col-md-3">
-                        <ul>
-                            <li class="Listtitle"><a href="javascript:;">客服中心</a></li>
-                            <volist name="navs_sub['customer']" id="vo">
-                                    <li><a href="{$vo.url}">{$vo.title}</a></li>
-                            </volist>
-                        </ul>
+                    <div class="col-3">
+                        <a href="" class="text-light">顾问团队</a>
                     </div>
-
+                    <div class="col-3">
+                        <a href="" class="text-light">联系我们</a>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <img src="{$project.info.qrcode}" class="img-responsive center-block">
-                    <p class="telphone text-center"> {$project.info.tel}</p>
-                </div>
-
-
+            </div>
+            <div class="col-md-4 ">
+                <div class="mb-3">客服微信：{$project.info.wx}</div>
+                <div class="mb-3">客服QQ：{$project.info.qq}</div>
+                <div class="mb-3">邮箱：{$project.info.mail}</div>
             </div>
         </div>
+    </div>
+
+</div>
+
+<footer class="pt-2 pb-2" style="background:#111;">
 
 
-        <div class="container-fluid">
-            <p class="text-center Copyright">{$project.info.copyright} <a href="">{$project.info.beian}</a></p>
-        </div>
 
-    </footer>
+    <div class="container text-white">
+        <div class="text-center">{$project.info.copyright}</div>
+    </div>
+
+</footer>

@@ -214,7 +214,8 @@ class Home extends Base{
         
         // 找到当前频道
         $channel = get_channel_by_category($category);
-        $channel['info'] = $channel['info'] ? json_decode($channel['info'] , true) : null;
+        // dump($channel['info']);
+        // $channel['info'] = $channel['info'] ? json_decode($channel['info'] , true) : null;
         $this->assign('channel' ,$channel);
         
         if ($detail == false){

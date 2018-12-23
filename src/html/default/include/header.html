@@ -1,27 +1,32 @@
-<header>
-        <!--nav-->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <!--小导航-->
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a href="/" class="navbar-brand"> <img src="{$project.logo}" class="img-responsive"> </a> </div>
-                <!--小导航-->
-                <!--导航-->
-                <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav navbar-right">
-                        <volist name="navs" id="vo" >
+<header class="border-bottom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/"><img src="{$project.logo}" alt="" height="50px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+
+                        <volist name="navs" id="vo">
                             <eq name="vo.name" value="$channel.name">
-                                <li><a class="active" href="{$vo.url}">{$vo.title}</a></li>
-                            <else/>
-                                <li><a href="{$vo.url}">{$vo.title}</a></li>
+                                <li class="nav-item"><a class="nav-link active text-body pl-3 pr-3 border-right" href="{$vo.url}">{$vo.title}</a></li>
+                                <else />
+                                <li class="nav-item"><a href="{$vo.url}" class="nav-link text-info pl-3 pr-3 border-right">{$vo.title}</a></li>
                             </eq>
-                            
+
                         </volist>
                     </ul>
                 </div>
-                <!--导航-->
             </div>
         </nav>
-    </header>
+    </div>
+
+
+</header>
