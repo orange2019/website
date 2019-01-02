@@ -68,7 +68,12 @@
   <div class="container mt-5 mb-5">
     <div class="row">
       <div class="col-12 col-sm-12 ">
-        <div class="about-box border p-3">{$category.content}</div>
+        <div class="about-box border p-3">
+          
+          <div class="content-info">
+              {$category.content}
+          </div>
+        </div>
       </div>
 
     </div>
@@ -81,20 +86,17 @@
             <div class="col-md-8 d-none d-sm-none d-md-block border-right">
                 <div class="row">
                     <div class="col-3">
-                        <a href="/about" class="text-light">关于卡西慕</a>
+                        <a href="/about/" class="text-light">关于卡西慕</a>
 
                         <volist name="navs_sub['about']" id="vo">
                             <div class="mt-2"><a href="{$vo.url}" class="text-white-50">{$vo.title}</a></div>
                         </volist>
                     </div>
                     <div class="col-3">
-                        <a href="" class="text-light">细胞 - 说</a>
+                        <a href="/business/" class="text-light">主营业务</a>
                     </div>
                     <div class="col-3">
-                        <a href="" class="text-light">顾问团队</a>
-                    </div>
-                    <div class="col-3">
-                        <a href="" class="text-light">联系我们</a>
+                        <a href="/contact/" class="text-light">联系我们</a>
                     </div>
                 </div>
             </div>
@@ -109,8 +111,6 @@
 </div>
 
 <footer class="pt-2 pb-2" style="background:#111;">
-
-
 
     <div class="container text-white">
         <div class="text-center">{$project.info.copyright}</div>
